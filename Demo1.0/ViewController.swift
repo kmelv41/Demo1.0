@@ -107,6 +107,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
             myCell.venueLabel.text = item.name
             myCell.distanceLabel.text = "\(String(format:"%.1f",distFromPin)) km"
+            myCell.addressLabel.text = item.address
+            myCell.cityLabel.text = item.city
             
             // old text reference
             //myCell.textLabel!.text = item.name! + " - \(String(format:"%.1f",distFromPin)) km away"

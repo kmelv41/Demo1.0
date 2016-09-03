@@ -79,13 +79,17 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             if let name = jsonElement["Name"] as? String,
                 let address = jsonElement["Address"] as? String,
                 let latitude = jsonElement["Latitude"] as? String,
-                let longitude = jsonElement["Longitude"] as? String
+                let longitude = jsonElement["Longitude"] as? String,
+                let category = jsonElement["Category"] as? String,
+                let city = jsonElement["City"] as? String
             {
                 
                 location.name = name
                 location.address = address
                 location.latitude = latitude
                 location.longitude = longitude
+                location.category = category
+                location.city = city
                 
             }
             

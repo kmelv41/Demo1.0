@@ -25,10 +25,8 @@ class OurViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-        }
         locationManager.delegate = self
         mapView.delegate = self
         startSignificantChangeUpdates()
