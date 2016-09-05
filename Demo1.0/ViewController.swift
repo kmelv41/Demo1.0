@@ -64,6 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         feedItems = items
         self.listTableView.reloadData()
+        createArrays(items)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -109,16 +110,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             myCell.distanceLabel.text = "\(String(format:"%.1f",distFromPin)) km"
             myCell.addressLabel.text = item.address
             myCell.cityLabel.text = item.city
-            
-            // old text reference
-            //myCell.textLabel!.text = item.name! + " - \(String(format:"%.1f",distFromPin)) km away"
-            
-            // lines for Search Function
-            /*searchArray.append(myCell.textLabel!.text!)
-            searchArray = Array(Set(searchArray))*/
             return myCell
         }
         
+    }
+    
+    func createArrays (initialData: NSArray) {
+        // test code
+        var newArray = [[String?]]()
+        for index in 0..<feedItems.count {
+            var singleRecord = [String?]()
+            let pinLocation = CLLocation(latitude: Double(initialData[index].latitude!!)!, longitude: Double(initialData[index].longitude!!)!)
+            currentLocation = locationManager.location
+            let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
+            let strFromPin = String(format:"%.1f",distFromPin)
+            singleRecord.append(initialData[index].name)
+            singleRecord.append(initialData[index].address)
+            singleRecord.append(initialData[index].city)
+            singleRecord.append(strFromPin)
+            newArray.append(singleRecord)
+        }
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
