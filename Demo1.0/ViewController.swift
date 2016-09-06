@@ -21,9 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var currentLocation : CLLocation! = nil
     var locationManager = CLLocationManager()
     let searchBar = UISearchBar()
-    var filteredArray: NSArray = NSArray()
-    var displayedArray = [String]()
-    var searchArray = [String] ()
+    var filteredArray: [[String?]] = []
     var tableArray = [[String?]]()
     
     var shouldShowSearchResults = false
@@ -64,23 +62,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func itemsDownloaded(items: NSArray) {
         
         feedItems = items
-        self.listTableView.reloadData()
         tableArray = createArrays(items)
+        self.listTableView.reloadData()
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
-        self.filteredArray = searchArray.filter({(names: String) -> Bool in
+        /*self.filteredArray = searchArray.filter({(names: String) -> Bool in
             return names.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
-        })
+        })*/
+        
+        self.filteredArray = tableArray.filter { (dataArray:[String?]) -> Bool in
+            return dataArray.filter({ (string) -> Bool in
+                return string!.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+            }).count > 0
+        }
         
         if searchText != "" {
             shouldShowSearchResults = true
-            self.listTableView.reloadData()
         } else {
             shouldShowSearchResults = false
-            self.listTableView.reloadData()
         }
+        self.listTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,47 +92,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if shouldShowSearchResults {
             return filteredArray.count
         } else {
-            return feedItems.count
+            return tableArray.count
         }
         
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Retrieve cell
-        let cellIdentifier: String = "BasicCell"
-        let myCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)! as! CustomVenueCell
+        let myCell = tableView.dequeueReusableCellWithIdentifier("BasicCell")! as! CustomVenueCell
+        let item: LocationModel = feedItems[indexPath.row] as! LocationModel
+        let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
+        currentLocation = locationManager.location
+        let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
+        _ = item.name
+        _ = "\(String(format:"%.1f",distFromPin)) km"
+        _ = item.address
+        _ = item.city
         
         if shouldShowSearchResults {
-            myCell.textLabel!.text = filteredArray[indexPath.row] as? String
+            let row = indexPath.row
+            myCell.venueLabel.text = filteredArray[row][0]
+            myCell.distanceLabel.text = filteredArray[row][3]! + " km"
+            myCell.addressLabel.text = filteredArray[row][1]
+            myCell.cityLabel.text = filteredArray[row][2]
             return myCell
         } else {
-            /*let row = indexPath.row
-            myCell.venueLabel.text = tableArray[row][0]
-            myCell.distanceLabel.text = tableArray[row][3]
-            myCell.addressLabel.text = tableArray[row][1]
-            myCell.cityLabel.text = tableArray[row][2]*/
-            
-            
-            
-            
-            let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-            let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
-            currentLocation = locationManager.location
-            let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
-            myCell.venueLabel.text = item.name
-            myCell.distanceLabel.text = "\(String(format:"%.1f",distFromPin)) km"
-            myCell.addressLabel.text = item.address
-            myCell.cityLabel.text = item.city
-            
             let row = indexPath.row
             myCell.venueLabel.text = tableArray[row][0]
             myCell.distanceLabel.text = tableArray[row][3]! + " km"
             myCell.addressLabel.text = tableArray[row][1]
             myCell.cityLabel.text = tableArray[row][2]
-            
             return myCell
         }
-        
     }
     
     func createArrays (initialData: NSArray) -> [[String?]] {
