@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var filteredArray: NSArray = NSArray()
     var displayedArray = [String]()
     var searchArray = [String] ()
+    var tableArray = [[String?]]()
     
     var shouldShowSearchResults = false
     
@@ -64,7 +65,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         feedItems = items
         self.listTableView.reloadData()
-        createArrays(items)
+        tableArray = createArrays(items)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -102,6 +103,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             myCell.textLabel!.text = filteredArray[indexPath.row] as? String
             return myCell
         } else {
+            /*let row = indexPath.row
+            myCell.venueLabel.text = tableArray[row][0]
+            myCell.distanceLabel.text = tableArray[row][3]
+            myCell.addressLabel.text = tableArray[row][1]
+            myCell.cityLabel.text = tableArray[row][2]*/
+            
+            
+            
+            
             let item: LocationModel = feedItems[indexPath.row] as! LocationModel
             let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
             currentLocation = locationManager.location
@@ -110,15 +120,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             myCell.distanceLabel.text = "\(String(format:"%.1f",distFromPin)) km"
             myCell.addressLabel.text = item.address
             myCell.cityLabel.text = item.city
+            
+            let row = indexPath.row
+            myCell.venueLabel.text = tableArray[row][0]
+            myCell.distanceLabel.text = tableArray[row][3]! + " km"
+            myCell.addressLabel.text = tableArray[row][1]
+            myCell.cityLabel.text = tableArray[row][2]
+            
             return myCell
         }
         
     }
     
-    func createArrays (initialData: NSArray) {
+    func createArrays (initialData: NSArray) -> [[String?]] {
         // test code
         var newArray = [[String?]]()
-        for index in 0..<feedItems.count {
+        for index in 0..<initialData.count {
             var singleRecord = [String?]()
             let pinLocation = CLLocation(latitude: Double(initialData[index].latitude!!)!, longitude: Double(initialData[index].longitude!!)!)
             currentLocation = locationManager.location
@@ -130,6 +147,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             singleRecord.append(strFromPin)
             newArray.append(singleRecord)
         }
+        let sortedArray = newArray.sort { $0[3] < $1[3] }
+        return sortedArray
     }
     
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
