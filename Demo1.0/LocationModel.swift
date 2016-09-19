@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jolt. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 
 class LocationModel: NSObject {
     
@@ -49,4 +49,4 @@ class LocationModel: NSObject {
     }
     
     
-}
+}*/

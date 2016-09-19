@@ -27,10 +27,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Our View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="S9j-49-jG5">
             <objects>
-                <viewController id="9th-GH-1wC" customClass="OurViewController" customModule="Demo1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9th-GH-1wC" customClass="MapViewController" customModule="Demo1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WWN-CA-8LX"/>
                         <viewControllerLayoutGuide type="bottom" id="3ZO-TL-x4i"/>
@@ -53,9 +53,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gtf-F1-LLm">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="Menufilled.png" id="y8r-c4-At1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aOA-Qt-SUH">
+                            <rect key="frame" x="241" y="6" width="118" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="JoltMap.png"/>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="Venues" id="FyW-ri-L03">
                             <connections>
                                 <segue destination="rbg-cZ-MAi" kind="show" identifier="mapToVenues" id="Ecr-it-mUd"/>
@@ -85,6 +91,11 @@
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="wiV-Wt-6UT">
+                            <rect key="frame" x="0.0" y="238" width="600" height="363"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <sections>
                             <tableViewSection id="p2h-D4-DTp">
                                 <cells>
@@ -95,7 +106,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="MQLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YS-4b-XZL">
+                                                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="JoltMenu.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YS-4b-XZL">
                                                     <rect key="frame" x="8" y="0.0" width="118" height="58"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -103,12 +114,12 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="leadingMargin" secondItem="6YS-4b-XZL" secondAttribute="leading" id="U5f-U8-0M6"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="6YS-4b-XZL" secondAttribute="leading" constant="-25" id="U5f-U8-0M6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6YS-4b-XZL" secondAttribute="bottom" constant="-6" id="loJ-e7-BHg"/>
                                                 <constraint firstItem="6YS-4b-XZL" firstAttribute="top" secondItem="n7B-bG-PrH" secondAttribute="topMargin" constant="-6" id="v4h-DX-G8m"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapCell" id="YFx-wm-MBE">
@@ -467,10 +478,10 @@
             </objects>
             <point key="canvasLocation" x="1266" y="2644"/>
         </scene>
-        <!--View Controller-->
+        <!--Venue List View Controller-->
         <scene sceneID="ADH-KF-bK8">
             <objects>
-                <viewController id="rbg-cZ-MAi" customClass="ViewController" customModule="Demo1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rbg-cZ-MAi" customClass="VenueListViewController" customModule="Demo1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Erx-ab-J2u"/>
                         <viewControllerLayoutGuide type="bottom" id="Gda-fb-EED"/>
@@ -606,7 +617,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MQLogo.png" width="119" height="58"/>
+        <image name="JoltMap.png" width="64" height="33"/>
+        <image name="JoltMenu.png" width="106" height="55"/>
         <image name="Menufilled.png" width="22" height="22"/>
         <image name="WhiteCredit.png" width="22" height="22"/>
         <image name="WhiteHelp.png" width="22" height="22"/>

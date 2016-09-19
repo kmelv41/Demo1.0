@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jolt. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 
 protocol HomeModelProtocol: class {
     func itemsDownloaded(items: NSArray)
@@ -75,7 +75,7 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             
             let location = LocationModel()
             
-            //the following insures none of the JsonElement values are nil through optional binding
+            //the following ensures none of the JsonElement values are nil through optional binding
             if let name = jsonElement["Name"] as? String,
                 let address = jsonElement["Address"] as? String,
                 let latitude = jsonElement["Latitude"] as? String,
@@ -103,4 +103,4 @@ class HomeModel: NSObject, NSURLSessionDataDelegate {
             
         })
     }
-}
+}*/
