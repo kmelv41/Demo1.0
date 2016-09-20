@@ -76,6 +76,9 @@
 		CEE83C911D831D6600A01D37 /* JoltMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8B1D831D6600A01D37 /* JoltMenu.png */; };
 		CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8C1D831D6600A01D37 /* JoltMenu@2x.png */; };
 		CEE83C931D831D6600A01D37 /* JoltMenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8D1D831D6600A01D37 /* JoltMenu@3x.png */; };
+		CEFD001B1D907E9200006423 /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00151D907E9200006423 /* directions.png */; };
+		CEFD001C1D907E9200006423 /* directions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00161D907E9200006423 /* directions@2x.png */; };
+		CEFD001D1D907E9200006423 /* directions@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00171D907E9200006423 /* directions@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +177,9 @@
 		CEE83C8B1D831D6600A01D37 /* JoltMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoltMenu.png; sourceTree = "<group>"; };
 		CEE83C8C1D831D6600A01D37 /* JoltMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoltMenu@2x.png"; sourceTree = "<group>"; };
 		CEE83C8D1D831D6600A01D37 /* JoltMenu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoltMenu@3x.png"; sourceTree = "<group>"; };
+		CEFD00151D907E9200006423 /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
+		CEFD00161D907E9200006423 /* directions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directions@2x.png"; sourceTree = "<group>"; };
+		CEFD00171D907E9200006423 /* directions@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directions@3x.png"; sourceTree = "<group>"; };
 		E09DBBBFF47FE45E9649D9C8 /* Pods_Demo1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -302,6 +308,9 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CEFD00151D907E9200006423 /* directions.png */,
+				CEFD00161D907E9200006423 /* directions@2x.png */,
+				CEFD00171D907E9200006423 /* directions@3x.png */,
 				CEE83C6C1D7B6BBD00A01D37 /* WhiteCredit.png */,
 				CEE83C6D1D7B6BBD00A01D37 /* WhiteCredit@2x.png */,
 				CEE83C6E1D7B6BBD00A01D37 /* WhiteCredit@3x.png */,
@@ -478,9 +487,11 @@
 				CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */,
 				CEE83C421D78CDC900A01D37 /* Cafe@3x.png in Resources */,
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
+				CEFD001B1D907E9200006423 /* directions.png in Resources */,
 				CEE83C3F1D78CDC900A01D37 /* Beer@3x.png in Resources */,
 				CEE83C681D7B6BA700A01D37 /* GreenMap@3x.png in Resources */,
 				CEE83C431D78CDC900A01D37 /* Office.png in Resources */,
+				CEFD001C1D907E9200006423 /* directions@2x.png in Resources */,
 				CEE83C781D7B6BBD00A01D37 /* WhiteCredit.png in Resources */,
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
@@ -491,6 +502,7 @@
 				CEE83C501D7915FC00A01D37 /* MQLogo@3x.png in Resources */,
 				CE15BC161D5E835600517135 /* Assets.xcassets in Resources */,
 				CEE83C7F1D7B6BBD00A01D37 /* WhiteMap@2x.png in Resources */,
+				CEFD001D1D907E9200006423 /* directions@3x.png in Resources */,
 				CEE83C471D78CDC900A01D37 /* Restaurant@2x.png in Resources */,
 				CEE83C651D7B6BA700A01D37 /* GreenHelp@3x.png in Resources */,
 				CEE83C811D7B6BBD00A01D37 /* WhiteName.png in Resources */,

@@ -32,6 +32,8 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     var filteredArray = [[String?]]()
     var tableArray = [[String?]]()
     let rootRef = FIRDatabase.database().reference()
+    var routeLatitude = Double()
+    var routeLongitude = Double()
     
     var shouldShowSearchResults = false
     
@@ -55,7 +57,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
         let venueRef = rootRef.child("venues")
         venueRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
             
             var dataPull = snapshot.value! as! [[String:String]]
             
@@ -136,6 +137,11 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Retrieve cell
         let myCell = tableView.dequeueReusableCellWithIdentifier("BasicCell")! as! CustomVenueCell
+        
+        myCell.directionsButton.tag = indexPath.row
+        
+        myCell.directionsButton.addTarget(self, action: #selector(VenueListViewController.logAction(_:)), forControlEvents: .TouchUpInside)
+        
         /*let item: LocationModel = feedItems[indexPath.row] as! LocationModel
         let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
         currentLocation = locationManager.location
@@ -193,6 +199,32 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         searchBar.endEditing(true)
         shouldShowSearchResults = true
         self.listTableView.reloadData()
+    }
+    
+    @IBAction func logAction(sender: UIButton) {
+        let index = sender.tag
+        if shouldShowSearchResults {
+            routeLatitude = Double(filteredArray[index][3]!)!
+            routeLongitude = Double(filteredArray[index][4]!)!
+        } else {
+            routeLatitude = Double(tableArray[index][3]!)!
+            routeLongitude = Double(tableArray[index][4]!)!
+        }
+        
+        self.performSegueWithIdentifier("myUnwindSegue", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "myUnwindSegue" {
+            let destViewController : MapViewController = segue.destinationViewController as! MapViewController
+            
+            destViewController.routeLat = routeLatitude
+            destViewController.routeLong = routeLongitude
+            
+            destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
+            
+        }
+        
     }
     
 }
