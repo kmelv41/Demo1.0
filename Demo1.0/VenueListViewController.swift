@@ -212,6 +212,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         self.performSegueWithIdentifier("myUnwindSegue", sender: self)
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -222,6 +223,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
             destViewController.routeLong = routeLongitude
             
             destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
+            destViewController.cancelButton.hidden = false
             
         }
         

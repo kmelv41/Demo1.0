@@ -42,14 +42,20 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgx-2P-6pi">
                                 <rect key="frame" x="0.0" y="64" width="600" height="0.0"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHF-3a-CwJ">
+                                <rect key="frame" x="277" y="522" width="33" height="33"/>
+                                <state key="normal" image="cancel.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lgx-2P-6pi" firstAttribute="centerY" secondItem="uzj-1Y-6JE" secondAttribute="centerY" id="EKK-cb-fKh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Lgx-2P-6pi" secondAttribute="trailing" constant="-20" id="Ecf-XI-gAS"/>
+                            <constraint firstItem="jHF-3a-CwJ" firstAttribute="centerX" secondItem="Lgx-2P-6pi" secondAttribute="centerX" id="Eih-KG-bzS"/>
                             <constraint firstItem="Lgx-2P-6pi" firstAttribute="leading" secondItem="uzj-1Y-6JE" secondAttribute="leadingMargin" constant="-20" id="P6L-wI-z4i"/>
                             <constraint firstItem="3ZO-TL-x4i" firstAttribute="top" secondItem="Lgx-2P-6pi" secondAttribute="bottom" constant="-20" id="XSz-V3-AxK"/>
                             <constraint firstItem="Lgx-2P-6pi" firstAttribute="top" secondItem="WWN-CA-8LX" secondAttribute="bottom" id="Xpc-6J-fAu"/>
+                            <constraint firstItem="3ZO-TL-x4i" firstAttribute="top" secondItem="jHF-3a-CwJ" secondAttribute="bottom" constant="48" id="awA-76-Csg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gtf-F1-LLm">
@@ -69,6 +75,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="jHF-3a-CwJ" id="JpI-tW-g40"/>
                         <outlet property="mapView" destination="Lgx-2P-6pi" id="Qgu-If-cCs"/>
                         <outlet property="menuButton" destination="y8r-c4-At1" id="Zjr-MB-jIu"/>
                         <outlet property="venueButton" destination="FyW-ri-L03" id="9nS-vS-1cf"/>
@@ -638,6 +645,7 @@
         <image name="WhiteHelp.png" width="22" height="22"/>
         <image name="WhiteMap.png" width="22" height="22"/>
         <image name="WhiteName.png" width="22" height="22"/>
+        <image name="cancel.png" width="33" height="33"/>
         <image name="directions.png" width="67" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>

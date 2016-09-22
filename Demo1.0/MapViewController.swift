@@ -13,6 +13,7 @@ import Firebase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessionDataDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
@@ -38,7 +39,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         mapView.showsPointsOfInterest = false
         mapView.showsCompass = false
         mapView.rotateEnabled = false
-        print("Lat is \(routeLat) and Long is \(routeLong)")
+        cancelButton.hidden = true
         
     }
     
