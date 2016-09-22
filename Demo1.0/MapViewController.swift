@@ -13,6 +13,7 @@ import Firebase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessionDataDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
@@ -21,6 +22,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
     var pointAnnotation:CustomPointAnnotation!
     var pinAnnotationView:MKPinAnnotationView!
     let rootRef = FIRDatabase.database().reference()
+    var routeLat = Double()
+    var routeLong = Double()
+    var currentCoordinates = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         getData()
@@ -35,7 +39,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         mapView.showsPointsOfInterest = false
         mapView.showsCompass = false
         mapView.rotateEnabled = false
+        cancelButton.hidden = true
         
+    }
+    
+    
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+        cancelButton.hidden = true
+        
+        let region = MKCoordinateRegion(center: currentCoordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
     }
     
     @IBAction func myUnwindAction(sender: UIStoryboardSegue) {
@@ -103,6 +119,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         
         let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
         
+        currentCoordinates = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         self.mapView.setRegion(region, animated: true)
@@ -142,6 +160,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         
         return annotationView
     }
+    
+    func makeRoute(latitude: Double, longitude: Double) {
+        
+        let sourceLocation = currentCoordinates
+        let destinationLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
+        
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .Automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        
+        directions.calculateDirectionsWithCompletionHandler {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        }
+    }
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.init(red: 19/255, green: 205/255, blue: 25/255, alpha: 1)
+        renderer.lineWidth = 5.0
+        
+        return renderer
+    }
+    
+}
     
     /*func downloadItems() {
         
@@ -237,9 +302,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
             locations.addObject(LocationModel)
         
         }*/
-    
-    
-    }
+
     
     
     // MARK - Data pull for tableview

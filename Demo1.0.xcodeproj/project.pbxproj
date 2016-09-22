@@ -23,9 +23,10 @@
 		CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15BC471D5E8F6400517135 /* HelpViewController.swift */; };
 		CE15BC4A1D5E921E00517135 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE15BC491D5E921D00517135 /* MapKit.framework */; };
 		CE15BC4C1D5E922900517135 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE15BC4B1D5E922900517135 /* CoreLocation.framework */; };
+		CE26D75C1D943BCA00FBBFB8 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7591D943BCA00FBBFB8 /* cancel.png */; };
+		CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */; };
+		CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */; };
 		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
-		CEB6468D1D5FBEAA0024D4A5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6468C1D5FBEAA0024D4A5 /* HomeModel.swift */; };
-		CEB6468F1D5FBEB90024D4A5 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6468E1D5FBEB90024D4A5 /* LocationModel.swift */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
 		CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */; };
@@ -76,6 +77,9 @@
 		CEE83C911D831D6600A01D37 /* JoltMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8B1D831D6600A01D37 /* JoltMenu.png */; };
 		CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8C1D831D6600A01D37 /* JoltMenu@2x.png */; };
 		CEE83C931D831D6600A01D37 /* JoltMenu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C8D1D831D6600A01D37 /* JoltMenu@3x.png */; };
+		CEFD001B1D907E9200006423 /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00151D907E9200006423 /* directions.png */; };
+		CEFD001C1D907E9200006423 /* directions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00161D907E9200006423 /* directions@2x.png */; };
+		CEFD001D1D907E9200006423 /* directions@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD00171D907E9200006423 /* directions@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,9 +125,10 @@
 		CE15BC471D5E8F6400517135 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		CE15BC491D5E921D00517135 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CE15BC4B1D5E922900517135 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CE26D7591D943BCA00FBBFB8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
+		CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
 		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CEB6468C1D5FBEAA0024D4A5 /* HomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
-		CEB6468E1D5FBEB90024D4A5 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
 		CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menufilled@2x.png"; path = "../../Downloads/Menufilled@2x.png"; sourceTree = "<group>"; };
@@ -174,6 +179,9 @@
 		CEE83C8B1D831D6600A01D37 /* JoltMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoltMenu.png; sourceTree = "<group>"; };
 		CEE83C8C1D831D6600A01D37 /* JoltMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoltMenu@2x.png"; sourceTree = "<group>"; };
 		CEE83C8D1D831D6600A01D37 /* JoltMenu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JoltMenu@3x.png"; sourceTree = "<group>"; };
+		CEFD00151D907E9200006423 /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
+		CEFD00161D907E9200006423 /* directions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directions@2x.png"; sourceTree = "<group>"; };
+		CEFD00171D907E9200006423 /* directions@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "directions@3x.png"; sourceTree = "<group>"; };
 		E09DBBBFF47FE45E9649D9C8 /* Pods_Demo1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -256,8 +264,6 @@
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
-				CEB6468C1D5FBEAA0024D4A5 /* HomeModel.swift */,
-				CEB6468E1D5FBEB90024D4A5 /* LocationModel.swift */,
 				CE15BC411D5E87B200517135 /* MapViewController.swift */,
 				CE15BC431D5E8B2300517135 /* AccountViewController.swift */,
 				CE15BC451D5E8E0D00517135 /* PurchaseViewController.swift */,
@@ -302,6 +308,12 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CE26D7591D943BCA00FBBFB8 /* cancel.png */,
+				CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */,
+				CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */,
+				CEFD00151D907E9200006423 /* directions.png */,
+				CEFD00161D907E9200006423 /* directions@2x.png */,
+				CEFD00171D907E9200006423 /* directions@3x.png */,
 				CEE83C6C1D7B6BBD00A01D37 /* WhiteCredit.png */,
 				CEE83C6D1D7B6BBD00A01D37 /* WhiteCredit@2x.png */,
 				CEE83C6E1D7B6BBD00A01D37 /* WhiteCredit@3x.png */,
@@ -463,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE83C481D78CDC900A01D37 /* Restaurant@3x.png in Resources */,
+				CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */,
 				CEE83C4F1D7915FC00A01D37 /* MQLogo@2x.png in Resources */,
 				CEE83C411D78CDC900A01D37 /* Cafe@2x.png in Resources */,
 				CEE83C821D7B6BBD00A01D37 /* WhiteName@2x.png in Resources */,
@@ -478,9 +491,12 @@
 				CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */,
 				CEE83C421D78CDC900A01D37 /* Cafe@3x.png in Resources */,
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
+				CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */,
+				CEFD001B1D907E9200006423 /* directions.png in Resources */,
 				CEE83C3F1D78CDC900A01D37 /* Beer@3x.png in Resources */,
 				CEE83C681D7B6BA700A01D37 /* GreenMap@3x.png in Resources */,
 				CEE83C431D78CDC900A01D37 /* Office.png in Resources */,
+				CEFD001C1D907E9200006423 /* directions@2x.png in Resources */,
 				CEE83C781D7B6BBD00A01D37 /* WhiteCredit.png in Resources */,
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
@@ -491,6 +507,7 @@
 				CEE83C501D7915FC00A01D37 /* MQLogo@3x.png in Resources */,
 				CE15BC161D5E835600517135 /* Assets.xcassets in Resources */,
 				CEE83C7F1D7B6BBD00A01D37 /* WhiteMap@2x.png in Resources */,
+				CEFD001D1D907E9200006423 /* directions@3x.png in Resources */,
 				CEE83C471D78CDC900A01D37 /* Restaurant@2x.png in Resources */,
 				CEE83C651D7B6BA700A01D37 /* GreenHelp@3x.png in Resources */,
 				CEE83C811D7B6BBD00A01D37 /* WhiteName.png in Resources */,
@@ -510,6 +527,7 @@
 				CEE83C831D7B6BBD00A01D37 /* WhiteName@3x.png in Resources */,
 				CEE83C8F1D831D6600A01D37 /* JoltMap@2x.png in Resources */,
 				CEE83C6B1D7B6BA700A01D37 /* GreenName@3x.png in Resources */,
+				CE26D75C1D943BCA00FBBFB8 /* cancel.png in Resources */,
 				CEE83C661D7B6BA700A01D37 /* GreenMap.png in Resources */,
 				CEE83C631D7B6BA700A01D37 /* GreenHelp.png in Resources */,
 				CEE83C791D7B6BBD00A01D37 /* WhiteCredit@2x.png in Resources */,
@@ -589,14 +607,12 @@
 				CE15BC141D5E835600517135 /* Demo1_0.xcdatamodeld in Sources */,
 				CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */,
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
-				CEB6468D1D5FBEAA0024D4A5 /* HomeModel.swift in Sources */,
 				CE15BC441D5E8B2300517135 /* AccountViewController.swift in Sources */,
 				CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */,
 				CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */,
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,
 				CE15BC421D5E87B200517135 /* MapViewController.swift in Sources */,
 				CE15BC0C1D5E835600517135 /* AppDelegate.swift in Sources */,
-				CEB6468F1D5FBEB90024D4A5 /* LocationModel.swift in Sources */,
 				CE15BC3F1D5E837600517135 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
