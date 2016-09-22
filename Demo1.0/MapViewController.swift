@@ -43,6 +43,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         
     }
     
+    
+    @IBAction func cancelButtonClicked(sender: AnyObject) {
+        let overlays = mapView.overlays
+        mapView.removeOverlays(overlays)
+        cancelButton.hidden = true
+        
+        let region = MKCoordinateRegion(center: currentCoordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
+    }
+    
     @IBAction func myUnwindAction(sender: UIStoryboardSegue) {
         // nothing yet
     }
@@ -151,9 +162,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
     }
     
     func makeRoute(latitude: Double, longitude: Double) {
-        print("Lat is \(latitude), Long is \(longitude)")
-        
-        
         
         let sourceLocation = currentCoordinates
         let destinationLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

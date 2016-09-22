@@ -45,6 +45,9 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHF-3a-CwJ">
                                 <rect key="frame" x="277" y="522" width="33" height="33"/>
                                 <state key="normal" image="cancel.png"/>
+                                <connections>
+                                    <action selector="cancelButtonClicked:" destination="9th-GH-1wC" eventType="touchUpInside" id="cJ3-bb-7K4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
