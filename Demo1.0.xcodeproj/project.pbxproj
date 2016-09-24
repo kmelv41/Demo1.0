@@ -26,6 +26,9 @@
 		CE26D75C1D943BCA00FBBFB8 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7591D943BCA00FBBFB8 /* cancel.png */; };
 		CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */; };
 		CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */; };
+		CE26D76F1D95941000FBBFB8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE26D76C1D95941000FBBFB8 /* FBSDKCoreKit.framework */; };
+		CE26D7701D95941000FBBFB8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE26D76D1D95941000FBBFB8 /* FBSDKLoginKit.framework */; };
+		CE26D7711D95941000FBBFB8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE26D76E1D95941000FBBFB8 /* FBSDKShareKit.framework */; };
 		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
@@ -128,6 +131,9 @@
 		CE26D7591D943BCA00FBBFB8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
+		CE26D76C1D95941000FBBFB8 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		CE26D76D1D95941000FBBFB8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		CE26D76E1D95941000FBBFB8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
@@ -191,6 +197,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE15BC4C1D5E922900517135 /* CoreLocation.framework in Frameworks */,
+				CE26D76F1D95941000FBBFB8 /* FBSDKCoreKit.framework in Frameworks */,
+				CE26D7711D95941000FBBFB8 /* FBSDKShareKit.framework in Frameworks */,
+				CE26D7701D95941000FBBFB8 /* FBSDKLoginKit.framework in Frameworks */,
 				CE15BC4A1D5E921E00517135 /* MapKit.framework in Frameworks */,
 				495D06755AB9B437598C9946 /* Pods_Demo1_0.framework in Frameworks */,
 			);
@@ -225,6 +234,9 @@
 		6D8A5E3BF541CA52FABB2CB7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE26D76C1D95941000FBBFB8 /* FBSDKCoreKit.framework */,
+				CE26D76D1D95941000FBBFB8 /* FBSDKLoginKit.framework */,
+				CE26D76E1D95941000FBBFB8 /* FBSDKShareKit.framework */,
 				E09DBBBFF47FE45E9649D9C8 /* Pods_Demo1_0.framework */,
 			);
 			name = Frameworks;
@@ -761,6 +773,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/User/Documents/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;
@@ -779,6 +796,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/User/Documents/FacebookSDKs-iOS-4",
+				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;

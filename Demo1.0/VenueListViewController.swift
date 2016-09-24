@@ -90,7 +90,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.navigationItem.titleView = searchBar
     }
-    
 
     @IBAction func mapButtonClicked(sender: AnyObject) {
         self.performSegueWithIdentifier("myUnwindSegue", sender: self)

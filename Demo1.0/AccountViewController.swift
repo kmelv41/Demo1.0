@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FBSDKLoginKit
 
 class OurTableViewController: UITableViewController {
 
@@ -21,6 +22,10 @@ class OurTableViewController: UITableViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        let loginButton = FBSDKLoginButton()
+        loginButton.center = self.view.center
+        self.view.addSubview(loginButton)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
