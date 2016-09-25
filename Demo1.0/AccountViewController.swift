@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import MapKit
 import FBSDKLoginKit
+import FBSDKCoreKit
+import Firebase
+import FirebaseAuth
 
-class OurTableViewController: UITableViewController {
-
+class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    @IBOutlet var mapView: MKMapView!
+    let loginButton = FBSDKLoginButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,18 +24,49 @@ class OurTableViewController: UITableViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+
+        self.loginButton.hidden = true
         
-        let loginButton = FBSDKLoginButton()
-        loginButton.center = self.view.center
-        self.view.addSubview(loginButton)
+        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in.
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
+                
+                self.presentViewController(loggedInViewController, animated: true, completion: nil)
+                
+            } else {
+                // No user is signed in.
+                // show user login button.
+                
+                self.loginButton.center = self.view.center
+                self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+                self.loginButton.delegate = self
+                self.view.addSubview(self.loginButton)
+                 
+                self.loginButton.hidden = false
+            }
+        }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        print("User logged in")
+        
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        
+        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+            print("User logged into Firebase")
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("User logged out")
     }
 
+    // All remaining code is the default Swift code
+    
     /*
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
