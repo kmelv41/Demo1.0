@@ -54,10 +54,23 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User logged in")
         
-        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        self.loginButton.hidden = true
         
-        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+        if(error != nil) {
+            
+            self.loginButton.hidden = false
+            
+        } else if(result.isCancelled) {
+            
+            self.loginButton.hidden = false
+            
+        } else {
+        
+            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        
+            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
             print("User logged into Firebase")
+            }
         }
     }
     

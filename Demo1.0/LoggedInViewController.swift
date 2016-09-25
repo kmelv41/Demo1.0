@@ -17,12 +17,33 @@ class LoggedInViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
+    var ref = FIRDatabase.database().reference()
+    
+    var user = FIRAuth.auth()?.currentUser
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
+        
+        if let user = FIRAuth.auth()?.currentUser {
+            let name: String = user.displayName! as String
+            let email: String = user.email! as String
+            let uid: String = user.uid as String
+            
+            let storage = FIRStorage.storage()
+            
+            let storageRef = storage.referenceForURL("gs://nrgapp-36548.appspot.com")
+            
+            self.ref.child("Users").child(uid).setValue(["Name":name,"Email":email])
+            
+        } else {
+            
+            //no one is signed in
+            
         }
 
         // Do any additional setup after loading the view.

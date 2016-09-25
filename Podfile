@@ -6,6 +6,7 @@ target 'Demo1.0' do
 	pod 'Firebase'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+	pod 'Firebase/Storage'
 
 end
 
