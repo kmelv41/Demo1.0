@@ -14,6 +14,9 @@ import FirebaseAuth
 
 class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     
+    // add new login options
+    // organize buttons
+    
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let loginButton = FBSDKLoginButton()
     

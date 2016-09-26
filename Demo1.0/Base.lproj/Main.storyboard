@@ -413,10 +413,12 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqk-Wu-9J6">
                                 <rect key="frame" x="50" y="196" width="530" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="phoneField"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="phoneFieldChange:" destination="gqc-9Y-uWg" eventType="editingDidEnd" id="yMJ-Ya-Rg7"/>
+                                    <outlet property="delegate" destination="gqc-9Y-uWg" id="qVh-ff-rCv"/>
                                 </connections>
                             </textField>
                         </subviews>
