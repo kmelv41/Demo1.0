@@ -363,12 +363,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahv-Ol-7G6">
-                                <rect key="frame" x="262" y="72" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyz-Co-Yh7">
                                 <rect key="frame" x="273" y="550" width="55" height="30"/>
                                 <state key="normal" title="Log Out"/>
@@ -376,12 +370,76 @@
                                     <action selector="didTapLogout:" destination="gqc-9Y-uWg" eventType="touchUpInside" id="HSu-PQ-b7H"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="name.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ot7-WH-SRL">
+                                <rect key="frame" x="20" y="108" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="1KZ-fc-F4O"/>
+                                    <constraint firstAttribute="height" constant="22" id="EIi-ym-XFY"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fKa-0D-xBq">
+                                <rect key="frame" x="50" y="104" width="530" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameFieldChanged:" destination="gqc-9Y-uWg" eventType="editingDidEnd" id="kqC-1h-KLZ"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email.png" translatesAutoresizingMaskIntoConstraints="NO" id="qCS-03-JO0">
+                                <rect key="frame" x="20" y="154" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="5nR-IY-qxQ"/>
+                                    <constraint firstAttribute="width" constant="22" id="LlG-94-CLv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="qIw-lh-6xp"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="tnu-EA-KOC"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ptI-lj-BGV">
+                                <rect key="frame" x="50" y="150" width="530" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailFieldChanged:" destination="gqc-9Y-uWg" eventType="editingDidEnd" id="uQ8-hT-3V5"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="8hH-AW-cZ4">
+                                <rect key="frame" x="20" y="200" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="3dE-Y6-Htd"/>
+                                    <constraint firstAttribute="width" constant="22" id="KDF-TT-6p9"/>
+                                    <constraint firstAttribute="height" constant="22" id="Vy1-mq-Jrm"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="22" id="wPu-Uq-LdU"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqk-Wu-9J6">
+                                <rect key="frame" x="50" y="196" width="530" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="phoneFieldChange:" destination="gqc-9Y-uWg" eventType="editingDidEnd" id="yMJ-Ya-Rg7"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ot7-WH-SRL" firstAttribute="top" secondItem="1PM-Dv-qi1" secondAttribute="bottom" constant="44" id="0Lh-wF-CoW"/>
+                            <constraint firstItem="Bqk-Wu-9J6" firstAttribute="trailing" secondItem="whK-3l-8dU" secondAttribute="trailingMargin" id="A8h-tx-tjV"/>
+                            <constraint firstItem="Bqk-Wu-9J6" firstAttribute="leading" secondItem="8hH-AW-cZ4" secondAttribute="trailing" constant="8" id="ARq-3k-cOP"/>
+                            <constraint firstItem="ptI-lj-BGV" firstAttribute="trailing" secondItem="whK-3l-8dU" secondAttribute="trailingMargin" id="E5O-b8-4SO"/>
+                            <constraint firstItem="Ot7-WH-SRL" firstAttribute="leading" secondItem="whK-3l-8dU" secondAttribute="leadingMargin" id="NFH-1c-90m"/>
                             <constraint firstItem="sjv-bY-eoc" firstAttribute="top" secondItem="cyz-Co-Yh7" secondAttribute="bottom" constant="20" id="T1l-hR-hEZ"/>
-                            <constraint firstItem="ahv-Ol-7G6" firstAttribute="centerX" secondItem="whK-3l-8dU" secondAttribute="centerX" id="bGa-9q-CTW"/>
-                            <constraint firstItem="ahv-Ol-7G6" firstAttribute="top" secondItem="1PM-Dv-qi1" secondAttribute="bottom" constant="8" id="w27-Yr-ZgD"/>
+                            <constraint firstItem="8hH-AW-cZ4" firstAttribute="leading" secondItem="whK-3l-8dU" secondAttribute="leadingMargin" id="Tfx-s8-3Dr"/>
+                            <constraint firstItem="fKa-0D-xBq" firstAttribute="trailing" secondItem="whK-3l-8dU" secondAttribute="trailingMargin" id="WSw-0a-5m2"/>
+                            <constraint firstItem="Bqk-Wu-9J6" firstAttribute="top" secondItem="ptI-lj-BGV" secondAttribute="bottom" constant="16" id="br7-mU-uj6"/>
+                            <constraint firstItem="qCS-03-JO0" firstAttribute="leading" secondItem="whK-3l-8dU" secondAttribute="leadingMargin" id="fxO-91-Dhh"/>
+                            <constraint firstItem="Bqk-Wu-9J6" firstAttribute="leading" secondItem="8hH-AW-cZ4" secondAttribute="trailing" constant="8" id="gGF-s6-6ES"/>
+                            <constraint firstItem="fKa-0D-xBq" firstAttribute="top" secondItem="1PM-Dv-qi1" secondAttribute="bottom" constant="40" id="i01-WJ-QaQ"/>
+                            <constraint firstItem="fKa-0D-xBq" firstAttribute="leading" secondItem="Ot7-WH-SRL" secondAttribute="trailing" constant="8" id="oaA-64-fgL"/>
+                            <constraint firstItem="ptI-lj-BGV" firstAttribute="top" secondItem="fKa-0D-xBq" secondAttribute="bottom" constant="16" id="que-xH-0n0"/>
+                            <constraint firstItem="ptI-lj-BGV" firstAttribute="leading" secondItem="qCS-03-JO0" secondAttribute="trailing" constant="8" id="vSD-gH-zM1"/>
+                            <constraint firstItem="8hH-AW-cZ4" firstAttribute="top" secondItem="qCS-03-JO0" secondAttribute="bottom" constant="24" id="vg7-uU-FR6"/>
+                            <constraint firstItem="ptI-lj-BGV" firstAttribute="leading" secondItem="qCS-03-JO0" secondAttribute="trailing" constant="8" id="xoe-k8-xVZ"/>
+                            <constraint firstItem="qCS-03-JO0" firstAttribute="top" secondItem="Ot7-WH-SRL" secondAttribute="bottom" constant="24" id="y2U-2k-8ud"/>
                             <constraint firstItem="cyz-Co-Yh7" firstAttribute="centerX" secondItem="whK-3l-8dU" secondAttribute="centerX" id="zlP-dX-WK9"/>
                         </constraints>
                     </view>
@@ -389,8 +447,11 @@
                         <barButtonItem key="leftBarButtonItem" image="Menufilled.png" id="95O-43-jhC"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailField" destination="ptI-lj-BGV" id="ij2-Bi-84k"/>
                         <outlet property="logoutButton" destination="cyz-Co-Yh7" id="3zv-rs-XY3"/>
                         <outlet property="menuButton" destination="95O-43-jhC" id="v3E-ld-KYe"/>
+                        <outlet property="nameField" destination="fKa-0D-xBq" id="xfW-tH-1fG"/>
+                        <outlet property="phoneField" destination="Bqk-Wu-9J6" id="n68-K4-Rh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0G-dK-Mwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,6 +730,9 @@
         <image name="WhiteName.png" width="22" height="22"/>
         <image name="cancel.png" width="33" height="33"/>
         <image name="directions.png" width="67" height="14"/>
+        <image name="email.png" width="44" height="44"/>
+        <image name="name.png" width="44" height="44"/>
+        <image name="phone.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LgI-po-4RZ"/>
