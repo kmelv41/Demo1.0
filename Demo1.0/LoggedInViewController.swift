@@ -11,11 +11,19 @@ import Firebase
 import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FirebaseStorage
 
 class LoggedInViewController: UIViewController {
 
+    // Add Active/Inactive status that changes on logout
+    // Format phone number correctly
+    
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var phoneField: UITextField!
+    var uid: String = (FIRAuth.auth()?.currentUser?.uid)!
     
     var ref = FIRDatabase.database().reference()
     
@@ -30,15 +38,37 @@ class LoggedInViewController: UIViewController {
         }
         
         if let user = FIRAuth.auth()?.currentUser {
-            let name: String = user.displayName! as String
-            let email: String = user.email! as String
-            let uid: String = user.uid as String
             
-            let storage = FIRStorage.storage()
+            self.ref.child("Users").observeEventType(.Value, withBlock: { snapshot in
+                if snapshot.hasChild(self.uid) {
+                    self.ref.child("Users").child(self.uid).observeEventType(.Value, withBlock: { snapshot in
+                        
+                        let dataPull = snapshot.value! as! [String:String]
+                        
+                        if snapshot.hasChild("Name") {
+                            self.nameField.text = dataPull["Name"]!
+                        }
+                        
+                        if snapshot.hasChild("Email") {
+                            self.emailField.text = dataPull["Email"]!
+                        }
+                        
+                        if snapshot.hasChild("Phone") {
+                            self.phoneField.text = dataPull["Phone"]!
+                        }
+                        
+                    })
+                    
+                } else {
+                    
+                        let name: String = user.displayName! as String
+                        let email: String = user.email! as String
+                        self.uid = user.uid as String
+                    self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":""])
+                }
+                
+            })
             
-            let storageRef = storage.referenceForURL("gs://nrgapp-36548.appspot.com")
-            
-            self.ref.child("Users").child(uid).setValue(["Name":name,"Email":email])
             
         } else {
             
@@ -67,7 +97,30 @@ class LoggedInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func nameFieldChanged(sender: AnyObject) {
+        
+        let nameFieldText = self.nameField.text! as String
+        
+        self.ref.child("Users").child(self.uid).child("Name").setValue(nameFieldText)
+        
+    }
 
+    @IBAction func emailFieldChanged(sender: AnyObject) {
+        
+        let emailFieldText = self.emailField.text! as String
+        
+        self.ref.child("Users").child(self.uid).child("Email").setValue(emailFieldText)
+        
+    }
+    
+    @IBAction func phoneFieldChange(sender: AnyObject) {
+        
+        let phoneFieldText = self.phoneField.text! as String
+        
+        self.ref.child("Users").child(self.uid).child("Phone").setValue(phoneFieldText)
+        
+    }
+    
     /*
     // MARK: - Navigation
 

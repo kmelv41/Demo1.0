@@ -30,6 +30,17 @@
 		CE26D7701D95941000FBBFB8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE26D76D1D95941000FBBFB8 /* FBSDKLoginKit.framework */; };
 		CE26D7711D95941000FBBFB8 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE26D76E1D95941000FBBFB8 /* FBSDKShareKit.framework */; };
 		CE26D7731D9771AE00FBBFB8 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */; };
+		CE26D7801D98846C00FBBFB8 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7741D98846C00FBBFB8 /* email@2x.png */; };
+		CE26D7811D98846C00FBBFB8 /* name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7751D98846C00FBBFB8 /* name@2x.png */; };
+		CE26D7821D98846C00FBBFB8 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7761D98846C00FBBFB8 /* phone@2x.png */; };
+		CE26D7831D98846C00FBBFB8 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7771D98846C00FBBFB8 /* email.png */; };
+		CE26D7841D98846C00FBBFB8 /* name.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7781D98846C00FBBFB8 /* name.png */; };
+		CE26D7851D98846C00FBBFB8 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7791D98846C00FBBFB8 /* phone.png */; };
+		CE26D7871D98846C00FBBFB8 /* phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77B1D98846C00FBBFB8 /* phone@3x.png */; };
+		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
+		CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */; };
+		CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */; };
+		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
 		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
@@ -136,6 +147,17 @@
 		CE26D76D1D95941000FBBFB8 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		CE26D76E1D95941000FBBFB8 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
+		CE26D7741D98846C00FBBFB8 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
+		CE26D7751D98846C00FBBFB8 /* name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@2x.png"; sourceTree = "<group>"; };
+		CE26D7761D98846C00FBBFB8 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
+		CE26D7771D98846C00FBBFB8 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
+		CE26D7781D98846C00FBBFB8 /* name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = name.png; sourceTree = "<group>"; };
+		CE26D7791D98846C00FBBFB8 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		CE26D77B1D98846C00FBBFB8 /* phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@3x.png"; sourceTree = "<group>"; };
+		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
+		CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Message Filled-66.png"; sourceTree = "<group>"; };
+		CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gender Neutral User Filled-66.png"; sourceTree = "<group>"; };
+		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
 		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
@@ -323,6 +345,17 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CE26D7741D98846C00FBBFB8 /* email@2x.png */,
+				CE26D7751D98846C00FBBFB8 /* name@2x.png */,
+				CE26D7761D98846C00FBBFB8 /* phone@2x.png */,
+				CE26D7771D98846C00FBBFB8 /* email.png */,
+				CE26D7781D98846C00FBBFB8 /* name.png */,
+				CE26D7791D98846C00FBBFB8 /* phone.png */,
+				CE26D77B1D98846C00FBBFB8 /* phone@3x.png */,
+				CE26D77C1D98846C00FBBFB8 /* email@3x.png */,
+				CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */,
+				CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */,
+				CE26D77F1D98846C00FBBFB8 /* name@3x.png */,
 				CE26D7591D943BCA00FBBFB8 /* cancel.png */,
 				CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */,
 				CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */,
@@ -494,21 +527,28 @@
 				CEE83C4F1D7915FC00A01D37 /* MQLogo@2x.png in Resources */,
 				CEE83C411D78CDC900A01D37 /* Cafe@2x.png in Resources */,
 				CEE83C821D7B6BBD00A01D37 /* WhiteName@2x.png in Resources */,
+				CE26D7811D98846C00FBBFB8 /* name@2x.png in Resources */,
 				CEE83C611D7B6BA700A01D37 /* GreenCredit@2x.png in Resources */,
 				CEE83C621D7B6BA700A01D37 /* GreenCredit@3x.png in Resources */,
+				CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */,
 				CEE83C3D1D78CDC900A01D37 /* Beer.png in Resources */,
 				CEE83C7E1D7B6BBD00A01D37 /* WhiteMap.png in Resources */,
 				CE15BC191D5E835600517135 /* LaunchScreen.storyboard in Resources */,
 				CEE83C401D78CDC900A01D37 /* Cafe.png in Resources */,
 				CEE83C451D78CDC900A01D37 /* Office@3x.png in Resources */,
 				CEE83C7C1D7B6BBD00A01D37 /* WhiteHelp@2x.png in Resources */,
+				CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */,
 				CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */,
 				CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */,
 				CEE83C421D78CDC900A01D37 /* Cafe@3x.png in Resources */,
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
 				CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */,
 				CEFD001B1D907E9200006423 /* directions.png in Resources */,
+				CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */,
+				CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */,
+				CE26D7841D98846C00FBBFB8 /* name.png in Resources */,
 				CEE83C3F1D78CDC900A01D37 /* Beer@3x.png in Resources */,
+				CE26D7851D98846C00FBBFB8 /* phone.png in Resources */,
 				CEE83C681D7B6BA700A01D37 /* GreenMap@3x.png in Resources */,
 				CEE83C431D78CDC900A01D37 /* Office.png in Resources */,
 				CEFD001C1D907E9200006423 /* directions@2x.png in Resources */,
@@ -520,6 +560,7 @@
 				CEE83C7D1D7B6BBD00A01D37 /* WhiteHelp@3x.png in Resources */,
 				CEE83C7A1D7B6BBD00A01D37 /* WhiteCredit@3x.png in Resources */,
 				CEE83C501D7915FC00A01D37 /* MQLogo@3x.png in Resources */,
+				CE26D7801D98846C00FBBFB8 /* email@2x.png in Resources */,
 				CE15BC161D5E835600517135 /* Assets.xcassets in Resources */,
 				CEE83C7F1D7B6BBD00A01D37 /* WhiteMap@2x.png in Resources */,
 				CEFD001D1D907E9200006423 /* directions@3x.png in Resources */,
@@ -529,6 +570,7 @@
 				CEE83C461D78CDC900A01D37 /* Restaurant.png in Resources */,
 				CEE83C641D7B6BA700A01D37 /* GreenHelp@2x.png in Resources */,
 				CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */,
+				CE26D7821D98846C00FBBFB8 /* phone@2x.png in Resources */,
 				CEE83C931D831D6600A01D37 /* JoltMenu@3x.png in Resources */,
 				CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */,
 				CEE83C3E1D78CDC900A01D37 /* Beer@2x.png in Resources */,
@@ -539,7 +581,9 @@
 				CEE83C601D7B6BA700A01D37 /* GreenCredit.png in Resources */,
 				CEE83C4E1D7915FC00A01D37 /* MQLogo.png in Resources */,
 				CEE83C801D7B6BBD00A01D37 /* WhiteMap@3x.png in Resources */,
+				CE26D7871D98846C00FBBFB8 /* phone@3x.png in Resources */,
 				CEE83C831D7B6BBD00A01D37 /* WhiteName@3x.png in Resources */,
+				CE26D7831D98846C00FBBFB8 /* email.png in Resources */,
 				CEE83C8F1D831D6600A01D37 /* JoltMap@2x.png in Resources */,
 				CEE83C6B1D7B6BA700A01D37 /* GreenName@3x.png in Resources */,
 				CE26D75C1D943BCA00FBBFB8 /* cancel.png in Resources */,
