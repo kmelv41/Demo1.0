@@ -17,6 +17,11 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     // add new login options
     // organize buttons
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let loginButton = FBSDKLoginButton()
     
@@ -28,6 +33,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
 
+        self.loginButton.delegate = self
         self.loginButton.hidden = true
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
@@ -43,12 +49,18 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
                 // No user is signed in.
                 // show user login button.
                 
-                self.loginButton.center = self.view.center
                 self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-                self.loginButton.delegate = self
-                self.view.addSubview(self.loginButton)
-                 
                 self.loginButton.hidden = false
+                self.loginButton.center = self.containerView.center
+                self.view.addSubview(self.loginButton)
+                
+                //let verticalSpace = NSLayoutConstraint(item: self.loginButton, attribute: .Top, relatedBy: .Equal, toItem: self.signInButton, attribute: .Bottom, multiplier: 1.0, constant: 12)
+                
+                //let xConstraint = NSLayoutConstraint(item: self.loginButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
+                
+                //let yConstraint = NSLayoutConstraint(item: self.loginButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: -20)
+                
+                //NSLayoutConstraint.activateConstraints([yConstraint,xConstraint])
             }
         }
 
@@ -80,6 +92,16 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User logged out")
     }
+    
+    @IBAction func signInTapped(sender: UIButton) {
+        
+    }
+    
+    @IBAction func signUpTapped(sender: UIButton) {
+        
+    }
+    
+    
 
     // All remaining code is the default Swift code
     
