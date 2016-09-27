@@ -52,6 +52,12 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                         
                         if snapshot.hasChild("Email") {
                             self.emailField.text = dataPull["Email"]!
+                        } else if self.authProvider == "Email" {
+                            let name: String = self.emailAuthName
+                            let email: String = self.emailAuthEmail
+                            self.uid = user.uid as String
+                            
+                            self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
                         }
                         
                         if snapshot.hasChild("Phone") {
@@ -63,10 +69,19 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                 } else {
                     
                     if self.authProvider == "Facebook" {
+                        
                         let name: String = user.displayName! as String
                         let email: String = user.email! as String
                         self.uid = user.uid as String
-                    self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                        
+                    } else if self.authProvider == "Email" {
+                        
+                        let name: String = self.emailAuthName
+                        let email: String = self.emailAuthEmail
+                        self.uid = user.uid as String
+                        
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
                     }
             
                 }

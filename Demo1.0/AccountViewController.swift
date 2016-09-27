@@ -17,6 +17,8 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     // add new login options
     // organize buttons
     
+    @IBOutlet weak var firstNameField: UITextField!
+    @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -128,7 +130,6 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
                 
             } else {
                 print("User logged in with email")
-                self.authProvider = "Email"
             }
             
             
@@ -141,6 +142,11 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
             let destViewController : LoggedInViewController = segue.destinationViewController as! LoggedInViewController
             
             destViewController.authProvider = self.authProvider
+            
+            if self.authProvider == "Email" {
+                destViewController.emailAuthEmail = emailField.text!
+                destViewController.emailAuthName = firstNameField.text! + " " + lastNameField.text!
+            }
             
         }
     }

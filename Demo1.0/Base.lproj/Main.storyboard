@@ -373,11 +373,22 @@
                                     <segue destination="71g-4u-KKv" kind="embed" id="mJb-Xg-2Hh"/>
                                 </connections>
                             </containerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BmN-dh-UF4">
+                                <rect key="frame" x="20" y="163" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ctw-v7-fLm">
+                                <rect key="frame" x="20" y="125" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WNB-Db-JVk" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="2JH-j7-fTs"/>
                             <constraint firstItem="3cs-G4-On1" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="6j7-iS-Zmh"/>
+                            <constraint firstItem="F9U-U0-57F" firstAttribute="top" secondItem="BmN-dh-UF4" secondAttribute="bottom" constant="8" id="9zJ-es-jq4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="F9U-U0-57F" secondAttribute="leading" id="Ayg-pS-G9s"/>
                             <constraint firstItem="F9U-U0-57F" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="HHe-yU-m0w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uYm-Sz-Ga5" secondAttribute="trailing" id="IMf-wO-JKr"/>
@@ -385,11 +396,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="F9U-U0-57F" secondAttribute="trailing" id="O8t-0D-IdQ"/>
                             <constraint firstItem="uYm-Sz-Ga5" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="P3h-45-3a8"/>
                             <constraint firstItem="bbt-Ua-JBf" firstAttribute="top" secondItem="3cs-G4-On1" secondAttribute="bottom" constant="20" id="SUF-OK-m30"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Ctw-v7-fLm" secondAttribute="leading" id="VI6-hw-uVa"/>
                             <constraint firstAttribute="leadingMargin" secondItem="uYm-Sz-Ga5" secondAttribute="leading" id="W5Z-T2-JO6"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="BmN-dh-UF4" secondAttribute="leading" id="Wdc-GX-cTh"/>
                             <constraint firstItem="WNB-Db-JVk" firstAttribute="top" secondItem="uYm-Sz-Ga5" secondAttribute="bottom" constant="12" id="XGy-K6-qqA"/>
+                            <constraint firstItem="BmN-dh-UF4" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="bMC-cU-xD3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ctw-v7-fLm" secondAttribute="trailing" id="bN7-Db-UnJ"/>
                             <constraint firstItem="7J4-i4-qyp" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="cce-ge-HMX"/>
+                            <constraint firstItem="Ctw-v7-fLm" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="d9B-Ov-Her"/>
                             <constraint firstItem="WNB-Db-JVk" firstAttribute="centerY" secondItem="znc-KK-ERQ" secondAttribute="centerY" id="dcO-1f-Efn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BmN-dh-UF4" secondAttribute="trailing" id="gHg-Co-4Wq"/>
                             <constraint firstItem="7J4-i4-qyp" firstAttribute="top" secondItem="WNB-Db-JVk" secondAttribute="bottom" constant="5" id="koz-yn-flv"/>
+                            <constraint firstItem="BmN-dh-UF4" firstAttribute="top" secondItem="Ctw-v7-fLm" secondAttribute="bottom" constant="8" id="u18-eq-DAy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="eyK-l1-BxC">
@@ -398,6 +416,8 @@
                     <connections>
                         <outlet property="containerView" destination="3cs-G4-On1" id="0z0-f0-fSk"/>
                         <outlet property="emailField" destination="F9U-U0-57F" id="uxD-gD-i5C"/>
+                        <outlet property="firstNameField" destination="Ctw-v7-fLm" id="dp7-h8-wBe"/>
+                        <outlet property="lastNameField" destination="BmN-dh-UF4" id="STL-oG-c9o"/>
                         <outlet property="menuButton" destination="C2x-CY-3u5" id="WK6-Ny-Vyh"/>
                         <outlet property="passwordField" destination="uYm-Sz-Ga5" id="9ON-O9-4bF"/>
                         <outlet property="signInButton" destination="WNB-Db-JVk" id="ouU-MR-s8a"/>
