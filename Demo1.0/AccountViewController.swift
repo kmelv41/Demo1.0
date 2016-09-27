@@ -24,6 +24,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let loginButton = FBSDKLoginButton()
+    var authProvider = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,33 +35,30 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
 
         self.loginButton.delegate = self
-        self.loginButton.hidden = true
+        self.loginButton.center = self.containerView.center
+        //self.loginButton.hidden = true
         
         FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
             if let user = user {
                 // User is signed in.
                 
-                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
+                self.performSegueWithIdentifier("loginSegue", sender: self)
                 
-                self.presentViewController(loggedInViewController, animated: true, completion: nil)
+                // original segue code
+                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
+                
+                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
                 
             } else {
                 // No user is signed in.
                 // show user login button.
                 
                 self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-                self.loginButton.hidden = false
+                //self.loginButton.hidden = false
                 self.loginButton.center = self.containerView.center
                 self.view.addSubview(self.loginButton)
-                
-                //let verticalSpace = NSLayoutConstraint(item: self.loginButton, attribute: .Top, relatedBy: .Equal, toItem: self.signInButton, attribute: .Bottom, multiplier: 1.0, constant: 12)
-                
-                //let xConstraint = NSLayoutConstraint(item: self.loginButton, attribute: .CenterX, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0)
-                
-                //let yConstraint = NSLayoutConstraint(item: self.loginButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: -20)
-                
-                //NSLayoutConstraint.activateConstraints([yConstraint,xConstraint])
+
             }
         }
 
@@ -69,15 +67,18 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User logged in")
         
-        self.loginButton.hidden = true
+        //self.loginButton.hidden = true
+        self.loginButton.center = self.containerView.center
         
         if(error != nil) {
             
-            self.loginButton.hidden = false
+            self.loginButton.center = self.containerView.center
+            //self.loginButton.hidden = false
             
         } else if(result.isCancelled) {
             
-            self.loginButton.hidden = false
+            self.loginButton.center = self.containerView.center
+            //self.loginButton.hidden = false
             
         } else {
         
@@ -86,6 +87,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
             print("User logged into Firebase")
             }
+            self.authProvider = "Facebook"
         }
     }
     
@@ -95,10 +97,57 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     @IBAction func signInTapped(sender: UIButton) {
         
+        self.login()
+        
     }
     
     @IBAction func signUpTapped(sender: UIButton) {
-        
+        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
+            user, error in
+            
+            if error != nil {
+                
+                self.login()
+                
+            } else {
+                print("User created")
+                self.authProvider = "Email"
+                self.login()
+            }
+            
+        })
+    }
+    
+    func login() {
+        FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!, completion: {
+            user, error in
+            
+            if error != nil {
+                
+                print("Incorrect email or password")
+                
+            } else {
+                print("User logged in with email")
+                self.authProvider = "Email"
+            }
+            
+            
+        })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "loginSegue" {
+            
+            let destViewController : LoggedInViewController = segue.destinationViewController as! LoggedInViewController
+            
+            destViewController.authProvider = self.authProvider
+            
+        }
+    }
+    
+    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {
+        self.loginButton.center = self.containerView.center
+        self.view.addSubview(self.loginButton)
     }
     
     

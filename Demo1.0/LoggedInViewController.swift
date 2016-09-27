@@ -24,10 +24,11 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     var uid: String = (FIRAuth.auth()?.currentUser?.uid)!
-    
     var ref = FIRDatabase.database().reference()
-    
     var user = FIRAuth.auth()?.currentUser
+    var authProvider = String()
+    var emailAuthEmail = String()
+    var emailAuthName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +62,13 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                     
                 } else {
                     
+                    if self.authProvider == "Facebook" {
                         let name: String = user.displayName! as String
                         let email: String = user.email! as String
                         self.uid = user.uid as String
                     self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                    }
+            
                 }
                 
             })
@@ -78,21 +82,22 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
 
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func didTapLogout(sender: AnyObject) {
-        
+    
+    
+    @IBAction func didTapLogout(sender: UIButton) {
         // signs user out of Firebase
         try! FIRAuth.auth()!.signOut()
         
         // signs user out of Facebook app
         FBSDKAccessToken.setCurrentAccessToken(nil)
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
+        //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        //let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
         
         self.ref.child("Users").child(self.uid).child("Status").setValue("Inactive")
+        self.performSegueWithIdentifier("unwindLogin", sender: self)
         
-        self.presentViewController(accountViewController, animated: true, completion: nil)
+        //self.presentViewController(accountViewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
