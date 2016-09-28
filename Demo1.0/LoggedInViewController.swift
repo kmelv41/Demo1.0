@@ -69,7 +69,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                     
                 } else {
                     
-                    if self.authProvider == "Facebook" {
+                    if self.authProvider == "Facebook" || self.authProvider == "Google" {
                         
                         let name: String = user.displayName! as String
                         let email: String = user.email! as String

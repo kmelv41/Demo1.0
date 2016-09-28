@@ -183,6 +183,8 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
             
         })
         
+        self.authProvider = "Google"
+        
     }
     
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
