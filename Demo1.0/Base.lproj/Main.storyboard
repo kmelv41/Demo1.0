@@ -383,6 +383,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dvU-Z6-FDd" customClass="GIDSignInButton">
+                                <rect key="frame" x="238" y="480" width="125" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -390,6 +394,7 @@
                             <constraint firstItem="3cs-G4-On1" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="6j7-iS-Zmh"/>
                             <constraint firstItem="F9U-U0-57F" firstAttribute="top" secondItem="BmN-dh-UF4" secondAttribute="bottom" constant="8" id="9zJ-es-jq4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="F9U-U0-57F" secondAttribute="leading" id="Ayg-pS-G9s"/>
+                            <constraint firstItem="3cs-G4-On1" firstAttribute="top" secondItem="dvU-Z6-FDd" secondAttribute="bottom" constant="15" id="GI2-O6-Y80"/>
                             <constraint firstItem="F9U-U0-57F" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="HHe-yU-m0w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uYm-Sz-Ga5" secondAttribute="trailing" id="IMf-wO-JKr"/>
                             <constraint firstItem="uYm-Sz-Ga5" firstAttribute="top" secondItem="F9U-U0-57F" secondAttribute="bottom" constant="12" id="Mee-sF-rBf"/>
@@ -403,6 +408,7 @@
                             <constraint firstItem="BmN-dh-UF4" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="bMC-cU-xD3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ctw-v7-fLm" secondAttribute="trailing" id="bN7-Db-UnJ"/>
                             <constraint firstItem="7J4-i4-qyp" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="cce-ge-HMX"/>
+                            <constraint firstItem="dvU-Z6-FDd" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="cdv-8a-Imu"/>
                             <constraint firstItem="Ctw-v7-fLm" firstAttribute="centerX" secondItem="znc-KK-ERQ" secondAttribute="centerX" id="d9B-Ov-Her"/>
                             <constraint firstItem="WNB-Db-JVk" firstAttribute="centerY" secondItem="znc-KK-ERQ" secondAttribute="centerY" id="dcO-1f-Efn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BmN-dh-UF4" secondAttribute="trailing" id="gHg-Co-4Wq"/>

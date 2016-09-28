@@ -12,6 +12,7 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseStorage
+import GoogleSignIn
 
 class LoggedInViewController: UIViewController, UITextViewDelegate {
 

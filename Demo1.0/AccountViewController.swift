@@ -11,8 +11,9 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
 import FirebaseAuth
+import GoogleSignIn
 
-class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
+class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     // add new login options
     // organize buttons
@@ -35,6 +36,10 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
 
         self.loginButton.delegate = self
         self.loginButton.center = self.containerView.center
@@ -156,7 +161,40 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate {
         self.view.addSubview(self.loginButton)
     }
     
+    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+        
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        let authentication = user.authentication
+        
+        let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken, accessToken: authentication.accessToken)
+        
+        FIRAuth.auth()?.signInWithCredential(credential, completion: { (user,error) in
+            
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            
+            print("User logged in with Google")
+            
+        })
+        
+    }
     
+    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+        
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        try! FIRAuth.auth()!.signOut()
+        
+    }
 
     // All remaining code is the default Swift code
     
