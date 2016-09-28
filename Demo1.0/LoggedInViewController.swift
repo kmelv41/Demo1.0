@@ -12,8 +12,9 @@ import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
 import FirebaseStorage
+import GoogleSignIn
 
-class LoggedInViewController: UIViewController {
+class LoggedInViewController: UIViewController, UITextViewDelegate {
 
     // Add Active/Inactive status that changes on logout
     // Format phone number correctly
@@ -24,10 +25,11 @@ class LoggedInViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     var uid: String = (FIRAuth.auth()?.currentUser?.uid)!
-    
     var ref = FIRDatabase.database().reference()
-    
     var user = FIRAuth.auth()?.currentUser
+    var authProvider = String()
+    var emailAuthEmail = String()
+    var emailAuthName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +53,12 @@ class LoggedInViewController: UIViewController {
                         
                         if snapshot.hasChild("Email") {
                             self.emailField.text = dataPull["Email"]!
+                        } else if self.authProvider == "Email" {
+                            let name: String = self.emailAuthName
+                            let email: String = self.emailAuthEmail
+                            self.uid = user.uid as String
+                            
+                            self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
                         }
                         
                         if snapshot.hasChild("Phone") {
@@ -61,10 +69,22 @@ class LoggedInViewController: UIViewController {
                     
                 } else {
                     
+                    if self.authProvider == "Facebook" || self.authProvider == "Google" {
+                        
                         let name: String = user.displayName! as String
                         let email: String = user.email! as String
                         self.uid = user.uid as String
-                    self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":""])
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                        
+                    } else if self.authProvider == "Email" {
+                        
+                        let name: String = self.emailAuthName
+                        let email: String = self.emailAuthEmail
+                        self.uid = user.uid as String
+                        
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                    }
+            
                 }
                 
             })
@@ -78,18 +98,22 @@ class LoggedInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    @IBAction func didTapLogout(sender: AnyObject) {
+    
+    
+    @IBAction func didTapLogout(sender: UIButton) {
         // signs user out of Firebase
         try! FIRAuth.auth()!.signOut()
         
         // signs user out of Facebook app
         FBSDKAccessToken.setCurrentAccessToken(nil)
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
+        //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+        //let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
         
-        self.presentViewController(accountViewController, animated: true, completion: nil)
+        self.ref.child("Users").child(self.uid).child("Status").setValue("Inactive")
+        self.performSegueWithIdentifier("unwindLogin", sender: self)
+        
+        //self.presentViewController(accountViewController, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -119,6 +143,56 @@ class LoggedInViewController: UIViewController {
         
         self.ref.child("Users").child(self.uid).child("Phone").setValue(phoneFieldText)
         
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    {
+        print("ShouldChange was called")
+        if (textField == phoneField)
+        {
+            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            
+            let decimalString = components.joinWithSeparator("") as NSString
+            let length = decimalString.length
+            let hasLeadingOne = length > 0 && decimalString.characterAtIndex(0) == (1 as unichar)
+            
+            if length == 0 || (length > 10 && !hasLeadingOne) || length > 11
+            {
+                let newLength = (textField.text! as NSString).length + (string as NSString).length - range.length as Int
+                
+                return (newLength > 10) ? false : true
+            }
+            var index = 0 as Int
+            let formattedString = NSMutableString()
+            
+            if hasLeadingOne
+            {
+                formattedString.appendString("1 ")
+                index += 1
+            }
+            if (length - index) > 3
+            {
+                let areaCode = decimalString.substringWithRange(NSMakeRange(index, 3))
+                formattedString.appendFormat("(%@) ", areaCode)
+                index += 3
+            }
+            if length - index > 3
+            {
+                let prefix = decimalString.substringWithRange(NSMakeRange(index, 3))
+                formattedString.appendFormat("%@-", prefix)
+                index += 3
+            }
+            
+            let remainder = decimalString.substringFromIndex(index)
+            formattedString.appendString(remainder)
+            textField.text = formattedString as String
+            return false
+        }
+        else
+        {
+            return true
+        }
     }
     
     /*
