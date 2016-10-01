@@ -114,6 +114,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
             
             if error != nil {
                 
+                self.authProvider = "Email"
                 self.login()
                 
             } else {
@@ -134,7 +135,9 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
                 print("Incorrect email or password")
                 
             } else {
+                
                 print("User logged in with email")
+                
             }
             
             
