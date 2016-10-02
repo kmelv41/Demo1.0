@@ -671,7 +671,7 @@
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="kgs-yK-mA9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcy-Q5-36o">
@@ -681,7 +681,7 @@
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="taQ-D4-L32"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eky-oT-S7b">
@@ -690,7 +690,7 @@
                                                         <constraint firstAttribute="width" constant="150" id="ECW-N4-Q2P"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Future Inventory Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CNF-Gb-pxb">
@@ -699,7 +699,7 @@
                                                         <constraint firstAttribute="width" constant="400" id="p2a-hR-SRP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thd-P2-k8M" userLabel="Directions">
@@ -811,6 +811,10 @@
         <scene sceneID="E3O-jP-k5g">
             <objects>
                 <viewController id="71g-4u-KKv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9hB-fH-hZV"/>
+                        <viewControllerLayoutGuide type="bottom" id="SuL-lz-G5i"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sa9-Ao-zAn">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="35"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -831,9 +835,9 @@
         <image name="WhiteName.png" width="22" height="22"/>
         <image name="cancel.png" width="33" height="33"/>
         <image name="directions.png" width="67" height="14"/>
-        <image name="email.png" width="44" height="44"/>
-        <image name="name.png" width="44" height="44"/>
-        <image name="phone.png" width="44" height="44"/>
+        <image name="email.png" width="22" height="22"/>
+        <image name="name.png" width="22" height="22"/>
+        <image name="phone.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LgI-po-4RZ"/>

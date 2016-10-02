@@ -38,8 +38,6 @@
 		CE26D7851D98846C00FBBFB8 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7791D98846C00FBBFB8 /* phone.png */; };
 		CE26D7871D98846C00FBBFB8 /* phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77B1D98846C00FBBFB8 /* phone@3x.png */; };
 		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
-		CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */; };
-		CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */; };
 		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
 		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
@@ -155,8 +153,6 @@
 		CE26D7791D98846C00FBBFB8 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		CE26D77B1D98846C00FBBFB8 /* phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@3x.png"; sourceTree = "<group>"; };
 		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
-		CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Message Filled-66.png"; sourceTree = "<group>"; };
-		CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gender Neutral User Filled-66.png"; sourceTree = "<group>"; };
 		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
 		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
@@ -353,8 +349,6 @@
 				CE26D7791D98846C00FBBFB8 /* phone.png */,
 				CE26D77B1D98846C00FBBFB8 /* phone@3x.png */,
 				CE26D77C1D98846C00FBBFB8 /* email@3x.png */,
-				CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */,
-				CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */,
 				CE26D77F1D98846C00FBBFB8 /* name@3x.png */,
 				CE26D7591D943BCA00FBBFB8 /* cancel.png */,
 				CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */,
@@ -544,8 +538,6 @@
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
 				CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */,
 				CEFD001B1D907E9200006423 /* directions.png in Resources */,
-				CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */,
-				CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */,
 				CE26D7841D98846C00FBBFB8 /* name.png in Resources */,
 				CEE83C3F1D78CDC900A01D37 /* Beer@3x.png in Resources */,
 				CE26D7851D98846C00FBBFB8 /* phone.png in Resources */,

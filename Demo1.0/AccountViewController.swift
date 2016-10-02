@@ -28,6 +28,9 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let loginButton = FBSDKLoginButton()
     var authProvider = String()
+    var messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +75,9 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        
+        progressBarDisplayer("Logging In", true)
+        
         print("User logged in")
         
         //self.loginButton.hidden = true
@@ -104,11 +110,16 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     
     @IBAction func signInTapped(sender: UIButton) {
         
+        progressBarDisplayer("Logging In", true)
+        
         self.login()
         
     }
     
     @IBAction func signUpTapped(sender: UIButton) {
+        
+        progressBarDisplayer("Logging In", true)
+        
         FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
             user, error in
             
@@ -127,6 +138,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     }
     
     func login() {
+        
         FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!, completion: {
             user, error in
             
@@ -166,6 +178,8 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         
+        progressBarDisplayer("Logging In", true)
+        
         if let error = error {
             print(error.localizedDescription)
             return
@@ -199,6 +213,24 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         
         try! FIRAuth.auth()!.signOut()
         
+    }
+    
+    func progressBarDisplayer(msg:String, _ indicator:Bool ) {
+        print(msg)
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+        strLabel.text = msg
+        strLabel.textColor = UIColor.whiteColor()
+        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+        messageFrame.layer.cornerRadius = 15
+        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        if indicator {
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            activityIndicator.startAnimating()
+            messageFrame.addSubview(activityIndicator)
+        }
+        messageFrame.addSubview(strLabel)
+        view.addSubview(messageFrame)
     }
 
     // All remaining code is the default Swift code
