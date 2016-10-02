@@ -40,6 +40,9 @@
 		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
 		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
 		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
+		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
+		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
+		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
 		CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */; };
@@ -155,6 +158,9 @@
 		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
 		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
 		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
 		CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menufilled@2x.png"; path = "../../Downloads/Menufilled@2x.png"; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 		CE15BC0A1D5E835600517135 /* Demo1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				CEA919321DA1AFCF0010DF52 /* Custom Callout */,
 				CE2F93F11D899A110023F623 /* GoogleService-Info.plist */,
 				CE15BC0B1D5E835600517135 /* AppDelegate.swift */,
 				CE15BC0D1D5E835600517135 /* VenueListViewController.swift */,
@@ -298,6 +305,7 @@
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
 				CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */,
 				CE15BC411D5E87B200517135 /* MapViewController.swift */,
+				CEA919351DA1B83C0010DF52 /* AnnotationView.swift */,
 				CE15BC431D5E8B2300517135 /* AccountViewController.swift */,
 				CE15BC451D5E8E0D00517135 /* PurchaseViewController.swift */,
 				CE15BC471D5E8F6400517135 /* HelpViewController.swift */,
@@ -336,6 +344,15 @@
 				CE15BC3C1D5E837500517135 /* Demo1.0-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CEA919321DA1AFCF0010DF52 /* Custom Callout */ = {
+			isa = PBXGroup;
+			children = (
+				CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */,
+				CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */,
+			);
+			name = "Custom Callout";
 			sourceTree = "<group>";
 		};
 		CEE83C511D79160900A01D37 /* Images */ = {
@@ -548,6 +565,7 @@
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
 				CEE83C911D831D6600A01D37 /* JoltMenu.png in Resources */,
+				CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */,
 				CEE83C8E1D831D6600A01D37 /* JoltMap.png in Resources */,
 				CEE83C7D1D7B6BBD00A01D37 /* WhiteHelp@3x.png in Resources */,
 				CEE83C7A1D7B6BBD00A01D37 /* WhiteCredit@3x.png in Resources */,
@@ -655,11 +673,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */,
 				CE26D7731D9771AE00FBBFB8 /* LoggedInViewController.swift in Sources */,
 				CE15BC141D5E835600517135 /* Demo1_0.xcdatamodeld in Sources */,
 				CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */,
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
 				CE15BC441D5E8B2300517135 /* AccountViewController.swift in Sources */,
+				CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */,
 				CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */,
 				CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */,
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,

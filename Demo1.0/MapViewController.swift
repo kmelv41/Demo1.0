@@ -25,6 +25,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
     var routeLat = Double()
     var routeLong = Double()
     var currentCoordinates = CLLocationCoordinate2D()
+    var currentLocation : CLLocation! = nil
     
     override func viewDidLoad() {
         getData()
@@ -71,6 +72,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
                 if let name = dataPull[i]["Name"] as? String,
                     let latitude = dataPull[i]["Latitude"] as? String,
                     let longitude = dataPull[i]["Longitude"] as? String,
+                    let address = dataPull[i]["Address"] as? String,
                     let category = dataPull[i]["Category"] as? String {
                     
                     let lttude = Double(latitude)
@@ -88,7 +90,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
                         self.pointAnnotation.pinCustomImageName = "Office.png"
                     }
                     self.pointAnnotation.coordinate = poiCoordinates
-                    self.pointAnnotation.title = name
+                    
+                    
+                    let pinLocation = CLLocation(latitude: lttude!, longitude: lgtude!)
+                    self.currentLocation = self.locationManager.location
+                    let distFromPin: Double = self.currentLocation.distanceFromLocation(pinLocation)/1000
+                    let strFromPin = String(format:"%.1f",distFromPin)
+                    
+                    self.pointAnnotation.distanceToVenue = "\(strFromPin) km away"
+                    self.pointAnnotation.name = name
+                    self.pointAnnotation.address = address
                     
                     self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: "pin")
                     self.mapView.addAnnotation(self.pinAnnotationView.annotation!)
@@ -139,8 +150,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
         
         if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            annotationView?.canShowCallout = true
+            annotationView = AnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+            annotationView?.canShowCallout = false
         } else {
             annotationView?.annotation = annotation
         }
@@ -151,14 +162,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         
         annotationView?.image = pinImage
         
-        let subtitleView = UILabel()
+        /*let subtitleView = UILabel()
         subtitleView.font = subtitleView.font.fontWithSize(12)
         subtitleView.numberOfLines = 0
         subtitleView.text = "Testing"
-        annotationView?.detailCalloutAccessoryView = subtitleView
+        annotationView?.detailCalloutAccessoryView = subtitleView*/
         
         
         return annotationView
+        
     }
     
     func makeRoute(latitude: Double, longitude: Double) {
@@ -204,6 +216,40 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         renderer.lineWidth = 5.0
         
         return renderer
+    }
+    
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
+    {
+        // 1
+        if view.annotation is MKUserLocation
+        {
+            // Don't proceed with custom callout
+            return
+        }
+        // 2
+        let customAnnotation = view.annotation as! CustomPointAnnotation
+        let views = NSBundle.mainBundle().loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+        let calloutView = views?[0] as! CustomCalloutView
+        calloutView.venueName.text = customAnnotation.name
+        calloutView.addressOfVenue.text = customAnnotation.address
+        calloutView.distanceToVenue.text = customAnnotation.distanceToVenue
+        
+        // 3
+        calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
+        view.addSubview(calloutView)
+        
+        
+        //mapView.setCenter((view.annotation?.coordinate)!, animated: true)
+    }
+    
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        if view.isKindOfClass(AnnotationView.self)
+        {
+            for subview in view.subviews
+            {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
 }
