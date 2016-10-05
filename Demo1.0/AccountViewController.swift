@@ -13,7 +13,7 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
-class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
+class AccountViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
     // add new login options
     // organize buttons
@@ -48,11 +48,11 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         self.loginButton.center = self.containerView.center
         //self.loginButton.hidden = true
         
-        FIRAuth.auth()?.addAuthStateDidChangeListener { auth, user in
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
                 // User is signed in.
                 
-                self.performSegueWithIdentifier("loginSegue", sender: self)
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
                 
                 // original segue code
                 //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
@@ -74,7 +74,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
 
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         progressBarDisplayer("Logging In", true)
         
@@ -95,20 +95,20 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
             
         } else {
         
-            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
         
-            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
             print("User logged into Firebase")
             }
             self.authProvider = "Facebook"
         }
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("User logged out")
     }
     
-    @IBAction func signInTapped(sender: UIButton) {
+    @IBAction func signInTapped(_ sender: UIButton) {
         
         progressBarDisplayer("Logging In", true)
         
@@ -116,11 +116,11 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         
     }
     
-    @IBAction func signUpTapped(sender: UIButton) {
+    @IBAction func signUpTapped(_ sender: UIButton) {
         
         progressBarDisplayer("Logging In", true)
         
-        FIRAuth.auth()?.createUserWithEmail(emailField.text!, password: passwordField.text!, completion: {
+        FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!, completion: {
             user, error in
             
             if error != nil {
@@ -139,7 +139,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
     
     func login() {
         
-        FIRAuth.auth()?.signInWithEmail(emailField.text!, password: passwordField.text!, completion: {
+        FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: {
             user, error in
             
             if error != nil {
@@ -156,10 +156,10 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "loginSegue" {
             
-            let destViewController : LoggedInViewController = segue.destinationViewController as! LoggedInViewController
+            let destViewController : LoggedInViewController = segue.destination as! LoggedInViewController
             
             destViewController.authProvider = self.authProvider
             
@@ -171,12 +171,12 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         }
     }
     
-    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {
+    @IBAction func unwindToLogin(_ sender: UIStoryboardSegue) {
         self.loginButton.center = self.containerView.center
         self.view.addSubview(self.loginButton)
     }
     
-    func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         
         progressBarDisplayer("Logging In", true)
         
@@ -187,9 +187,9 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         
         let authentication = user.authentication
         
-        let credential = FIRGoogleAuthProvider.credentialWithIDToken(authentication.idToken, accessToken: authentication.accessToken)
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!, accessToken: (authentication?.accessToken)!)
         
-        FIRAuth.auth()?.signInWithCredential(credential, completion: { (user,error) in
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user,error) in
             
             if error != nil {
                 print(error?.localizedDescription)
@@ -204,7 +204,7 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         
     }
     
-    func signIn(signIn: GIDSignIn!, didDisconnectWithUser user: GIDGoogleUser!, withError error: NSError!) {
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
         if let error = error {
             print(error.localizedDescription)
@@ -215,16 +215,16 @@ class AccountViewController: UIViewController, FBSDKLoginButtonDelegate, GIDSign
         
     }
     
-    func progressBarDisplayer(msg:String, _ indicator:Bool ) {
+    func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
         print(msg)
         strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
         strLabel.text = msg
-        strLabel.textColor = UIColor.whiteColor()
+        strLabel.textColor = UIColor.white
         messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
         messageFrame.layer.cornerRadius = 15
         messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
         if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
             activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             activityIndicator.startAnimating()
             messageFrame.addSubview(activityIndicator)

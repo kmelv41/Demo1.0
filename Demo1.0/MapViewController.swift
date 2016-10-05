@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessionDataDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
@@ -37,43 +37,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         locationManager.requestAlwaysAuthorization()
         startSignificantChangeUpdates()
         // downloadItems()
-        mapView.showsPointsOfInterest = false
-        mapView.showsCompass = false
-        mapView.rotateEnabled = false
-        cancelButton.hidden = true
+        self.mapView.showsPointsOfInterest = false
+        self.mapView.showsCompass = false
+        self.mapView.isRotateEnabled = false
+        self.cancelButton.isHidden = true
         
     }
     
     
-    @IBAction func cancelButtonClicked(sender: AnyObject) {
+    @IBAction func cancelButtonClicked(_ sender: AnyObject) {
         let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
-        cancelButton.hidden = true
+        cancelButton.isHidden = true
         
         let region = MKCoordinateRegion(center: currentCoordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         self.mapView.setRegion(region, animated: true)
     }
     
-    @IBAction func myUnwindAction(sender: UIStoryboardSegue) {
+    @IBAction func myUnwindAction(_ sender: UIStoryboardSegue) {
         // nothing yet
     }
     
     func getData() {
         let venueRef = rootRef.child("venues")
-        var dataPull = NSArray()
-        venueRef.observeEventType(.Value, withBlock: { snapshot in
+        var dataPull = [[String:String]]()
+        venueRef.observe(.value, with: { snapshot in
             
-            dataPull = snapshot.value! as! NSArray
+            dataPull = snapshot.value! as! [[String:String]]
             
             for i in 0..<dataPull.count
             {
                 
-                if let name = dataPull[i]["Name"] as? String,
-                    let latitude = dataPull[i]["Latitude"] as? String,
-                    let longitude = dataPull[i]["Longitude"] as? String,
-                    let address = dataPull[i]["Address"] as? String,
-                    let category = dataPull[i]["Category"] as? String {
+                if let name = dataPull[i]["Name"],
+                    let latitude = dataPull[i]["Latitude"],
+                    let longitude = dataPull[i]["Longitude"],
+                    let address = dataPull[i]["Address"],
+                    let category = dataPull[i]["Category"] {
                     
                     let lttude = Double(latitude)
                     let lgtude = Double(longitude)
@@ -94,7 +94,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
                     
                     let pinLocation = CLLocation(latitude: lttude!, longitude: lgtude!)
                     self.currentLocation = self.locationManager.location
-                    let distFromPin: Double = self.currentLocation.distanceFromLocation(pinLocation)/1000
+                    let distFromPin: Double = self.currentLocation.distance(from: pinLocation)/1000
                     let strFromPin = String(format:"%.1f",distFromPin)
                     
                     self.pointAnnotation.distanceToVenue = "\(strFromPin) km"
@@ -123,7 +123,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.lastLocation = manager.location
         
         let location = locations.last
@@ -144,10 +144,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         // need to add error coding
     }*/
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation { return nil }
         let reuseIdentifier = "pin"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
         
         if annotationView == nil {
             annotationView = AnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -173,7 +173,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         
     }
     
-    func makeRoute(latitude: Double, longitude: Double) {
+    func makeRoute(_ latitude: Double, longitude: Double) {
         
         let sourceLocation = currentCoordinates
         let destinationLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
@@ -187,11 +187,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         let directionRequest = MKDirectionsRequest()
         directionRequest.source = sourceMapItem
         directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .Automobile
+        directionRequest.transportType = .automobile
         
         let directions = MKDirections(request: directionRequest)
         
-        directions.calculateDirectionsWithCompletionHandler {
+        directions.calculate {
             (response, error) -> Void in
             
             guard let response = response else {
@@ -203,14 +203,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
             }
             
             let route = response.routes[0]
-            self.mapView.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
+            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
             
             let rect = route.polyline.boundingMapRect
             self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
         }
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.init(red: 19/255, green: 205/255, blue: 25/255, alpha: 1)
         renderer.lineWidth = 5.0
@@ -218,7 +218,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         return renderer
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView)
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
         // 1
         if view.annotation is MKUserLocation
@@ -228,7 +228,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         }
         // 2
         let customAnnotation = view.annotation as! CustomPointAnnotation
-        let views = NSBundle.mainBundle().loadNibNamed("CustomCalloutView", owner: nil, options: nil)
+        let views = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
         let calloutView = views?[0] as! CustomCalloutView
         calloutView.venueName.text = customAnnotation.name
         calloutView.addressOfVenue.text = customAnnotation.address
@@ -242,8 +242,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
         //mapView.setCenter((view.annotation?.coordinate)!, animated: true)
     }
     
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        if view.isKindOfClass(AnnotationView.self)
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if view.isKind(of: AnnotationView.self)
         {
             for subview in view.subviews
             {

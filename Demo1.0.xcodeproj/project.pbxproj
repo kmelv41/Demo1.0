@@ -39,7 +39,7 @@
 		CE26D7871D98846C00FBBFB8 /* phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77B1D98846C00FBBFB8 /* phone@3x.png */; };
 		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
 		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
-		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
+		CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */; };
 		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
@@ -161,7 +161,7 @@
 		CE26D77B1D98846C00FBBFB8 /* phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@3x.png"; sourceTree = "<group>"; };
 		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
 		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
-		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -305,8 +305,8 @@
 			children = (
 				CE15BDC11DA5388C0072E9A2 /* Demo1.0.entitlements */,
 				CEA919321DA1AFCF0010DF52 /* Custom Callout */,
-				CE2F93F11D899A110023F623 /* GoogleService-Info.plist */,
 				CE15BC0B1D5E835600517135 /* AppDelegate.swift */,
+				CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */,
 				CE15BC0D1D5E835600517135 /* VenueListViewController.swift */,
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
@@ -508,6 +508,7 @@
 					CE15BC071D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = M772QAS5V3;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.OMC = {
 								enabled = 1;
@@ -516,10 +517,12 @@
 					};
 					CE15BC1E1D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE15BC071D5E835600517135;
 					};
 					CE15BC291D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE15BC071D5E835600517135;
 					};
 				};
@@ -568,7 +571,6 @@
 				CEE83C7C1D7B6BBD00A01D37 /* WhiteHelp@2x.png in Resources */,
 				CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */,
 				CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */,
-				CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */,
 				CEE83C421D78CDC900A01D37 /* Cafe@3x.png in Resources */,
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
 				CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */,
@@ -597,6 +599,7 @@
 				CEE83C651D7B6BA700A01D37 /* GreenHelp@3x.png in Resources */,
 				CEE83C811D7B6BBD00A01D37 /* WhiteName.png in Resources */,
 				CEE83C461D78CDC900A01D37 /* Restaurant.png in Resources */,
+				CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */,
 				CEE83C641D7B6BA700A01D37 /* GreenHelp@2x.png in Resources */,
 				CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */,
 				CE26D7821D98846C00FBBFB8 /* phone@2x.png in Resources */,
@@ -865,6 +868,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -888,6 +892,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -899,6 +904,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo1.0.app/Demo1.0";
 			};
 			name = Debug;
@@ -911,6 +917,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo1.0.app/Demo1.0";
 			};
 			name = Release;
@@ -922,6 +929,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Demo1.0;
 			};
 			name = Debug;
@@ -933,6 +941,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Demo1.0;
 			};
 			name = Release;
