@@ -43,6 +43,9 @@
 		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
+		CEA9193A1DA2D3040010DF52 /* mapBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919371DA2D3040010DF52 /* mapBubble.png */; };
+		CEA9193B1DA2D3040010DF52 /* mapBubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919381DA2D3040010DF52 /* mapBubble@2x.png */; };
+		CEA9193C1DA2D3040010DF52 /* mapBubble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919391DA2D3040010DF52 /* mapBubble@3x.png */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
 		CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */; };
@@ -141,6 +144,7 @@
 		CE15BC471D5E8F6400517135 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		CE15BC491D5E921D00517135 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CE15BC4B1D5E922900517135 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CE15BDC11DA5388C0072E9A2 /* Demo1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Demo1.0.entitlements; sourceTree = "<group>"; };
 		CE26D7591D943BCA00FBBFB8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
@@ -161,6 +165,9 @@
 		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		CEA919371DA2D3040010DF52 /* mapBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapBubble.png; sourceTree = "<group>"; };
+		CEA919381DA2D3040010DF52 /* mapBubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBubble@2x.png"; sourceTree = "<group>"; };
+		CEA919391DA2D3040010DF52 /* mapBubble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBubble@3x.png"; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
 		CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menufilled@2x.png"; path = "../../Downloads/Menufilled@2x.png"; sourceTree = "<group>"; };
@@ -296,6 +303,7 @@
 		CE15BC0A1D5E835600517135 /* Demo1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				CE15BDC11DA5388C0072E9A2 /* Demo1.0.entitlements */,
 				CEA919321DA1AFCF0010DF52 /* Custom Callout */,
 				CE2F93F11D899A110023F623 /* GoogleService-Info.plist */,
 				CE15BC0B1D5E835600517135 /* AppDelegate.swift */,
@@ -358,6 +366,9 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CEA919371DA2D3040010DF52 /* mapBubble.png */,
+				CEA919381DA2D3040010DF52 /* mapBubble@2x.png */,
+				CEA919391DA2D3040010DF52 /* mapBubble@3x.png */,
 				CE26D7741D98846C00FBBFB8 /* email@2x.png */,
 				CE26D7751D98846C00FBBFB8 /* name@2x.png */,
 				CE26D7761D98846C00FBBFB8 /* phone@2x.png */,
@@ -496,7 +507,12 @@
 				TargetAttributes = {
 					CE15BC071D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = NQ59WFKKPQ;
+						DevelopmentTeam = M772QAS5V3;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 					CE15BC1E1D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -534,7 +550,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE83C481D78CDC900A01D37 /* Restaurant@3x.png in Resources */,
+				CEA9193B1DA2D3040010DF52 /* mapBubble@2x.png in Resources */,
 				CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */,
+				CEA9193A1DA2D3040010DF52 /* mapBubble.png in Resources */,
 				CEE83C4F1D7915FC00A01D37 /* MQLogo@2x.png in Resources */,
 				CEE83C411D78CDC900A01D37 /* Cafe@2x.png in Resources */,
 				CEE83C821D7B6BBD00A01D37 /* WhiteName@2x.png in Resources */,
@@ -561,6 +579,7 @@
 				CEE83C681D7B6BA700A01D37 /* GreenMap@3x.png in Resources */,
 				CEE83C431D78CDC900A01D37 /* Office.png in Resources */,
 				CEFD001C1D907E9200006423 /* directions@2x.png in Resources */,
+				CEA9193C1DA2D3040010DF52 /* mapBubble@3x.png in Resources */,
 				CEE83C781D7B6BBD00A01D37 /* WhiteCredit.png in Resources */,
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
@@ -831,6 +850,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo1.0/Demo1.0.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -840,7 +860,7 @@
 				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findawharf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";
@@ -854,6 +874,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo1.0/Demo1.0.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -863,7 +884,7 @@
 				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findawharf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";

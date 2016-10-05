@@ -97,7 +97,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, NSURLSessi
                     let distFromPin: Double = self.currentLocation.distanceFromLocation(pinLocation)/1000
                     let strFromPin = String(format:"%.1f",distFromPin)
                     
-                    self.pointAnnotation.distanceToVenue = "\(strFromPin) km away"
+                    self.pointAnnotation.distanceToVenue = "\(strFromPin) km"
                     self.pointAnnotation.name = name
                     self.pointAnnotation.address = address
                     
