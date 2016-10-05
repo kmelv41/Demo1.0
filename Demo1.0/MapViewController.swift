@@ -62,7 +62,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
     func getData() {
         let venueRef = rootRef.child("venues")
         var dataPull = [[String:String]]()
-        venueRef.observe(.value, with: { snapshot in
+
+        venueRef.observe(.value, with: { (snapshot: FIRDataSnapshot!) in
             
             dataPull = snapshot.value! as! [[String:String]]
             
