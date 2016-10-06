@@ -10,5 +10,10 @@ import UIKit
 import MapKit
 
 class CustomPointAnnotation: MKPointAnnotation {
+    
     var pinCustomImageName: String!
+    var name: String!
+    var address: String!
+    var distanceToVenue: String!
+
 }

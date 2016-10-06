@@ -8,6 +8,7 @@ target 'Demo1.0' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Storage'
 	pod 'GoogleSignIn'
+	pod 'Stripe'
 
 end
 

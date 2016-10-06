@@ -10,6 +10,18 @@ import UIKit
 import CoreLocation
 import Firebase
 
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+
 class VenueListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
     
     //Properties
@@ -56,7 +68,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         // homeModel.downloadItems()
         
         let venueRef = rootRef.child("venues")
-        venueRef.observeEventType(.Value, withBlock: { snapshot in
+        venueRef.observe(.value, with: { snapshot in
             
             var dataPull = snapshot.value! as! [[String:String]]
             
@@ -70,12 +82,12 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
                 singleRecord.append(dataPull[index]["Longitude"])
                 let pinLocation = CLLocation(latitude: Double(singleRecord[3]!)!, longitude: Double(singleRecord[4]!)!)
                 self.currentLocation = self.locationManager.location
-                let distFromPin: Double = self.currentLocation.distanceFromLocation(pinLocation)/1000
+                let distFromPin: Double = self.currentLocation.distance(from: pinLocation)/1000
                 let strFromPin = String(format:"%.1f",distFromPin)
                 singleRecord.append(strFromPin)
                 newArray.append(singleRecord)
             }
-            self.tableArray = newArray.sort { Float($0[5]!) < Float($1[5]!) }
+            self.tableArray = newArray.sorted { Float($0[5]!) < Float($1[5]!) }
 
             self.listTableView.reloadData()
 
@@ -91,8 +103,8 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationItem.titleView = searchBar
     }
 
-    @IBAction func mapButtonClicked(sender: AnyObject) {
-        self.performSegueWithIdentifier("myUnwindSegue", sender: self)
+    @IBAction func mapButtonClicked(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "myUnwindSegue", sender: self)
     }
     
     // already commented out
@@ -102,7 +114,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         self.listTableView.reloadData()
     }*/
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         /*self.filteredArray = searchArray.filter({(names: String) -> Bool in
             return names.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
@@ -110,7 +122,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.filteredArray = tableArray.filter { (dataArray:[String?]) -> Bool in
             return dataArray.filter({ (string) -> Bool in
-                return string!.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+                return string!.lowercased().range(of: searchText.lowercased()) != nil
             }).count > 0
         }
         
@@ -122,7 +134,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         self.listTableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of feed items
         
         if shouldShowSearchResults {
@@ -133,13 +145,13 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Retrieve cell
-        let myCell = tableView.dequeueReusableCellWithIdentifier("BasicCell")! as! CustomVenueCell
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")! as! CustomVenueCell
         
-        myCell.directionsButton.tag = indexPath.row
+        myCell.directionsButton.tag = (indexPath as NSIndexPath).row
         
-        myCell.directionsButton.addTarget(self, action: #selector(VenueListViewController.logAction(_:)), forControlEvents: .TouchUpInside)
+        myCell.directionsButton.addTarget(self, action: #selector(VenueListViewController.logAction(_:)), for: .touchUpInside)
         
         /*let item: LocationModel = feedItems[indexPath.row] as! LocationModel
         let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
@@ -151,14 +163,14 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         _ = item.city*/
         
         if shouldShowSearchResults {
-            let row = indexPath.row
+            let row = (indexPath as NSIndexPath).row
             myCell.venueLabel.text = filteredArray[row][0]
             myCell.distanceLabel.text = filteredArray[row][5]! + " km"
             myCell.addressLabel.text = filteredArray[row][1]
             myCell.cityLabel.text = filteredArray[row][2]
             return myCell
         } else {
-            let row = indexPath.row
+            let row = (indexPath as NSIndexPath).row
             myCell.venueLabel.text = tableArray[row][0]
             myCell.distanceLabel.text = tableArray[row][5]! + " km"
             myCell.addressLabel.text = tableArray[row][1]
@@ -190,17 +202,17 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         return sortedArray
     }*/
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         shouldShowSearchResults = true
         self.listTableView.reloadData()
     }
     
-    @IBAction func logAction(sender: UIButton) {
+    @IBAction func logAction(_ sender: UIButton) {
         let index = sender.tag
         if shouldShowSearchResults {
             routeLatitude = Double(filteredArray[index][3]!)!
@@ -210,19 +222,19 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
             routeLongitude = Double(tableArray[index][4]!)!
         }
         
-        self.performSegueWithIdentifier("myUnwindSegue", sender: self)
+        self.performSegue(withIdentifier: "myUnwindSegue", sender: self)
 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "myUnwindSegue" {
-            let destViewController : MapViewController = segue.destinationViewController as! MapViewController
+            let destViewController : MapViewController = segue.destination as! MapViewController
             
             destViewController.routeLat = routeLatitude
             destViewController.routeLong = routeLongitude
             
             destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
-            destViewController.cancelButton.hidden = false
+            destViewController.cancelButton.isHidden = false
             
         }
         

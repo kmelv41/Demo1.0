@@ -41,9 +41,9 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         
         if let user = FIRAuth.auth()?.currentUser {
             
-            self.ref.child("Users").observeEventType(.Value, withBlock: { snapshot in
+            self.ref.child("Users").observe(.value, with: { snapshot in
                 if snapshot.hasChild(self.uid) {
-                    self.ref.child("Users").child(self.uid).observeEventType(.Value, withBlock: { snapshot in
+                    self.ref.child("Users").child(self.uid).observe(.value, with: { snapshot in
                         
                         let dataPull = snapshot.value! as! [String:String]
                         
@@ -100,18 +100,18 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    @IBAction func didTapLogout(sender: UIButton) {
+    @IBAction func didTapLogout(_ sender: UIButton) {
         // signs user out of Firebase
         try! FIRAuth.auth()!.signOut()
         
         // signs user out of Facebook app
-        FBSDKAccessToken.setCurrentAccessToken(nil)
+        FBSDKAccessToken.setCurrent(nil)
         
         //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         //let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
         
         self.ref.child("Users").child(self.uid).child("Status").setValue("Inactive")
-        self.performSegueWithIdentifier("unwindLogin", sender: self)
+        self.performSegue(withIdentifier: "unwindLogin", sender: self)
         
         //self.presentViewController(accountViewController, animated: true, completion: nil)
     }
@@ -121,7 +121,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func nameFieldChanged(sender: AnyObject) {
+    @IBAction func nameFieldChanged(_ sender: AnyObject) {
         
         let nameFieldText = self.nameField.text! as String
         
@@ -129,7 +129,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         
     }
 
-    @IBAction func emailFieldChanged(sender: AnyObject) {
+    @IBAction func emailFieldChanged(_ sender: AnyObject) {
         
         let emailFieldText = self.emailField.text! as String
         
@@ -137,7 +137,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    @IBAction func phoneFieldChange(sender: AnyObject) {
+    @IBAction func phoneFieldChange(_ sender: AnyObject) {
         
         let phoneFieldText = self.phoneField.text! as String
         
@@ -145,17 +145,17 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
         print("ShouldChange was called")
         if (textField == phoneField)
         {
-            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
             
-            let decimalString = components.joinWithSeparator("") as NSString
+            let decimalString = components.joined(separator: "") as NSString
             let length = decimalString.length
-            let hasLeadingOne = length > 0 && decimalString.characterAtIndex(0) == (1 as unichar)
+            let hasLeadingOne = length > 0 && decimalString.character(at: 0) == (1 as unichar)
             
             if length == 0 || (length > 10 && !hasLeadingOne) || length > 11
             {
@@ -168,24 +168,24 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
             
             if hasLeadingOne
             {
-                formattedString.appendString("1 ")
+                formattedString.append("1 ")
                 index += 1
             }
             if (length - index) > 3
             {
-                let areaCode = decimalString.substringWithRange(NSMakeRange(index, 3))
+                let areaCode = decimalString.substring(with: NSMakeRange(index, 3))
                 formattedString.appendFormat("(%@) ", areaCode)
                 index += 3
             }
             if length - index > 3
             {
-                let prefix = decimalString.substringWithRange(NSMakeRange(index, 3))
+                let prefix = decimalString.substring(with: NSMakeRange(index, 3))
                 formattedString.appendFormat("%@-", prefix)
                 index += 3
             }
             
-            let remainder = decimalString.substringFromIndex(index)
-            formattedString.appendString(remainder)
+            let remainder = decimalString.substring(from: index)
+            formattedString.append(remainder)
             textField.text = formattedString as String
             return false
         }
@@ -195,14 +195,14 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "unwindLogin" {
+            
+            let destViewController : AccountViewController = segue.destination as! AccountViewController
+            
+            destViewController.messageFrame.isHidden = true
+            
+        }
     }
-    */
 
 }

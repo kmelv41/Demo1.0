@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.797571598626-34e1u086dcb5gu3o1pdtulgcrgsiug93</string>
+				<string>com.googleusercontent.apps.1058477326442-pjq2v3if5i17vgj5e6am8m7idanicqal</string>
 			</array>
 		</dict>
 		<dict>
@@ -39,7 +39,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>ca.nrgapp</string>
+				<string>com.findawharf</string>
 			</array>
 		</dict>
 	</array>

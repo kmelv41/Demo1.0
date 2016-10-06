@@ -38,10 +38,14 @@
 		CE26D7851D98846C00FBBFB8 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D7791D98846C00FBBFB8 /* phone.png */; };
 		CE26D7871D98846C00FBBFB8 /* phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77B1D98846C00FBBFB8 /* phone@3x.png */; };
 		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
-		CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */; };
-		CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */; };
 		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
-		CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2F93F11D899A110023F623 /* GoogleService-Info.plist */; };
+		CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */; };
+		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
+		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
+		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
+		CEA9193A1DA2D3040010DF52 /* mapBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919371DA2D3040010DF52 /* mapBubble.png */; };
+		CEA9193B1DA2D3040010DF52 /* mapBubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919381DA2D3040010DF52 /* mapBubble@2x.png */; };
+		CEA9193C1DA2D3040010DF52 /* mapBubble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA919391DA2D3040010DF52 /* mapBubble@3x.png */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
 		CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2B1D78B8A700A01D37 /* Menufilled.png */; };
 		CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */; };
@@ -140,6 +144,7 @@
 		CE15BC471D5E8F6400517135 /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		CE15BC491D5E921D00517135 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CE15BC4B1D5E922900517135 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CE15BDC11DA5388C0072E9A2 /* Demo1.0.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Demo1.0.entitlements; sourceTree = "<group>"; };
 		CE26D7591D943BCA00FBBFB8 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@2x.png"; sourceTree = "<group>"; };
 		CE26D75B1D943BCA00FBBFB8 /* cancel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel@3x.png"; sourceTree = "<group>"; };
@@ -155,10 +160,14 @@
 		CE26D7791D98846C00FBBFB8 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 		CE26D77B1D98846C00FBBFB8 /* phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@3x.png"; sourceTree = "<group>"; };
 		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
-		CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Message Filled-66.png"; sourceTree = "<group>"; };
-		CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gender Neutral User Filled-66.png"; sourceTree = "<group>"; };
 		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
-		CE2F93F11D899A110023F623 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
+		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
+		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		CEA919371DA2D3040010DF52 /* mapBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapBubble.png; sourceTree = "<group>"; };
+		CEA919381DA2D3040010DF52 /* mapBubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBubble@2x.png"; sourceTree = "<group>"; };
+		CEA919391DA2D3040010DF52 /* mapBubble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBubble@3x.png"; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		CEE83C2B1D78B8A700A01D37 /* Menufilled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Menufilled.png; path = ../../Downloads/Menufilled.png; sourceTree = "<group>"; };
 		CEE83C2C1D78B8A700A01D37 /* Menufilled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menufilled@2x.png"; path = "../../Downloads/Menufilled@2x.png"; sourceTree = "<group>"; };
@@ -294,14 +303,17 @@
 		CE15BC0A1D5E835600517135 /* Demo1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				CE2F93F11D899A110023F623 /* GoogleService-Info.plist */,
+				CE15BDC11DA5388C0072E9A2 /* Demo1.0.entitlements */,
+				CEA919321DA1AFCF0010DF52 /* Custom Callout */,
 				CE15BC0B1D5E835600517135 /* AppDelegate.swift */,
+				CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */,
 				CE15BC0D1D5E835600517135 /* VenueListViewController.swift */,
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
 				CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */,
 				CE15BC411D5E87B200517135 /* MapViewController.swift */,
+				CEA919351DA1B83C0010DF52 /* AnnotationView.swift */,
 				CE15BC431D5E8B2300517135 /* AccountViewController.swift */,
 				CE15BC451D5E8E0D00517135 /* PurchaseViewController.swift */,
 				CE15BC471D5E8F6400517135 /* HelpViewController.swift */,
@@ -342,9 +354,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CEA919321DA1AFCF0010DF52 /* Custom Callout */ = {
+			isa = PBXGroup;
+			children = (
+				CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */,
+				CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */,
+			);
+			name = "Custom Callout";
+			sourceTree = "<group>";
+		};
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CEA919371DA2D3040010DF52 /* mapBubble.png */,
+				CEA919381DA2D3040010DF52 /* mapBubble@2x.png */,
+				CEA919391DA2D3040010DF52 /* mapBubble@3x.png */,
 				CE26D7741D98846C00FBBFB8 /* email@2x.png */,
 				CE26D7751D98846C00FBBFB8 /* name@2x.png */,
 				CE26D7761D98846C00FBBFB8 /* phone@2x.png */,
@@ -353,8 +377,6 @@
 				CE26D7791D98846C00FBBFB8 /* phone.png */,
 				CE26D77B1D98846C00FBBFB8 /* phone@3x.png */,
 				CE26D77C1D98846C00FBBFB8 /* email@3x.png */,
-				CE26D77D1D98846C00FBBFB8 /* Message Filled-66.png */,
-				CE26D77E1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png */,
 				CE26D77F1D98846C00FBBFB8 /* name@3x.png */,
 				CE26D7591D943BCA00FBBFB8 /* cancel.png */,
 				CE26D75A1D943BCA00FBBFB8 /* cancel@2x.png */,
@@ -480,19 +502,27 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Jolt;
 				TargetAttributes = {
 					CE15BC071D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = NQ59WFKKPQ;
+						DevelopmentTeam = M772QAS5V3;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.OMC = {
+								enabled = 1;
+							};
+						};
 					};
 					CE15BC1E1D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE15BC071D5E835600517135;
 					};
 					CE15BC291D5E835600517135 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = CE15BC071D5E835600517135;
 					};
 				};
@@ -523,7 +553,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE83C481D78CDC900A01D37 /* Restaurant@3x.png in Resources */,
+				CEA9193B1DA2D3040010DF52 /* mapBubble@2x.png in Resources */,
 				CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */,
+				CEA9193A1DA2D3040010DF52 /* mapBubble.png in Resources */,
 				CEE83C4F1D7915FC00A01D37 /* MQLogo@2x.png in Resources */,
 				CEE83C411D78CDC900A01D37 /* Cafe@2x.png in Resources */,
 				CEE83C821D7B6BBD00A01D37 /* WhiteName@2x.png in Resources */,
@@ -539,23 +571,22 @@
 				CEE83C7C1D7B6BBD00A01D37 /* WhiteHelp@2x.png in Resources */,
 				CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */,
 				CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */,
-				CE2F93F21D899A110023F623 /* GoogleService-Info.plist in Resources */,
 				CEE83C421D78CDC900A01D37 /* Cafe@3x.png in Resources */,
 				CEE83C671D7B6BA700A01D37 /* GreenMap@2x.png in Resources */,
 				CE26D75D1D943BCA00FBBFB8 /* cancel@2x.png in Resources */,
 				CEFD001B1D907E9200006423 /* directions.png in Resources */,
-				CE26D7891D98846C00FBBFB8 /* Message Filled-66.png in Resources */,
-				CE26D78A1D98846C00FBBFB8 /* Gender Neutral User Filled-66.png in Resources */,
 				CE26D7841D98846C00FBBFB8 /* name.png in Resources */,
 				CEE83C3F1D78CDC900A01D37 /* Beer@3x.png in Resources */,
 				CE26D7851D98846C00FBBFB8 /* phone.png in Resources */,
 				CEE83C681D7B6BA700A01D37 /* GreenMap@3x.png in Resources */,
 				CEE83C431D78CDC900A01D37 /* Office.png in Resources */,
 				CEFD001C1D907E9200006423 /* directions@2x.png in Resources */,
+				CEA9193C1DA2D3040010DF52 /* mapBubble@3x.png in Resources */,
 				CEE83C781D7B6BBD00A01D37 /* WhiteCredit.png in Resources */,
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
 				CEE83C911D831D6600A01D37 /* JoltMenu.png in Resources */,
+				CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */,
 				CEE83C8E1D831D6600A01D37 /* JoltMap.png in Resources */,
 				CEE83C7D1D7B6BBD00A01D37 /* WhiteHelp@3x.png in Resources */,
 				CEE83C7A1D7B6BBD00A01D37 /* WhiteCredit@3x.png in Resources */,
@@ -568,6 +599,7 @@
 				CEE83C651D7B6BA700A01D37 /* GreenHelp@3x.png in Resources */,
 				CEE83C811D7B6BBD00A01D37 /* WhiteName.png in Resources */,
 				CEE83C461D78CDC900A01D37 /* Restaurant.png in Resources */,
+				CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */,
 				CEE83C641D7B6BA700A01D37 /* GreenHelp@2x.png in Resources */,
 				CEE83C2E1D78B8A700A01D37 /* Menufilled.png in Resources */,
 				CE26D7821D98846C00FBBFB8 /* phone@2x.png in Resources */,
@@ -663,11 +695,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */,
 				CE26D7731D9771AE00FBBFB8 /* LoggedInViewController.swift in Sources */,
 				CE15BC141D5E835600517135 /* Demo1_0.xcdatamodeld in Sources */,
 				CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */,
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
 				CE15BC441D5E8B2300517135 /* AccountViewController.swift in Sources */,
+				CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */,
 				CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */,
 				CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */,
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,
@@ -742,8 +776,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -788,8 +824,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -808,6 +846,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -819,6 +858,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo1.0/Demo1.0.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -827,12 +867,14 @@
 					"/Users/User/Documents/FacebookSDKs-iOS-4",
 				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findawharf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -842,6 +884,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Demo1.0/Demo1.0.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -850,11 +893,13 @@
 					"/Users/User/Documents/FacebookSDKs-iOS-4",
 				);
 				INFOPLIST_FILE = Demo1.0/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ca.nrgapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.findawharf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Demo1.0/Demo1.0-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -866,6 +911,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo1.0.app/Demo1.0";
 			};
 			name = Debug;
@@ -878,6 +924,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Demo1.0.app/Demo1.0";
 			};
 			name = Release;
@@ -889,6 +936,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Demo1.0;
 			};
 			name = Debug;
@@ -900,6 +948,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.mobilequbes.Demo1-0UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Demo1.0;
 			};
 			name = Release;
