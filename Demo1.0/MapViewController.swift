@@ -82,13 +82,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                     
                     self.pointAnnotation = CustomPointAnnotation()
                     if category == "Bar" {
-                        self.pointAnnotation.pinCustomImageName = "Beer.png"
+                        self.pointAnnotation.pinCustomImageName = "Beer_Closed.png"
                     } else if category == "Restaurant"{
                         self.pointAnnotation.pinCustomImageName = "Restaurant.png"
                     } else if category == "Cafe" {
                         self.pointAnnotation.pinCustomImageName = "Cafe.png"
-                    } else {
+                    } else if category == "Office" {
                         self.pointAnnotation.pinCustomImageName = "Office.png"
+                    } else if category == "Casino" {
+                        self.pointAnnotation.pinCustomImageName = "Casino.png"
+                    } else {
+                        self.pointAnnotation.pinCustomImageName = "Transit.png"
                     }
                     self.pointAnnotation.coordinate = poiCoordinates
                     
@@ -253,8 +257,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         }
     }
     
-}
     
+    @IBAction func logoTapped(_ sender: AnyObject) {
+        
+        let alertController = UIAlertController(title: "Your battery is down to 20%, the closest Wharf station is here:", message: "Union Station, 121 Front St W", preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "Get Directions", style: .default, handler: nil)
+        
+        let altAction = UIAlertAction(title: "No Thanks", style: .destructive, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        alertController.addAction(altAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+}
+
     /*func downloadItems() {
         
         let url: NSURL = NSURL(string: urlPath)!

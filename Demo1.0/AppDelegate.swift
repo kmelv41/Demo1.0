@@ -32,13 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // customize colours
         
-        UINavigationBar.appearance().barTintColor = UIColor.black
-        UINavigationBar.appearance().tintColor = UIColor.white
-        
+        UINavigationBar.appearance().barTintColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0)
+        UINavigationBar.appearance().tintColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1.0)
+
         FIRApp.configure()
         
         //STPPaymentConfiguration.shared().publishableKey = "pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-        Stripe.setDefaultPublishableKey("pk_test_6pRNASCoBOKtIshFeQd4XMUh")
+        Stripe.setDefaultPublishableKey("pk_test_EskqahNjPK5JfRSt2pf4wTG3")
         
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self

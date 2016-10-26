@@ -149,10 +149,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         // Retrieve cell
         let myCell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")! as! CustomVenueCell
         
-        myCell.directionsButton.tag = (indexPath as NSIndexPath).row
-        
-        myCell.directionsButton.addTarget(self, action: #selector(VenueListViewController.logAction(_:)), for: .touchUpInside)
-        
         /*let item: LocationModel = feedItems[indexPath.row] as! LocationModel
         let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
         currentLocation = locationManager.location

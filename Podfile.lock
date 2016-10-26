@@ -1,24 +1,38 @@
 PODS:
-  - Firebase (3.7.0):
-    - Firebase/Core (= 3.7.0)
-  - Firebase/Auth (3.7.0):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Firebase (3.7.1):
+    - Firebase/Core (= 3.7.1)
+  - Firebase/Auth (3.7.1):
     - Firebase/Core
     - FirebaseAuth (= 3.0.5)
-  - Firebase/Core (3.7.0):
-    - FirebaseAnalytics (= 3.4.3)
+  - Firebase/Core (3.7.1):
+    - FirebaseAnalytics (= 3.4.4)
     - FirebaseCore (= 3.4.3)
-  - Firebase/Database (3.7.0):
+  - Firebase/Database (3.7.1):
     - Firebase/Core
     - FirebaseDatabase (= 3.0.3)
-  - Firebase/Storage (3.7.0):
+  - Firebase/Storage (3.7.1):
     - Firebase/Core
     - FirebaseStorage (= 1.0.3)
-  - FirebaseAnalytics (3.4.3):
+  - FirebaseAnalytics (3.4.4):
     - FirebaseCore (~> 3.4)
     - FirebaseInstanceID (~> 1.0)
     - GoogleInterchangeUtilities (~> 1.2)
     - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
   - FirebaseAuth (3.0.5):
     - FirebaseAnalytics (~> 3.3)
     - GoogleNetworkingUtilities (~> 1.2)
@@ -49,9 +63,10 @@ PODS:
   - GoogleSymbolUtilities (1.1.2)
   - GoogleUtilities (1.3.2):
     - GoogleSymbolUtilities (~> 1.1)
-  - Stripe (8.0.7)
+  - Stripe (9.0.0)
 
 DEPENDENCIES:
+  - AFNetworking
   - Firebase
   - Firebase/Auth
   - Firebase/Database
@@ -60,8 +75,9 @@ DEPENDENCIES:
   - Stripe
 
 SPEC CHECKSUMS:
-  Firebase: 3875e140d77c7572c6d4852faf94144ffcdb0704
-  FirebaseAnalytics: 02d0aed8c6246a9c8683ac3e9825c67ceb657bde
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Firebase: be473484f0d515e72ffd04acf22f981773c23e58
+  FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
   FirebaseAuth: 75a062bbf2d3c97d1e6e55bbc110e13a6853e25d
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
   FirebaseDatabase: 750a4a0fe18ef114318876fd654b2d9c671e0992
@@ -74,8 +90,8 @@ SPEC CHECKSUMS:
   GoogleSignIn: 09036ed61f8e75f1424100d63f7719480b2428c3
   GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
   GoogleUtilities: 8bbc733218aad26306f9d4a253823986110e3358
-  Stripe: 2bb9646115745d0ee8c7799e6872c57ba5dc6cc5
+  Stripe: 935c6deb5e96cbd29d247074bf3aa98a8438e22c
 
-PODFILE CHECKSUM: 777ef9cf7b96e349b8b810890da5309f9726ddf9
+PODFILE CHECKSUM: 0d166e5ae4d353c9e30a5d526acdc8eee09cd4c3
 
 COCOAPODS: 1.0.1
