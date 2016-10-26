@@ -8,6 +8,7 @@
 
 import UIKit
 import Stripe
+import AFNetworking
 
 class PurchaseViewController: UIViewController {
 
@@ -18,8 +19,6 @@ class PurchaseViewController: UIViewController {
     @IBOutlet weak var yearExpiration: UITextField!
     @IBOutlet weak var CVCNumber: UITextField!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    let STRIPE_TEST_PUBLIC_KEY = "pk_test_EskqahNjPK5JfRSt2pf4wTG3"
-    let STRIPE_TEST_POST_URL = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,51 +69,64 @@ class PurchaseViewController: UIViewController {
         
         alertController.addAction(defaultAction)
         
-        present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
         
     }
     
     func postStripeToken(token: STPToken) {
         
         print("Token ID is \(token.tokenId)")
+
+        var request = URLRequest(url: NSURL(string: "http://findawharf.com/premium_charge.php")! as URL)
+        
+        request.httpMethod = "POST"
+        
+        let postString = "stripeToken=\(token.tokenId)&stripeEmail=kevin@iosfake.com"
+        
+        request.httpBody = postString.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            
+            print("response is \(responseString)")
+            
+        }
+        
+        task.resume()
+        
+        
+        /*let URL = "http://findawharf.com/premium_charge.php"
+        let params = ["stripeToken": token.tokenId,
+                      "stripeEmail": "kevin@iosfake.com"] as NSDictionary
+        
+        let manager = AFHTTPSessionManager()
+        manager.post(URL, parameters: params, progress: nil, success: { (operation, responseObject) -> Void in
+            
+            if let response = responseObject as? [String: String] {
+                
+                let alertController = UIAlertController(title: response["status"], message: response["message"], preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+
+            }
+            
+        }) { (operation, error) -> Void in
+            self.handleError()
+        }*/
         
     }
     
-    /*func validateCustomerInfo() -> Bool {
-        var alert = UIAlertView(title: "Please try again", message: "Please enter all required information", delegate: nil, cancelButtonTitle: "OK", otherButtonTitles: "")
-        //1. Validate name & email
-        if (self.nameTextField.text?.isEmpty)! {
-            alert.show()
-            return false
-        }
-        
-        //2. Validate card number, CVC, expMonth, expYear
-        let error: Error? = nil
-        try self.stripeCard.validateCardReturningError()
-        //3
-        if error != nil {
-            alert.message! = error!.localizedDescription
-            alert.show()
-            return false
-        }
-        return true
-
-    }
-    
-    func performStripeOperation() {
-        //1
-        self.completeButton.isEnabled = false
-        //2
-
-        Stripe.createToken(with: self.stripeCard, publishableKey: STRIPE_TEST_PUBLIC_KEY, completion: {(token: STPToken, error: Error) -> Void in
-            if error {
-                self.handleStripeError(error)
-            }
-            else {
-                self.postStripeToken(token.tokenId)
-            }
-        })
-    }*/
 
     /*
     // MARK: - Navigation

@@ -64,14 +64,18 @@
                     <navigationItem key="navigationItem" id="gtf-F1-LLm">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="Menufilled.png" id="y8r-c4-At1">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aOA-Qt-SUH">
-                            <rect key="frame" x="128.5" y="5.5" width="118" height="33"/>
+                            <rect key="frame" x="101" y="6" width="174" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="JoltMap.png"/>
+                            <state key="normal" image="Logo_Blue.png"/>
+                            <connections>
+                                <action selector="logoTapped:" destination="9th-GH-1wC" eventType="touchUpInside" id="DLQ-lG-lq3"/>
+                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" title="Venues" id="FyW-ri-L03">
+                            <color key="tintColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="rbg-cZ-MAi" kind="show" identifier="mapToVenues" id="Ecr-it-mUd"/>
                             </connections>
@@ -99,12 +103,11 @@
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="wiV-Wt-6UT">
-                            <rect key="frame" x="0.0" y="238" width="375" height="363"/>
+                            <rect key="frame" x="0.0" y="238" width="375" height="433"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <sections>
                             <tableViewSection id="p2h-D4-DTp">
@@ -112,11 +115,11 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="dxT-n7-Dtd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dxT-n7-Dtd" id="n7B-bG-PrH">
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dxT-n7-Dtd" id="n7B-bG-PrH">
                                             <frame key="frameInset" width="375" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="JoltMenu.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YS-4b-XZL">
+                                                <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo_White.png" translatesAutoresizingMaskIntoConstraints="NO" id="6YS-4b-XZL">
                                                     <frame key="frameInset" minX="8" width="118" height="58"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
@@ -124,12 +127,12 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="leadingMargin" secondItem="6YS-4b-XZL" secondAttribute="leading" constant="-25" id="U5f-U8-0M6"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="6YS-4b-XZL" secondAttribute="leading" constant="-5" id="U5f-U8-0M6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6YS-4b-XZL" secondAttribute="bottom" constant="-6" id="loJ-e7-BHg"/>
                                                 <constraint firstItem="6YS-4b-XZL" firstAttribute="top" secondItem="n7B-bG-PrH" secondAttribute="topMargin" constant="-6" id="v4h-DX-G8m"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.14901960784313725" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MapCell" id="YFx-wm-MBE">
@@ -150,7 +153,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="uDd-dt-O4t" secondAttribute="bottom" constant="9" id="6E6-Yl-qME"/>
                                             <constraint firstItem="rYq-xM-Qkl" firstAttribute="top" secondItem="YFx-wm-MBE" secondAttribute="top" constant="8" id="MyD-cV-q2t"/>
@@ -180,7 +183,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="uG0-5L-kCr" firstAttribute="leading" secondItem="SgE-mL-M0H" secondAttribute="leading" constant="44" id="0UI-uG-kV3"/>
                                             <constraint firstAttribute="bottom" secondItem="Nvd-ta-thc" secondAttribute="bottom" constant="9" id="Evz-gv-Dvq"/>
@@ -210,7 +213,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="9It-6p-Yni" firstAttribute="leading" secondItem="i5r-Hb-ZK0" secondAttribute="leading" constant="44" id="Ofk-yz-JD3"/>
                                             <constraint firstAttribute="bottom" secondItem="nKg-xu-tsy" secondAttribute="bottom" constant="9" id="XZ6-ja-AZ7"/>
@@ -240,7 +243,7 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="OcP-KI-qBP" firstAttribute="top" secondItem="MjW-CG-T71" secondAttribute="top" constant="8" id="8KM-Ht-vEj"/>
                                             <constraint firstAttribute="bottom" secondItem="OcP-KI-qBP" secondAttribute="bottom" constant="9" id="M8J-EC-UuN"/>
@@ -264,14 +267,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="keX-w9-rRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="218" y="1719"/>
+            <point key="canvasLocation" x="-46" y="1725"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FF9-RU-rEZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y9A-8H-DqL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rha-uB-k5h">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rha-uB-k5h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -632,7 +635,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fW-5I-mSc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="buu-qY-m5G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="buu-qY-m5G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -687,7 +690,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EbW-45-29n" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="T3f-HL-Bid">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T3f-HL-Bid">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -778,19 +781,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thd-P2-k8M" userLabel="Directions">
-                                                    <accessibility key="accessibilityConfiguration">
-                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
-                                                    </accessibility>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="Kto-ao-k7j"/>
-                                                        <constraint firstAttribute="width" constant="67" id="mD5-iW-cpW"/>
-                                                    </constraints>
-                                                    <state key="normal" image="directions.png"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Thd-P2-k8M" firstAttribute="top" secondItem="lcy-Q5-36o" secondAttribute="bottom" constant="10" id="5Pg-Lu-H3e"/>
                                                 <constraint firstItem="lcy-Q5-36o" firstAttribute="trailing" secondItem="z9c-pY-XRA" secondAttribute="trailingMargin" id="EA5-oU-gaP"/>
                                                 <constraint firstItem="CNF-Gb-pxb" firstAttribute="leading" secondItem="z9c-pY-XRA" secondAttribute="leadingMargin" id="Kyf-Zg-618"/>
                                                 <constraint firstItem="wWt-za-oHh" firstAttribute="leading" secondItem="z9c-pY-XRA" secondAttribute="leadingMargin" id="LP7-Wo-nc6"/>
@@ -800,14 +792,12 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="wWt-za-oHh" secondAttribute="bottom" id="ZE1-HD-vGt"/>
                                                 <constraint firstItem="Eky-oT-S7b" firstAttribute="bottom" secondItem="z9c-pY-XRA" secondAttribute="bottomMargin" id="j8W-No-Uff"/>
                                                 <constraint firstItem="CNF-Gb-pxb" firstAttribute="top" secondItem="6OY-0F-0Og" secondAttribute="bottom" constant="12" id="mej-aA-JM1"/>
-                                                <constraint firstItem="Thd-P2-k8M" firstAttribute="trailing" secondItem="z9c-pY-XRA" secondAttribute="trailingMargin" id="vRD-NA-WX0"/>
                                                 <constraint firstItem="6OY-0F-0Og" firstAttribute="top" secondItem="z9c-pY-XRA" secondAttribute="topMargin" id="yeU-qc-Wae"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addressLabel" destination="wWt-za-oHh" id="TSr-g8-nTG"/>
                                             <outlet property="cityLabel" destination="Eky-oT-S7b" id="qkk-Mo-Wh3"/>
-                                            <outlet property="directionsButton" destination="Thd-P2-k8M" id="v6y-0F-hr4"/>
                                             <outlet property="distanceLabel" destination="lcy-Q5-36o" id="3vF-kv-7Ic"/>
                                             <outlet property="hoursLabel" destination="CNF-Gb-pxb" id="Uoy-lq-FqQ"/>
                                             <outlet property="venueLabel" destination="6OY-0F-0Og" id="ajC-sd-uan"/>
@@ -851,7 +841,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Kd-pq-seS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="C0w-BD-end">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C0w-BD-end">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -869,7 +859,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mTI-gq-GHE" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AWx-kR-guw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AWx-kR-guw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -936,15 +926,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="JoltMap.png" width="64" height="33"/>
-        <image name="JoltMenu.png" width="106" height="55"/>
+        <image name="Logo_Blue.png" width="158" height="30"/>
+        <image name="Logo_White.png" width="174" height="33"/>
         <image name="Menufilled.png" width="22" height="22"/>
         <image name="WhiteCredit.png" width="22" height="22"/>
         <image name="WhiteHelp.png" width="22" height="22"/>
         <image name="WhiteMap.png" width="22" height="22"/>
         <image name="WhiteName.png" width="22" height="22"/>
         <image name="cancel.png" width="33" height="33"/>
-        <image name="directions.png" width="66" height="14"/>
         <image name="email.png" width="22" height="22"/>
         <image name="name.png" width="22" height="22"/>
         <image name="phone.png" width="22" height="22"/>
