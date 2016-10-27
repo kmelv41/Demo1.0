@@ -33,6 +33,12 @@ class PurchaseViewController: UIViewController {
     
     @IBAction func completeButtonTapped(_ sender: UIButton) {
         
+        CVCNumber.endEditing(true)
+        cardNumber.endEditing(true)
+        nameTextField.endEditing(true)
+        monthExpiration.endEditing(true)
+        yearExpiration.endEditing(true)
+        
         let stripeCard = STPCardParams()
         
         if self.monthExpiration.text?.isEmpty == false && self.yearExpiration.text?.isEmpty == false {
@@ -93,9 +99,36 @@ class PurchaseViewController: UIViewController {
                 return
             }
             
-            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            let responseString = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
             
             print("response is \(responseString)")
+            
+            let data = responseString?.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: []) as! [String: AnyObject]
+                
+                if let status = json["status"] as? String {
+                    if let message = json["message"] as? String {
+                        print(message)
+                        print(status)
+                        
+                        let alertController = UIAlertController(title: status, message: message, preferredStyle: .alert)
+                        
+                        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        
+                        alertController.addAction(defaultAction)
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
+                }
+                
+            } catch let error as NSError {
+                print("Failed to load: \(error.localizedDescription)")
+            }
+            
+            // clean up PHP so response is only "error" or "succes" so we can display alert properly
             
         }
         
