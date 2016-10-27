@@ -10,15 +10,12 @@ import UIKit
 import Stripe
 import AFNetworking
 
-class PurchaseViewController: UIViewController {
+class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate {
 
     @IBOutlet weak var completeButton: UIButton!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var cardNumber: UITextField!
-    @IBOutlet weak var monthExpiration: UITextField!
-    @IBOutlet weak var yearExpiration: UITextField!
-    @IBOutlet weak var CVCNumber: UITextField!
     @IBOutlet weak var menuButton: UIBarButtonItem!
+    
+    let paymentTextField = STPPaymentCardTextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,19 +25,29 @@ class PurchaseViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             }
 
-        // Do any additional setup after loading the view.
+        paymentTextField.frame = CGRect(x: 15, y: self.view.frame.height/2 - 100, width: self.view.frame.width - 30, height: 44)
+        
+        completeButton.frame = CGRect(x: 15, y: self.view.frame.height/2, width: self.view.frame.width - 30, height: 44)
+        
+        paymentTextField.delegate = self
+        view.addSubview(paymentTextField)
+        self.completeButton.isHidden = true
+        
+    }
+    
+    func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
+        if textField.valid {
+            self.completeButton.isHidden = false
+        }
     }
     
     @IBAction func completeButtonTapped(_ sender: UIButton) {
         
-        CVCNumber.endEditing(true)
-        cardNumber.endEditing(true)
-        nameTextField.endEditing(true)
-        monthExpiration.endEditing(true)
-        yearExpiration.endEditing(true)
+        paymentTextField.endEditing(true)
         
-        let stripeCard = STPCardParams()
+        let stripeCard = paymentTextField.cardParams
         
+        /*
         if self.monthExpiration.text?.isEmpty == false && self.yearExpiration.text?.isEmpty == false {
             let numMonth = UInt(self.monthExpiration.text!)!
             let numYear = UInt(self.yearExpiration.text!)!
@@ -50,7 +57,7 @@ class PurchaseViewController: UIViewController {
             stripeCard.expMonth = numMonth
             stripeCard.expYear = numYear
             
-        }
+        }*/
         
         if STPCardValidator.validationState(forCard: stripeCard) == .valid {
             STPAPIClient.shared().createToken(withCard: stripeCard, completion: { (token,error) -> Void in
