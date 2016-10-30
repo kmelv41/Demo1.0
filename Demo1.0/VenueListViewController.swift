@@ -230,7 +230,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
             destViewController.routeLong = routeLongitude
             
             destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
-            destViewController.cancelButton.isHidden = false
             
         }
         
