@@ -105,6 +105,10 @@
 		CEEB02BA1DBBB0F300350BCF /* Beer_Closed.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02B71DBBB0F200350BCF /* Beer_Closed.png */; };
 		CEEB02BB1DBBB0F300350BCF /* Beer_Closed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02B81DBBB0F200350BCF /* Beer_Closed@2x.png */; };
 		CEEB02BC1DBBB0F300350BCF /* Beer_Closed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02B91DBBB0F200350BCF /* Beer_Closed@3x.png */; };
+		CEEB02BE1DC6734A00350BCF /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB02BD1DC6734A00350BCF /* LocationViewController.swift */; };
+		CEEB02C21DC6799C00350BCF /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02BF1DC6799C00350BCF /* backArrow.png */; };
+		CEEB02C31DC6799C00350BCF /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02C01DC6799C00350BCF /* backArrow@2x.png */; };
+		CEEB02C41DC6799C00350BCF /* backArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEEB02C11DC6799C00350BCF /* backArrow@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -233,6 +237,10 @@
 		CEEB02B71DBBB0F200350BCF /* Beer_Closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Beer_Closed.png; sourceTree = "<group>"; };
 		CEEB02B81DBBB0F200350BCF /* Beer_Closed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer_Closed@2x.png"; sourceTree = "<group>"; };
 		CEEB02B91DBBB0F200350BCF /* Beer_Closed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer_Closed@3x.png"; sourceTree = "<group>"; };
+		CEEB02BD1DC6734A00350BCF /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		CEEB02BF1DC6799C00350BCF /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
+		CEEB02C01DC6799C00350BCF /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
+		CEEB02C11DC6799C00350BCF /* backArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@3x.png"; sourceTree = "<group>"; };
 		E09DBBBFF47FE45E9649D9C8 /* Pods_Demo1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -323,6 +331,7 @@
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
+				CEEB02BD1DC6734A00350BCF /* LocationViewController.swift */,
 				CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */,
 				CE15BC411D5E87B200517135 /* MapViewController.swift */,
 				CEA919351DA1B83C0010DF52 /* AnnotationView.swift */,
@@ -378,6 +387,9 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CEEB02BF1DC6799C00350BCF /* backArrow.png */,
+				CEEB02C01DC6799C00350BCF /* backArrow@2x.png */,
+				CEEB02C11DC6799C00350BCF /* backArrow@3x.png */,
 				CEEB02B71DBBB0F200350BCF /* Beer_Closed.png */,
 				CEEB02B81DBBB0F200350BCF /* Beer_Closed@2x.png */,
 				CEEB02B91DBBB0F200350BCF /* Beer_Closed@3x.png */,
@@ -573,12 +585,14 @@
 				CE26D75E1D943BCA00FBBFB8 /* cancel@3x.png in Resources */,
 				CEE83C821D7B6BBD00A01D37 /* WhiteName@2x.png in Resources */,
 				CEE674D41DBA5D8400ACD8A0 /* Beer@3x.png in Resources */,
+				CEEB02C31DC6799C00350BCF /* backArrow@2x.png in Resources */,
 				CEE674DE1DBA5D8400ACD8A0 /* Transit.png in Resources */,
 				CEE674D61DBA5D8400ACD8A0 /* Cafe@3x.png in Resources */,
 				CE26D7811D98846C00FBBFB8 /* name@2x.png in Resources */,
 				CEE674CC1DBA5D8400ACD8A0 /* Beer@2x.png in Resources */,
 				CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */,
 				CEE674E71DBA7AEB00ACD8A0 /* Logo_Blue@2x.png in Resources */,
+				CEEB02C41DC6799C00350BCF /* backArrow@3x.png in Resources */,
 				CEE83C7E1D7B6BBD00A01D37 /* WhiteMap.png in Resources */,
 				CE15BC191D5E835600517135 /* LaunchScreen.storyboard in Resources */,
 				CEE674E21DBA5D8400ACD8A0 /* Logo_White@3x.png in Resources */,
@@ -624,6 +638,7 @@
 				CE26D7821D98846C00FBBFB8 /* phone@2x.png in Resources */,
 				CEE83C931D831D6600A01D37 /* JoltMenu@3x.png in Resources */,
 				CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */,
+				CEEB02C21DC6799C00350BCF /* backArrow.png in Resources */,
 				CEE83C7B1D7B6BBD00A01D37 /* WhiteHelp.png in Resources */,
 				CE15BC111D5E835600517135 /* Main.storyboard in Resources */,
 				CEE83C801D7B6BBD00A01D37 /* WhiteMap@3x.png in Resources */,
@@ -726,6 +741,7 @@
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
 				CE15BC441D5E8B2300517135 /* AccountViewController.swift in Sources */,
 				CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */,
+				CEEB02BE1DC6734A00350BCF /* LocationViewController.swift in Sources */,
 				CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */,
 				CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */,
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,

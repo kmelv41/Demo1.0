@@ -46,6 +46,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     let rootRef = FIRDatabase.database().reference()
     var routeLatitude = Double()
     var routeLongitude = Double()
+    var segueArray = [String?]()
     
     var shouldShowSearchResults = false
     
@@ -85,6 +86,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
                 let distFromPin: Double = self.currentLocation.distance(from: pinLocation)/1000
                 let strFromPin = String(format:"%.1f",distFromPin)
                 singleRecord.append(strFromPin)
+                singleRecord.append(dataPull[index]["Category"])
                 newArray.append(singleRecord)
             }
             self.tableArray = newArray.sorted { Float($0[5]!) < Float($1[5]!) }
@@ -105,6 +107,10 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBAction func mapButtonClicked(_ sender: AnyObject) {
         self.performSegue(withIdentifier: "myUnwindSegue", sender: self)
+    }
+    
+    @IBAction func unwindToVenues(_ sender: UIStoryboardSegue) {
+        // nothing yet
     }
     
     // already commented out
@@ -232,6 +238,25 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
             destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
             
         }
+        
+        if segue.identifier == "LocationChosen" {
+            let destViewController : LocationViewController = segue.destination as! LocationViewController
+            
+            destViewController.venueInfo = self.segueArray
+            
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if shouldShowSearchResults {
+            self.segueArray = filteredArray[indexPath.row]
+        } else {
+            self.segueArray = tableArray[indexPath.row]
+        }
+        
+        self.performSegue(withIdentifier: "LocationChosen", sender: self)
         
     }
     
