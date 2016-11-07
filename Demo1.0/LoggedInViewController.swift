@@ -39,20 +39,22 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        logoutButton.layer.cornerRadius = 15
+        
         if let user = FIRAuth.auth()?.currentUser {
             
             self.ref.child("Users").observe(.value, with: { snapshot in
                 if snapshot.hasChild(self.uid) {
                     self.ref.child("Users").child(self.uid).observe(.value, with: { snapshot in
                         
-                        let dataPull = snapshot.value! as! [String:String]
+                        let dataPull = snapshot.value! as! [String:AnyObject]
                         
                         if snapshot.hasChild("Name") {
-                            self.nameField.text = dataPull["Name"]!
+                            self.nameField.text = dataPull["Name"]! as? String
                         }
                         
                         if snapshot.hasChild("Email") {
-                            self.emailField.text = dataPull["Email"]!
+                            self.emailField.text = dataPull["Email"]! as? String
                         } else if self.authProvider == "Email" {
                             let name: String = self.emailAuthName
                             let email: String = self.emailAuthEmail
@@ -62,7 +64,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                         }
                         
                         if snapshot.hasChild("Phone") {
-                            self.phoneField.text = dataPull["Phone"]!
+                            self.phoneField.text = dataPull["Phone"]! as? String
                         }
                         
                     })
@@ -74,7 +76,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                         let name: String = user.displayName! as String
                         let email: String = user.email! as String
                         self.uid = user.uid as String
-                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
                         
                     } else if self.authProvider == "Email" {
                         
@@ -82,7 +84,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                         let email: String = self.emailAuthEmail
                         self.uid = user.uid as String
                         
-                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
                     }
             
                 }

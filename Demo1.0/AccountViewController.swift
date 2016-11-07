@@ -43,6 +43,9 @@ class AccountViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDel
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
+        
+        signInButton.layer.cornerRadius = 15
+        signUpButton.layer.cornerRadius = 15
 
         self.loginButton.delegate = self
         self.loginButton.center = self.containerView.center

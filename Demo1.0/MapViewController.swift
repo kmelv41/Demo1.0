@@ -13,7 +13,6 @@ import Firebase
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate {
     
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
@@ -40,20 +39,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         self.mapView.showsPointsOfInterest = false
         self.mapView.showsCompass = false
         self.mapView.isRotateEnabled = false
-        self.cancelButton.isHidden = true
         
     }
     
-    
-    @IBAction func cancelButtonClicked(_ sender: AnyObject) {
-        let overlays = mapView.overlays
-        mapView.removeOverlays(overlays)
-        cancelButton.isHidden = true
-        
-        let region = MKCoordinateRegion(center: currentCoordinates, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        self.mapView.setRegion(region, animated: true)
-    }
+
     
     @IBAction func myUnwindAction(_ sender: UIStoryboardSegue) {
         // nothing yet
@@ -82,12 +71,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                     
                     self.pointAnnotation = CustomPointAnnotation()
                     if category == "Bar" {
-                        self.pointAnnotation.pinCustomImageName = "Beer_Closed.png"
+                        self.pointAnnotation.pinCustomImageName = "Beer.png"
                     } else if category == "Restaurant"{
                         self.pointAnnotation.pinCustomImageName = "Restaurant.png"
                     } else if category == "Cafe" {
                         self.pointAnnotation.pinCustomImageName = "Cafe.png"
-                    } else if category == "Office" {
+                    } else if category == "Hotel" {
                         self.pointAnnotation.pinCustomImageName = "Office.png"
                     } else if category == "Casino" {
                         self.pointAnnotation.pinCustomImageName = "Casino.png"
