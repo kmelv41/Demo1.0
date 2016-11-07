@@ -22,7 +22,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class VenueListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate {
+class VenueListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UIPopoverPresentationControllerDelegate {
     
     //Properties
     
@@ -33,6 +33,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     // I should pull each venue and append them into an array, and then...
     // ... format that array as "TableArray" like I did previously
     
+    @IBOutlet weak var filterButton: UIButton!
     var feedItems: NSArray = NSArray()
     var fbaseItems: NSArray = NSArray()
     @IBOutlet weak var listTableView: UITableView!
@@ -47,6 +48,10 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     var routeLatitude = Double()
     var routeLongitude = Double()
     var segueArray = [String?]()
+    var categoryArray = [String]()
+    var criteriaArray = [[String?]]()
+    var filterBool = false
+    var fullArray = [[String?]]()
     
     var shouldShowSearchResults = false
     
@@ -90,6 +95,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
                 newArray.append(singleRecord)
             }
             self.tableArray = newArray.sorted { Float($0[5]!) < Float($1[5]!) }
+            self.fullArray = newArray.sorted { Float($0[5]!) < Float($1[5]!) }
 
             self.listTableView.reloadData()
 
@@ -110,7 +116,33 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBAction func unwindToVenues(_ sender: UIStoryboardSegue) {
-        // nothing yet
+        if filterBool == true {
+            
+            self.criteriaArray = [[String?]]()
+
+            self.filterBool = false
+            
+            for cat in categoryArray {
+                
+                for venue in fullArray {
+                    
+                    if venue[6]! == cat {
+                        
+                        self.criteriaArray.append(venue)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            print(self.criteriaArray)
+            
+            self.tableArray = criteriaArray.sorted { Float($0[5]!) < Float($1[5]!) }
+            
+            self.listTableView.reloadData()
+            
+        }
     }
     
     // already commented out
@@ -246,6 +278,27 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
             
         }
         
+        if segue.identifier == "FilterPopover" {
+            
+            let vc : FilterViewController = segue.destination as! FilterViewController
+            
+            vc.preferredContentSize = CGSize(width: 300, height: 360)
+            
+            let controller = vc.popoverPresentationController
+            
+            controller?.sourceView = self.view
+            
+            controller?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            
+            controller?.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            
+            if controller != nil {
+                controller?.delegate = self
+            }
+            
+            vc.categoryArray = self.categoryArray
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -258,6 +311,21 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.performSegue(withIdentifier: "LocationChosen", sender: self)
         
+    }
+    
+    
+    @IBAction func filterButtonTapped(_ sender: AnyObject) {
+        
+        self.searchBar.text = ""
+        
+        self.shouldShowSearchResults = false
+        
+        self.performSegue(withIdentifier: "FilterPopover", sender: self)
+        
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
     }
     
 }

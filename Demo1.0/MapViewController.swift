@@ -71,12 +71,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                     
                     self.pointAnnotation = CustomPointAnnotation()
                     if category == "Bar" {
-                        self.pointAnnotation.pinCustomImageName = "Beer_Closed.png"
+                        self.pointAnnotation.pinCustomImageName = "Beer.png"
                     } else if category == "Restaurant"{
                         self.pointAnnotation.pinCustomImageName = "Restaurant.png"
                     } else if category == "Cafe" {
                         self.pointAnnotation.pinCustomImageName = "Cafe.png"
-                    } else if category == "Office" {
+                    } else if category == "Hotel" {
                         self.pointAnnotation.pinCustomImageName = "Office.png"
                     } else if category == "Casino" {
                         self.pointAnnotation.pinCustomImageName = "Casino.png"

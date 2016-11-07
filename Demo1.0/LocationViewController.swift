@@ -12,6 +12,7 @@ import CoreLocation
 
 class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var getDirections: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var venueLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -38,6 +39,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         self.addressLabel.text = venueInfo[1]
         self.cityLabel.text = venueInfo[2]
         
+        getDirections.layer.cornerRadius = 15
+        
         let latitude = venueInfo[3]
         let longitude = venueInfo[4]
         
@@ -49,7 +52,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         
         self.pointAnnotation = CustomPointAnnotation()
         if category == "Bar" {
-            self.pointAnnotation.pinCustomImageName = "Beer_Closed.png"
+            self.pointAnnotation.pinCustomImageName = "Beer.png"
         } else if category == "Restaurant"{
             self.pointAnnotation.pinCustomImageName = "Restaurant.png"
         } else if category == "Cafe" {
@@ -65,7 +68,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         
         let pinLocation = CLLocation(latitude: lttude!, longitude: lgtude!)
         
-        self.pointAnnotation.distanceToVenue = "\(venueInfo[6]) km"
+        self.pointAnnotation.distanceToVenue = "\(venueInfo[5]) km"
         self.pointAnnotation.name = venueInfo[0]
         self.pointAnnotation.address = venueInfo[1]
         

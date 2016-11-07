@@ -44,6 +44,15 @@
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
+		CEE19BBD1DC90CB10079C2FE /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BBA1DC90CB10079C2FE /* checkMark.png */; };
+		CEE19BBE1DC90CB10079C2FE /* checkMark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BBB1DC90CB10079C2FE /* checkMark@2x.png */; };
+		CEE19BBF1DC90CB10079C2FE /* checkMark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BBC1DC90CB10079C2FE /* checkMark@3x.png */; };
+		CEE19BC11DC9221E0079C2FE /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BC01DC9221E0079C2FE /* FilterViewController.swift */; };
+		CEE19BC51DCBB1E40079C2FE /* editPencil.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BC21DCBB1E40079C2FE /* editPencil.png */; };
+		CEE19BC61DCBB1E40079C2FE /* editPencil@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BC31DCBB1E40079C2FE /* editPencil@2x.png */; };
+		CEE19BC71DCBB1E40079C2FE /* editPencil@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BC41DCBB1E40079C2FE /* editPencil@3x.png */; };
+		CEE19BC91DCCC7A00079C2FE /* SubscribedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */; };
+		CEE19BCB1DCF9EC40079C2FE /* UpdateCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BCA1DCF9EC40079C2FE /* UpdateCardViewController.swift */; };
 		CEE674C81DBA5D8400ACD8A0 /* map_Bubble@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE674AD1DBA5D8400ACD8A0 /* map_Bubble@3x.png */; };
 		CEE674C91DBA5D8400ACD8A0 /* map_Bubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE674AE1DBA5D8400ACD8A0 /* map_Bubble@2x.png */; };
 		CEE674CA1DBA5D8400ACD8A0 /* map_Bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE674AF1DBA5D8400ACD8A0 /* map_Bubble.png */; };
@@ -176,6 +185,15 @@
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		CEE19BBA1DC90CB10079C2FE /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
+		CEE19BBB1DC90CB10079C2FE /* checkMark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkMark@2x.png"; sourceTree = "<group>"; };
+		CEE19BBC1DC90CB10079C2FE /* checkMark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkMark@3x.png"; sourceTree = "<group>"; };
+		CEE19BC01DC9221E0079C2FE /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		CEE19BC21DCBB1E40079C2FE /* editPencil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editPencil.png; sourceTree = "<group>"; };
+		CEE19BC31DCBB1E40079C2FE /* editPencil@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editPencil@2x.png"; sourceTree = "<group>"; };
+		CEE19BC41DCBB1E40079C2FE /* editPencil@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editPencil@3x.png"; sourceTree = "<group>"; };
+		CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribedViewController.swift; sourceTree = "<group>"; };
+		CEE19BCA1DCF9EC40079C2FE /* UpdateCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCardViewController.swift; sourceTree = "<group>"; };
 		CEE674AD1DBA5D8400ACD8A0 /* map_Bubble@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_Bubble@3x.png"; sourceTree = "<group>"; };
 		CEE674AE1DBA5D8400ACD8A0 /* map_Bubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_Bubble@2x.png"; sourceTree = "<group>"; };
 		CEE674AF1DBA5D8400ACD8A0 /* map_Bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_Bubble.png; sourceTree = "<group>"; };
@@ -331,6 +349,9 @@
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
+				CEE19BCA1DCF9EC40079C2FE /* UpdateCardViewController.swift */,
+				CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */,
+				CEE19BC01DC9221E0079C2FE /* FilterViewController.swift */,
 				CEEB02BD1DC6734A00350BCF /* LocationViewController.swift */,
 				CE26D7721D9771AE00FBBFB8 /* LoggedInViewController.swift */,
 				CE15BC411D5E87B200517135 /* MapViewController.swift */,
@@ -387,6 +408,12 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CEE19BC21DCBB1E40079C2FE /* editPencil.png */,
+				CEE19BC31DCBB1E40079C2FE /* editPencil@2x.png */,
+				CEE19BC41DCBB1E40079C2FE /* editPencil@3x.png */,
+				CEE19BBA1DC90CB10079C2FE /* checkMark.png */,
+				CEE19BBB1DC90CB10079C2FE /* checkMark@2x.png */,
+				CEE19BBC1DC90CB10079C2FE /* checkMark@3x.png */,
 				CEEB02BF1DC6799C00350BCF /* backArrow.png */,
 				CEEB02C01DC6799C00350BCF /* backArrow@2x.png */,
 				CEEB02C11DC6799C00350BCF /* backArrow@3x.png */,
@@ -592,6 +619,7 @@
 				CEE674CC1DBA5D8400ACD8A0 /* Beer@2x.png in Resources */,
 				CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */,
 				CEE674E71DBA7AEB00ACD8A0 /* Logo_Blue@2x.png in Resources */,
+				CEE19BBE1DC90CB10079C2FE /* checkMark@2x.png in Resources */,
 				CEEB02C41DC6799C00350BCF /* backArrow@3x.png in Resources */,
 				CEE83C7E1D7B6BBD00A01D37 /* WhiteMap.png in Resources */,
 				CE15BC191D5E835600517135 /* LaunchScreen.storyboard in Resources */,
@@ -606,14 +634,18 @@
 				CEE674CD1DBA5D8400ACD8A0 /* Cafe@2x.png in Resources */,
 				CEE674DF1DBA5D8400ACD8A0 /* Transit@3x.png in Resources */,
 				CE26D7841D98846C00FBBFB8 /* name.png in Resources */,
+				CEE19BC61DCBB1E40079C2FE /* editPencil@2x.png in Resources */,
 				CE26D7851D98846C00FBBFB8 /* phone.png in Resources */,
 				CEE674CE1DBA5D8400ACD8A0 /* Casino@2x.png in Resources */,
 				CEE674D81DBA5D8400ACD8A0 /* Casino@3x.png in Resources */,
 				CEE83C781D7B6BBD00A01D37 /* WhiteCredit.png in Resources */,
+				CEE19BBF1DC90CB10079C2FE /* checkMark@3x.png in Resources */,
+				CEE19BC51DCBB1E40079C2FE /* editPencil.png in Resources */,
 				CEE83C301D78B8A700A01D37 /* Menufilled@3x.png in Resources */,
 				CEE674D21DBA5D8400ACD8A0 /* Logo_White_Map@2x.png in Resources */,
 				CEE83C901D831D6600A01D37 /* JoltMap@3x.png in Resources */,
 				CEE674C91DBA5D8400ACD8A0 /* map_Bubble@2x.png in Resources */,
+				CEE19BC71DCBB1E40079C2FE /* editPencil@3x.png in Resources */,
 				CEE83C911D831D6600A01D37 /* JoltMenu.png in Resources */,
 				CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */,
 				CEE83C8E1D831D6600A01D37 /* JoltMap.png in Resources */,
@@ -648,6 +680,7 @@
 				CEE83C831D7B6BBD00A01D37 /* WhiteName@3x.png in Resources */,
 				CEE674DA1DBA5D8400ACD8A0 /* Office@3x.png in Resources */,
 				CEE674D91DBA5D8400ACD8A0 /* Office.png in Resources */,
+				CEE19BBD1DC90CB10079C2FE /* checkMark.png in Resources */,
 				CE26D7831D98846C00FBBFB8 /* email.png in Resources */,
 				CEE83C8F1D831D6600A01D37 /* JoltMap@2x.png in Resources */,
 				CEE674E01DBA5D8400ACD8A0 /* Logo_White.png in Resources */,
@@ -740,13 +773,16 @@
 				CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */,
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
 				CE15BC441D5E8B2300517135 /* AccountViewController.swift in Sources */,
+				CEE19BCB1DCF9EC40079C2FE /* UpdateCardViewController.swift in Sources */,
 				CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */,
 				CEEB02BE1DC6734A00350BCF /* LocationViewController.swift in Sources */,
 				CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */,
+				CEE19BC11DC9221E0079C2FE /* FilterViewController.swift in Sources */,
 				CE15BC481D5E8F6400517135 /* HelpViewController.swift in Sources */,
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,
 				CE15BC421D5E87B200517135 /* MapViewController.swift in Sources */,
 				CE15BC0C1D5E835600517135 /* AppDelegate.swift in Sources */,
+				CEE19BC91DCCC7A00079C2FE /* SubscribedViewController.swift in Sources */,
 				CE15BC3F1D5E837600517135 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

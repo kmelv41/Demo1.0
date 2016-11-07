@@ -39,6 +39,8 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
+        logoutButton.layer.cornerRadius = 15
+        
         if let user = FIRAuth.auth()?.currentUser {
             
             self.ref.child("Users").observe(.value, with: { snapshot in
