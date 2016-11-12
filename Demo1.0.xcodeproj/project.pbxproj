@@ -10,7 +10,6 @@
 		495D06755AB9B437598C9946 /* Pods_Demo1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E09DBBBFF47FE45E9649D9C8 /* Pods_Demo1_0.framework */; };
 		CE15BC0C1D5E835600517135 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15BC0B1D5E835600517135 /* AppDelegate.swift */; };
 		CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15BC0D1D5E835600517135 /* VenueListViewController.swift */; };
-		CE15BC111D5E835600517135 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE15BC0F1D5E835600517135 /* Main.storyboard */; };
 		CE15BC141D5E835600517135 /* Demo1_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE15BC121D5E835600517135 /* Demo1_0.xcdatamodeld */; };
 		CE15BC161D5E835600517135 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE15BC151D5E835600517135 /* Assets.xcassets */; };
 		CE15BC191D5E835600517135 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE15BC171D5E835600517135 /* LaunchScreen.storyboard */; };
@@ -45,6 +44,7 @@
 		CE674FE61DD79991005092C9 /* Logo_Blue_Big.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE31DD79991005092C9 /* Logo_Blue_Big.png */; };
 		CE674FE71DD79991005092C9 /* Logo_Blue_Big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE41DD79991005092C9 /* Logo_Blue_Big@2x.png */; };
 		CE674FE81DD79991005092C9 /* Logo_Blue_Big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE51DD79991005092C9 /* Logo_Blue_Big@3x.png */; };
+		CE674FED1DD7A376005092C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE674FEB1DD7A376005092C9 /* Main.storyboard */; };
 		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
@@ -148,7 +148,6 @@
 		CE15BC081D5E835600517135 /* Demo1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15BC0B1D5E835600517135 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE15BC0D1D5E835600517135 /* VenueListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueListViewController.swift; sourceTree = "<group>"; };
-		CE15BC101D5E835600517135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE15BC131D5E835600517135 /* Demo1_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo1_0.xcdatamodel; sourceTree = "<group>"; };
 		CE15BC151D5E835600517135 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE15BC181D5E835600517135 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -191,6 +190,7 @@
 		CE674FE31DD79991005092C9 /* Logo_Blue_Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Blue_Big.png; sourceTree = "<group>"; };
 		CE674FE41DD79991005092C9 /* Logo_Blue_Big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_Blue_Big@2x.png"; sourceTree = "<group>"; };
 		CE674FE51DD79991005092C9 /* Logo_Blue_Big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_Blue_Big@3x.png"; sourceTree = "<group>"; };
+		CE674FEC1DD7A376005092C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -358,8 +358,8 @@
 				CE15BC0D1D5E835600517135 /* VenueListViewController.swift */,
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
-				CE15BC0F1D5E835600517135 /* Main.storyboard */,
 				CE674FE11DD760AD005092C9 /* HamburgerViewController.swift */,
+				CE674FEB1DD7A376005092C9 /* Main.storyboard */,
 				CE674FDF1DD23F4E005092C9 /* FAQTableViewCell.swift */,
 				CEE19BCA1DCF9EC40079C2FE /* UpdateCardViewController.swift */,
 				CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */,
@@ -678,6 +678,7 @@
 				CEE83C811D7B6BBD00A01D37 /* WhiteName.png in Resources */,
 				CEE674E81DBA7AEB00ACD8A0 /* Logo_Blue@3x.png in Resources */,
 				CEEB02BA1DBBB0F300350BCF /* Beer_Closed.png in Resources */,
+				CE674FED1DD7A376005092C9 /* Main.storyboard in Resources */,
 				CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */,
 				CEE674F01DBA809700ACD8A0 /* USB_Icon@3x.png in Resources */,
 				CEE674DC1DBA5D8400ACD8A0 /* Restaurant@2x.png in Resources */,
@@ -689,7 +690,6 @@
 				CEE83C2F1D78B8A700A01D37 /* Menufilled@2x.png in Resources */,
 				CEEB02C21DC6799C00350BCF /* backArrow.png in Resources */,
 				CEE83C7B1D7B6BBD00A01D37 /* WhiteHelp.png in Resources */,
-				CE15BC111D5E835600517135 /* Main.storyboard in Resources */,
 				CEE83C801D7B6BBD00A01D37 /* WhiteMap@3x.png in Resources */,
 				CEE674DD1DBA5D8400ACD8A0 /* Restaurant@3x.png in Resources */,
 				CEEB02BB1DBBB0F300350BCF /* Beer_Closed@2x.png in Resources */,
@@ -839,20 +839,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE15BC0F1D5E835600517135 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CE15BC101D5E835600517135 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CE15BC171D5E835600517135 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CE15BC181D5E835600517135 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CE674FEB1DD7A376005092C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CE674FEC1DD7A376005092C9 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
