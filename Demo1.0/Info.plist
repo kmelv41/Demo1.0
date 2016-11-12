@@ -48,7 +48,7 @@
 	<key>FacebookAppID</key>
 	<string>187027075063414</string>
 	<key>FacebookDisplayName</key>
-	<string>com.findawharf</string>
+	<string>com.joltmobiledemo</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -64,9 +64,9 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This will let us tell you where the nearest Wharf is.</string>
+	<string>This will let us tell you where the nearest NrGBox is.</string>
 	<key>NSLocationWhenInUsageDescription</key>
-	<string>This will let us tell you where the nearest Wharf is.</string>
+	<string>This will let us tell you where the nearest NrGBox is.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -113,8 +113,7 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         //let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
         
         self.ref.child("Users").child(self.uid).child("Status").setValue("Inactive")
-        
-        self.performSegue(withIdentifier: "goToMapView", sender: self)
+        self.performSegue(withIdentifier: "unwindLogin", sender: self)
         
         //self.presentViewController(accountViewController, animated: true, completion: nil)
     }

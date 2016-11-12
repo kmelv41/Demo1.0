@@ -40,11 +40,6 @@
 		CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77C1D98846C00FBBFB8 /* email@3x.png */; };
 		CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE26D77F1D98846C00FBBFB8 /* name@3x.png */; };
 		CE6111BE1DA55919002D0945 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */; };
-		CE674FE01DD23F4E005092C9 /* FAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE674FDF1DD23F4E005092C9 /* FAQTableViewCell.swift */; };
-		CE674FE21DD760AD005092C9 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE674FE11DD760AD005092C9 /* HamburgerViewController.swift */; };
-		CE674FE61DD79991005092C9 /* Logo_Blue_Big.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE31DD79991005092C9 /* Logo_Blue_Big.png */; };
-		CE674FE71DD79991005092C9 /* Logo_Blue_Big@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE41DD79991005092C9 /* Logo_Blue_Big@2x.png */; };
-		CE674FE81DD79991005092C9 /* Logo_Blue_Big@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FE51DD79991005092C9 /* Logo_Blue_Big@3x.png */; };
 		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEA919361DA1B83C0010DF52 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919351DA1B83C0010DF52 /* AnnotationView.swift */; };
@@ -186,11 +181,6 @@
 		CE26D77C1D98846C00FBBFB8 /* email@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@3x.png"; sourceTree = "<group>"; };
 		CE26D77F1D98846C00FBBFB8 /* name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "name@3x.png"; sourceTree = "<group>"; };
 		CE6111BD1DA55919002D0945 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CE674FDF1DD23F4E005092C9 /* FAQTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQTableViewCell.swift; sourceTree = "<group>"; };
-		CE674FE11DD760AD005092C9 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
-		CE674FE31DD79991005092C9 /* Logo_Blue_Big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo_Blue_Big.png; sourceTree = "<group>"; };
-		CE674FE41DD79991005092C9 /* Logo_Blue_Big@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_Blue_Big@2x.png"; sourceTree = "<group>"; };
-		CE674FE51DD79991005092C9 /* Logo_Blue_Big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logo_Blue_Big@3x.png"; sourceTree = "<group>"; };
 		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEA919351DA1B83C0010DF52 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
@@ -359,8 +349,6 @@
 				CEE83C521D79D32900A01D37 /* CustomVenueCell.swift */,
 				CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */,
 				CE15BC0F1D5E835600517135 /* Main.storyboard */,
-				CE674FE11DD760AD005092C9 /* HamburgerViewController.swift */,
-				CE674FDF1DD23F4E005092C9 /* FAQTableViewCell.swift */,
 				CEE19BCA1DCF9EC40079C2FE /* UpdateCardViewController.swift */,
 				CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */,
 				CEE19BC01DC9221E0079C2FE /* FilterViewController.swift */,
@@ -420,9 +408,6 @@
 		CEE83C511D79160900A01D37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CE674FE31DD79991005092C9 /* Logo_Blue_Big.png */,
-				CE674FE41DD79991005092C9 /* Logo_Blue_Big@2x.png */,
-				CE674FE51DD79991005092C9 /* Logo_Blue_Big@3x.png */,
 				CEE19BC21DCBB1E40079C2FE /* editPencil.png */,
 				CEE19BC31DCBB1E40079C2FE /* editPencil@2x.png */,
 				CEE19BC41DCBB1E40079C2FE /* editPencil@3x.png */,
@@ -631,7 +616,6 @@
 				CEE674DE1DBA5D8400ACD8A0 /* Transit.png in Resources */,
 				CEE674D61DBA5D8400ACD8A0 /* Cafe@3x.png in Resources */,
 				CE26D7811D98846C00FBBFB8 /* name@2x.png in Resources */,
-				CE674FE81DD79991005092C9 /* Logo_Blue_Big@3x.png in Resources */,
 				CEE674CC1DBA5D8400ACD8A0 /* Beer@2x.png in Resources */,
 				CE26D78B1D98846C00FBBFB8 /* name@3x.png in Resources */,
 				CEE674E71DBA7AEB00ACD8A0 /* Logo_Blue@2x.png in Resources */,
@@ -642,7 +626,6 @@
 				CEE674E21DBA5D8400ACD8A0 /* Logo_White@3x.png in Resources */,
 				CEE674D01DBA5D8400ACD8A0 /* Transit@2x.png in Resources */,
 				CEE83C7C1D7B6BBD00A01D37 /* WhiteHelp@2x.png in Resources */,
-				CE674FE61DD79991005092C9 /* Logo_Blue_Big.png in Resources */,
 				CE26D7881D98846C00FBBFB8 /* email@3x.png in Resources */,
 				CEE83C921D831D6600A01D37 /* JoltMenu@2x.png in Resources */,
 				CEE674EF1DBA809700ACD8A0 /* Apple_Icon@3x.png in Resources */,
@@ -707,7 +690,6 @@
 				CEE674F41DBA809700ACD8A0 /* USB_Icon.png in Resources */,
 				CEE83C791D7B6BBD00A01D37 /* WhiteCredit@2x.png in Resources */,
 				CEE674D51DBA5D8400ACD8A0 /* Cafe.png in Resources */,
-				CE674FE71DD79991005092C9 /* Logo_Blue_Big@2x.png in Resources */,
 				CEE674F11DBA809700ACD8A0 /* Apple_Icon@2x.png in Resources */,
 				CEE674F31DBA809700ACD8A0 /* Apple_Icon.png in Resources */,
 				CEEB02BC1DBBB0F300350BCF /* Beer_Closed@3x.png in Resources */,
@@ -787,7 +769,6 @@
 			files = (
 				CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */,
 				CE26D7731D9771AE00FBBFB8 /* LoggedInViewController.swift in Sources */,
-				CE674FE01DD23F4E005092C9 /* FAQTableViewCell.swift in Sources */,
 				CE15BC141D5E835600517135 /* Demo1_0.xcdatamodeld in Sources */,
 				CE15BC0E1D5E835600517135 /* VenueListViewController.swift in Sources */,
 				CEE83C531D79D32900A01D37 /* CustomVenueCell.swift in Sources */,
@@ -801,7 +782,6 @@
 				CE15BC461D5E8E0D00517135 /* PurchaseViewController.swift in Sources */,
 				CE15BC421D5E87B200517135 /* MapViewController.swift in Sources */,
 				CE15BC0C1D5E835600517135 /* AppDelegate.swift in Sources */,
-				CE674FE21DD760AD005092C9 /* HamburgerViewController.swift in Sources */,
 				CEE19BC91DCCC7A00079C2FE /* SubscribedViewController.swift in Sources */,
 				CE15BC3F1D5E837600517135 /* SWRevealViewController.m in Sources */,
 			);
