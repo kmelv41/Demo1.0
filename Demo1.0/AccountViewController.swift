@@ -13,131 +13,173 @@ import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
-class AccountViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
+class AccountViewController: UIViewController {
     
     // add new login options
     // organize buttons
     
+    
+    @IBOutlet weak var instructionLabel: UILabel!
+    @IBOutlet weak var accountExists: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var lastNameField: UITextField!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var menuButton: UIBarButtonItem!
-    let loginButton = FBSDKLoginButton()
     var authProvider = String()
     var messageFrame = UIView()
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
+    var loginWorked = false
+    var currentCustomer = false
+    var uid = String()
+    var ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
         
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        signInButton.layer.cornerRadius = 15
         signUpButton.layer.cornerRadius = 15
-
-        self.loginButton.delegate = self
-        self.loginButton.center = self.containerView.center
-        //self.loginButton.hidden = true
+        cancelButton.layer.cornerRadius = 15
+        accountExists.layer.cornerRadius = 15
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
-                // User is signed in.
-                
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
-                
-                // original segue code
-                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
-                
-                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
-                
-            } else {
-                // No user is signed in.
-                // show user login button.
-                
-                self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-                //self.loginButton.hidden = false
-                self.loginButton.center = self.containerView.center
-                self.view.addSubview(self.loginButton)
-
-            }
-        }
 
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    @IBAction func signUpButtonTapped(_ sender: AnyObject) {
         
         progressBarDisplayer("Logging In", true)
         
-        print("User logged in")
+        var fieldList = String()
         
-        //self.loginButton.hidden = true
-        self.loginButton.center = self.containerView.center
+        var emptyFields = [String]()
         
-        if(error != nil) {
+        if currentCustomer {
             
-            self.loginButton.center = self.containerView.center
-            //self.loginButton.hidden = false
-            
-        } else if(result.isCancelled) {
-            
-            self.loginButton.center = self.containerView.center
-            //self.loginButton.hidden = false
+            self.login()
             
         } else {
-        
-            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        
-            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-            print("User logged into Firebase")
-            }
-            self.authProvider = "Facebook"
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("User logged out")
-    }
-    
-    @IBAction func signInTapped(_ sender: UIButton) {
-        
-        progressBarDisplayer("Logging In", true)
-        
-        self.login()
-        
-    }
-    
-    @IBAction func signUpTapped(_ sender: UIButton) {
-        
-        progressBarDisplayer("Logging In", true)
-        
-        FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!, completion: {
-            user, error in
             
-            if error != nil {
+            if emailField.text == "" {
+                emptyFields.append("Email")
+            }
+            
+            if passwordField.text == "" {
+                emptyFields.append("Password")
+            }
+            
+            if firstNameField.text == "" {
+                emptyFields.append("First Name")
+            }
+            
+            if lastNameField.text == "" {
+                emptyFields.append("Last Name")
+            }
+            
+            if emptyFields.count == 0 {
                 
-                self.authProvider = "Email"
-                self.login()
+                FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!, completion: {
+                    user, error in
+                    
+                    if error != nil {
+                        
+                        self.login()
+                        
+                    } else {
+                        print("User created")
+                        self.login()
+                    }
+                    
+                    self.messageFrame.isHidden = true
+                    self.activityIndicator.isHidden = true
+                    self.strLabel.isHidden = true
+                    
+                })
                 
             } else {
-                print("User created")
-                self.authProvider = "Email"
-                self.login()
+                
+                var x = 0
+                
+                for fields in emptyFields {
+                    
+                    fieldList.append(fields)
+                    
+                    x+=1
+                    
+                    if x < emptyFields.count {
+                        fieldList.append(", ")
+                    }
+                    
+                }
+                
+                self.messageFrame.isHidden = true
+                self.activityIndicator.isHidden = true
+                self.strLabel.isHidden = true
+                
+                let alertController = UIAlertController(title: "Please fill out all fields", message: "The following fields are missing: \(fieldList).", preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
             }
             
-        })
+        }
+        
+        
+    }
+    
+    
+    @IBAction func accountExistsTapped(_ sender: AnyObject) {
+        
+        if currentCustomer {
+            
+            self.currentCustomer = false
+            
+            self.progressBarDisplayer("Updating", true)
+            
+            self.perform(#selector(AccountViewController.hideActivityIndicator), with: nil, afterDelay: 1.0)
+            
+            self.firstNameField.isHidden = false
+            self.lastNameField.isHidden = false
+            self.instructionLabel.isHidden = false
+            self.signUpButton.setTitle("Sign Up", for: .normal)
+            self.accountExists.setTitle("I already have an account!", for: .normal)
+            
+        } else {
+            
+            self.currentCustomer = true
+            
+            self.progressBarDisplayer("Updating", true)
+            
+            self.perform(#selector(AccountViewController.hideActivityIndicator), with: nil, afterDelay: 1.0)
+            
+            self.firstNameField.isHidden = true
+            self.lastNameField.isHidden = true
+            self.instructionLabel.isHidden = true
+            self.signUpButton.setTitle("Sign In", for: .normal)
+            self.accountExists.setTitle("I don't have an account yet!", for: .normal)
+            
+        }
+    
+    }
+    
+    func hideActivityIndicator() {
+        
+        self.activityIndicator.stopAnimating()
+        self.strLabel.isHidden = true
+        self.messageFrame.isHidden = true
+        self.activityIndicator.isHidden = true
+        
+    }
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: AnyObject) {
+        
+        self.performSegue(withIdentifier: "backToMap", sender: self)
+        
     }
     
     func login() {
@@ -145,77 +187,83 @@ class AccountViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDel
         FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: {
             user, error in
             
-            if error != nil {
+            if self.currentCustomer {
                 
-                print("Incorrect email or password")
+                if error != nil {
+                    
+                    print("Incorrect email or password")
+                    
+                    self.messageFrame.isHidden = true
+                    self.activityIndicator.isHidden = true
+                    self.strLabel.isHidden = true
+                    
+                    let alertController = UIAlertController(title: "Incorrect Email or Password", message: "Please try again.", preferredStyle: .alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+
+                    
+                } else {
+                    
+                    print("User logged in with email")
+                    self.loginWorked = true
+                    self.performSegue(withIdentifier: "backToMap", sender: self)
+                    
+                }
                 
             } else {
                 
-                print("User logged in with email")
+                if error != nil {
+                    
+                    print("Incorrect email or password")
+                    
+                    self.messageFrame.isHidden = true
+                    self.activityIndicator.isHidden = true
+                    self.strLabel.isHidden = true
+                    
+                    let alertController = UIAlertController(title: "Oops", message: "Something went wrong, please try again.", preferredStyle: .alert)
+                    
+                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    
+                    alertController.addAction(defaultAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let disGroup = DispatchGroup()
+                    
+                    disGroup.enter()
+                    
+                    let name: String = self.firstNameField.text! + " " + self.lastNameField.text!
+                    let email: String = self.emailField.text!
+                    self.uid = (user?.uid)! as String
+                    
+                    self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
+                    
+                    disGroup.leave()
+                    
+                    disGroup.notify(queue: DispatchQueue.main, execute: {
+                        
+                        self.performSegue(withIdentifier: "backToMap", sender: self)
+                        
+                    })
+                    
+                }
                 
             }
             
-            
         })
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "loginSegue" {
-            
-            let destViewController : LoggedInViewController = segue.destination as! LoggedInViewController
-            
-            destViewController.authProvider = self.authProvider
-            
-            if self.authProvider == "Email" {
-                destViewController.emailAuthEmail = emailField.text!
-                destViewController.emailAuthName = firstNameField.text! + " " + lastNameField.text!
-            }
-            
+        if segue.identifier == "backToMap" {
+            //nothing yet
         }
-    }
-    
-    @IBAction func unwindToLogin(_ sender: UIStoryboardSegue) {
-        self.loginButton.center = self.containerView.center
-        self.view.addSubview(self.loginButton)
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        progressBarDisplayer("Logging In", true)
-        
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        let authentication = user.authentication
-        
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!, accessToken: (authentication?.accessToken)!)
-        
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user,error) in
-            
-            if error != nil {
-                print(error?.localizedDescription)
-                return
-            }
-            
-            print("User logged in with Google")
-            
-        })
-        
-        self.authProvider = "Google"
-        
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        try! FIRAuth.auth()!.signOut()
-        
     }
     
     func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {

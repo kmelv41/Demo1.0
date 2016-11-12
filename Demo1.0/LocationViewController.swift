@@ -12,6 +12,7 @@ import CoreLocation
 
 class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
+    @IBOutlet weak var machineLocation: UILabel!
     @IBOutlet weak var getDirections: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var venueLabel: UILabel!
@@ -26,6 +27,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
     var currentCoordinates = CLLocationCoordinate2D()
     var currentLocation : CLLocation! = nil
     var venueInfo = [String?]()
+    var myLat = Double()
+    var myLong = Double()
     
     override func viewDidLoad() {
         locationManager.delegate = self
@@ -38,8 +41,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         self.distanceLabel.text = venueInfo[5]! + " km"
         self.addressLabel.text = venueInfo[1]
         self.cityLabel.text = venueInfo[2]
+        self.machineLocation.text = venueInfo[7]
         
         getDirections.layer.cornerRadius = 15
+        
+        machineLocation.lineBreakMode = .byWordWrapping
+        machineLocation.numberOfLines = 0
         
         let latitude = venueInfo[3]
         let longitude = venueInfo[4]
@@ -57,7 +64,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
             self.pointAnnotation.pinCustomImageName = "Restaurant.png"
         } else if category == "Cafe" {
             self.pointAnnotation.pinCustomImageName = "Cafe.png"
-        } else if category == "Office" {
+        } else if category == "Hotel" {
             self.pointAnnotation.pinCustomImageName = "Office.png"
         } else if category == "Casino" {
             self.pointAnnotation.pinCustomImageName = "Casino.png"
@@ -80,7 +87,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         
         self.mapView.setRegion(region, animated: true)
-
+        
+        startSignificantChangeUpdates()
         
     }
 
@@ -152,5 +160,56 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
             }
         }
     }
+    
+    func startSignificantChangeUpdates () {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.delegate = self
+            self.locationManager.distanceFilter = kCLDistanceFilterNone
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.startUpdatingLocation()
+            self.mapView.showsUserLocation = true
+            self.locationManager.startMonitoringSignificantLocationChanges()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.lastLocation = manager.location
+        
+        let location = locations.last
+        
+        let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        
+        currentCoordinates = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
+        
+        self.myLat = location!.coordinate.latitude
+        self.myLong = location!.coordinate.longitude
+        
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        self.mapView.setRegion(region, animated: true)
+        
+        self.locationManager.stopUpdatingLocation()
+        
+    }
+    
+    @IBAction func getDirectionsTapped(_ sender: AnyObject) {
+        
+        let directionsURL = "http://maps.apple.com/?saddr=\(self.myLat),\(self.myLong)&daddr=\(venueInfo[3]!),\(venueInfo[4]!)"
+        
+        print(directionsURL)
+        
+        if let url = NSURL(string: directionsURL) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+            }
+            else
+            {
+                UIApplication.shared.openURL(url as URL)
+            }
+        }
+        
+    }
+    
     
 }
