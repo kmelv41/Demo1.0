@@ -92,6 +92,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
                 let strFromPin = String(format:"%.1f",distFromPin)
                 singleRecord.append(strFromPin)
                 singleRecord.append(dataPull[index]["Category"])
+                singleRecord.append(dataPull[index]["Machine"])
                 newArray.append(singleRecord)
             }
             self.tableArray = newArray.sorted { Float($0[5]!) < Float($1[5]!) }

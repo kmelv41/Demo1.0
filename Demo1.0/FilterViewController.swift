@@ -22,6 +22,8 @@ class FilterViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        self.tableView.isScrollEnabled = false
+        
         if categoryArray.count == 0 || categoryArray.count == 6 {
             
             allCheck.isHidden = false

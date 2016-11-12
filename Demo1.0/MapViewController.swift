@@ -10,9 +10,17 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import FBSDKLoginKit
+import FBSDKCoreKit
+import FirebaseAuth
+import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
     
+    @IBOutlet weak var memberButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     let locationManager = CLLocationManager()
@@ -25,12 +33,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
     var routeLong = Double()
     var currentCoordinates = CLLocationCoordinate2D()
     var currentLocation : CLLocation! = nil
+    var messageFrame = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    var strLabel = UILabel()
+    //let loginButton = FBSDKLoginButton()
+    var authProvider = String()
+    var uid = String()
+    var subscriptionStatus = 0
+    
     
     override func viewDidLoad() {
         getData()
-        super.viewDidLoad()
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+        self.memberButton.isHidden = true
+        self.mapView.isUserInteractionEnabled = true
         locationManager.delegate = self
         self.mapView.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -40,9 +55,211 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         self.mapView.showsCompass = false
         self.mapView.isRotateEnabled = false
         
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        self.emailButton.layer.cornerRadius = 3
+        self.memberButton.layer.cornerRadius = 15
+        
+        //self.signInButton.colorScheme = GIDSignInButtonColorScheme.dark
+        self.signInButton.style = GIDSignInButtonStyle.wide
+        
+        self.loginButton.delegate = self
+        
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in.
+                
+                super.viewDidLoad()
+                if self.revealViewController() != nil {
+                    self.menuButton.target = self.revealViewController()
+                    self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+                }
+
+                self.loginButton.isHidden = true
+                self.signInButton.isHidden = true
+                self.emailButton.isHidden = true
+                
+                self.uid = (FIRAuth.auth()?.currentUser?.uid)!
+                
+                self.rootRef.child("Users").child(self.uid).observe(.value, with: { snapshot in
+                    
+                    FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+                        if let user = user {
+                            let dataPull = snapshot.value! as! [String:AnyObject]
+                            
+                            if snapshot.hasChild("Subscription") {
+                                self.subscriptionStatus = (dataPull["Subscription"]! as! Int)
+                            }
+                            
+                            if self.subscriptionStatus == 1 {
+                                self.memberButton.isHidden = true
+                            } else {
+                                self.memberButton.isHidden = false
+                            }
+                        } else {
+                            
+                            self.subscriptionStatus = 0
+                            self.memberButton.isHidden = true
+                            
+                        }
+                    }
+                    
+                })
+                
+                
+                // original segue code
+                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
+                
+                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
+                
+            } else {
+                // No user is signed in.
+                // show user login button.
+                
+                //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+                //self.view.addSubview(self.loginButton)
+                
+            }
+        }
+
+        
     }
     
+    
+    @IBAction func menuButtonTapped(_ sender: AnyObject) {
+        
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in.
+                
+                //self.mapView.isUserInteractionEnabled = false
+                
+                // original segue code
+                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
+                
+                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
+                
+            } else {
+                // No user is signed in.
+                // show user login button.
+                
+                let alertController = UIAlertController(title: "Please sign in using one of the options below before navigating to the purchases page.", message: "", preferredStyle: .alert)
+                
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                
+                self.present(alertController, animated: true, completion: nil)
 
+                
+                //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+                //self.view.addSubview(self.loginButton)
+                
+            }
+        }
+
+        
+    }
+    
+    
+    @IBAction func memberButtonTapped(_ sender: AnyObject) {
+        
+        self.performSegue(withIdentifier: "showPurchases", sender: self)
+        
+    }
+    
+    
+    @IBAction func loginToEmailTapped(_ sender: AnyObject) {
+        
+        self.performSegue(withIdentifier: "presentEmailLogin", sender: self)
+        
+    }
+    
+    
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        
+        progressBarDisplayer("Logging In", true)
+        
+        print("User logged in")
+        
+        if(error != nil) {
+            
+            //self.loginButton.hidden = false
+            
+        } else if(result.isCancelled) {
+            
+            //self.loginButton.hidden = false
+            
+        } else {
+            
+            let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+            
+            FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                print("User logged into Firebase")
+            }
+            self.authProvider = "Facebook"
+            
+            self.activityIndicator.isHidden = true
+            self.messageFrame.isHidden = true
+            self.strLabel.isHidden = true
+            
+            self.loginSuccessful()
+            
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("User logged out")
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        progressBarDisplayer("Logging In", true)
+        
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        let authentication = user.authentication
+        
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!, accessToken: (authentication?.accessToken)!)
+        
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user,error) in
+            
+            if error != nil {
+                print(error?.localizedDescription)
+                return
+            }
+            
+            print("User logged in with Google")
+            
+        })
+        
+        self.authProvider = "Google"
+        
+        self.activityIndicator.isHidden = true
+        self.messageFrame.isHidden = true
+        self.strLabel.isHidden = true
+        
+        self.loginSuccessful()
+        
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        try! FIRAuth.auth()!.signOut()
+        
+    }
     
     @IBAction func myUnwindAction(_ sender: UIStoryboardSegue) {
         // nothing yet
@@ -262,178 +479,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         
     }
     
+    func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
+        print(msg)
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+        strLabel.text = msg
+        strLabel.textColor = UIColor.white
+        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+        messageFrame.layer.cornerRadius = 15
+        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        if indicator {
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            activityIndicator.startAnimating()
+            messageFrame.addSubview(activityIndicator)
+        }
+        messageFrame.addSubview(strLabel)
+        view.addSubview(messageFrame)
+    }
+    
+    func loginSuccessful() {
+        
+        let alertController = UIAlertController(title: "Login Successful", message: "", preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
     
 }
 
-    /*func downloadItems() {
-        
-        let url: NSURL = NSURL(string: urlPath)!
-        var session: NSURLSession!
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        
-        
-        session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        
-        let task = session.dataTaskWithURL(url)
-        
-        task.resume()
-        
-    }
-
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        self.data.appendData(data);
-        
-    }
     
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        if error != nil {
-            print("Failed to download data")
-        }else {
-            print("Data downloaded")
-            self.parseJSON()
-        }
-    }
-    
-    func parseJSON() {
-        
-        var jsonResult: NSMutableArray = NSMutableArray()
-        
-        do{
-            jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options:NSJSONReadingOptions.AllowFragments) as! NSMutableArray
-            
-        } catch let error as NSError {
-            print(error)
-            
-        }
-        
-        var jsonElement: NSDictionary = NSDictionary()
-        let locations: NSMutableArray = NSMutableArray()
-        
-        for i in 0..<jsonResult.count
-        {
-            
-            jsonElement = jsonResult[i] as! NSDictionary
-            
-            let location = LocationModel()
-            
-            //the following insures none of the JsonElement values are nil through optional binding
-            if let name = jsonElement["Name"] as? String,
-                let address = jsonElement["Address"] as? String,
-                let latitude = jsonElement["Latitude"] as? String,
-                let longitude = jsonElement["Longitude"] as? String,
-                let category = jsonElement["Category"] as? String
-            {
-                
-                location.name = name
-                location.address = address
-                location.latitude = latitude
-                location.longitude = longitude
-                location.category = category
-                
-                let lttude = Double(latitude)
-                let lgtude = Double(longitude)
-                let poiCoordinates: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lttude!, longitude: lgtude!)
-                
-                // MARK - adding Pin annotations, need to change this to images
-                // this part is current looping through each record in the data pull and adding an annotation to each one
-
-                pointAnnotation = CustomPointAnnotation()
-                if category == "Bar" {
-                    pointAnnotation.pinCustomImageName = "Beer.png"
-                } else if category == "Restaurant"{
-                    pointAnnotation.pinCustomImageName = "Restaurant.png"
-                } else if category == "Cafe" {
-                    pointAnnotation.pinCustomImageName = "Cafe.png"
-                } else {
-                    pointAnnotation.pinCustomImageName = "Office.png"
-                }
-                pointAnnotation.coordinate = poiCoordinates
-                pointAnnotation.title = name
-                
-                pinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: "pin")
-                mapView.addAnnotation(pinAnnotationView.annotation!)
-                
-                }
-            }
-            
-            locations.addObject(LocationModel)
-        
-        }*/
-
-    
-    
-    // MARK - Data pull for tableview
-    /*
-     override func viewDidLoad() {
-     super.viewDidLoad()
-     
-     //set delegates and initialize homeModel
-     
-     self.listTableView.delegate = self
-     self.listTableView.dataSource = self
-     
-     let homeModel = HomeModel()
-     homeModel.delegate = self
-     homeModel.downloadItems()
-     
-     }
-     
-     func itemsDownloaded(items: NSArray) {
-     
-     feedItems = items
-     self.listTableView.reloadData()
-     }
-     
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-     // Return the number of feed items
-     return feedItems.count
-     
-     }
-     
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-     // Retrieve cell
-     let cellIdentifier: String = "BasicCell"
-     let myCell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
-     // Get the location to be shown
-     let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-     // Get references to labels of cell
-     myCell.textLabel!.text = item.name! + " - " + item.address!
-     
-     return myCell
-     }
- */
-    
-    // MARK - mapView from tutorial
-    
-/*
-    
-    override func viewDidAppear(animated: Bool) {
-        // Create coordinates from location lat/long
-        var poiCoodinates: CLLocationCoordinate2D = CLLocationCoordinate2D()
-        
-        poiCoodinates.latitude = CDouble(self.selectedLocation!.latitude!)!
-        poiCoodinates.longitude = CDouble(self.selectedLocation!.longitude!)!
-        // Zoom to region
-        let viewRegion: MKCoordinateRegion = MKCoordinateRegionMakeWithDistance(poiCoodinates, 750, 750)
-        self.mapView.setRegion(viewRegion, animated: true)
-        // Plot pin
-        let pin: MKPointAnnotation = MKPointAnnotation()
-        pin.coordinate = poiCoodinates
-        self.mapView.addAnnotation(pin)
-        
-        //add title to the pin
-        pin.title = selectedLocation!.name
-    }
- 
- */
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
