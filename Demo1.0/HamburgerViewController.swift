@@ -14,4 +14,16 @@ class HamburgerViewController : UITableViewController {
         self.tableView.isScrollEnabled = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
+        self.revealViewController().view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
+    }
+    
+    
 }

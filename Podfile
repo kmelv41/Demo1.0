@@ -9,7 +9,6 @@ target 'Demo1.0' do
 	pod 'Firebase/Storage'
 	pod 'GoogleSignIn'
 	pod 'Stripe'
-	pod 'AFNetworking'
 
 end
 

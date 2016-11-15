@@ -45,8 +45,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     var filteredArray = [[String?]]()
     var tableArray = [[String?]]()
     let rootRef = FIRDatabase.database().reference()
-    var routeLatitude = Double()
-    var routeLongitude = Double()
     var segueArray = [String?]()
     var categoryArray = [String]()
     var criteriaArray = [[String?]]()
@@ -59,8 +57,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         createSearchBar()
         
-        //set delegates and initialize homeModel
-        
         if self.revealViewController() != nil {
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -68,10 +64,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         
         self.listTableView.delegate = self
         self.listTableView.dataSource = self
-        
-        // let homeModel = HomeModel()
-        // homeModel.delegate = self
-        // homeModel.downloadItems()
         
         let venueRef = rootRef.child("venues")
         venueRef.observe(.value, with: { snapshot in
@@ -146,18 +138,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    // already commented out
-    /*func itemsDownloaded(items: NSArray) {
-        
-        feedItems = items
-        self.listTableView.reloadData()
-    }*/
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        /*self.filteredArray = searchArray.filter({(names: String) -> Bool in
-            return names.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
-        })*/
         
         self.filteredArray = tableArray.filter { (dataArray:[String?]) -> Bool in
             return dataArray.filter({ (string) -> Bool in
@@ -174,7 +155,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of feed items
         
         if shouldShowSearchResults {
             return filteredArray.count
@@ -185,17 +165,8 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Retrieve cell
+
         let myCell = tableView.dequeueReusableCell(withIdentifier: "BasicCell")! as! CustomVenueCell
-        
-        /*let item: LocationModel = feedItems[indexPath.row] as! LocationModel
-        let pinLocation = CLLocation(latitude: Double(item.latitude!)!, longitude: Double(item.longitude!)!)
-        currentLocation = locationManager.location
-        let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
-        _ = item.name
-        _ = "\(String(format:"%.1f",distFromPin)) km"
-        _ = item.address
-        _ = item.city*/
         
         if shouldShowSearchResults {
             let row = (indexPath as NSIndexPath).row
@@ -214,29 +185,6 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    // issue is in createArrays function
-    /*func createArrays (initialData: NSArray) -> [[String?]] {
-        // test code
-        var newArray: [[String?]] = [[String?]]()
-        for index in 0..<initialData.count {
-            // var singleRecord: [String?] = [String?]()
-            var singleRecord = [String?]()
-            singleRecord.append(initialData[index]["Name"])
-            singleRecord.append(initialData[index]["Address"])
-            singleRecord.append(initialData[index]["City"])
-            singleRecord.append(initialData[index]["Latitude"])
-            singleRecord.append(initialData[index]["Longitude"])
-            let pinLocation = CLLocation(latitude: Double(singleRecord[3]!!)!, longitude: Double(singleRecord[4]!!)!)
-            currentLocation = locationManager.location
-            let distFromPin: Double = currentLocation.distanceFromLocation(pinLocation)/1000
-            let strFromPin = String(format:"%.1f",distFromPin)
-            singleRecord.append(strFromPin)
-            newArray.append(singleRecord)
-        }
-        let sortedArray = newArray.sort { Float($0[5]!) < Float($1[5]!) }
-        return sortedArray
-    }*/
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.endEditing(true)
     }
@@ -247,30 +195,7 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         self.listTableView.reloadData()
     }
     
-    @IBAction func logAction(_ sender: UIButton) {
-        let index = sender.tag
-        if shouldShowSearchResults {
-            routeLatitude = Double(filteredArray[index][3]!)!
-            routeLongitude = Double(filteredArray[index][4]!)!
-        } else {
-            routeLatitude = Double(tableArray[index][3]!)!
-            routeLongitude = Double(tableArray[index][4]!)!
-        }
-        
-        self.performSegue(withIdentifier: "myUnwindSegue", sender: self)
-
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "myUnwindSegue" {
-            let destViewController : MapViewController = segue.destination as! MapViewController
-            
-            destViewController.routeLat = routeLatitude
-            destViewController.routeLong = routeLongitude
-            
-            destViewController.makeRoute(routeLatitude,longitude: routeLongitude)
-            
-        }
         
         if segue.identifier == "LocationChosen" {
             let destViewController : LocationViewController = segue.destination as! LocationViewController
@@ -311,6 +236,8 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         self.performSegue(withIdentifier: "LocationChosen", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     

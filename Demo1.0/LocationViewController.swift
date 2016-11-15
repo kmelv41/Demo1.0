@@ -116,26 +116,17 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         
         annotationView?.image = pinImage
         
-        /*let subtitleView = UILabel()
-         subtitleView.font = subtitleView.font.fontWithSize(12)
-         subtitleView.numberOfLines = 0
-         subtitleView.text = "Testing"
-         annotationView?.detailCalloutAccessoryView = subtitleView*/
-        
-        
         return annotationView
         
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
-        // 1
-        if view.annotation is MKUserLocation
-        {
-            // Don't proceed with custom callout
+        
+        if view.annotation is MKUserLocation {
             return
         }
-        // 2
+        
         let customAnnotation = view.annotation as! CustomPointAnnotation
         let views = Bundle.main.loadNibNamed("CustomCalloutView", owner: nil, options: nil)
         let calloutView = views?[0] as! CustomCalloutView
@@ -143,12 +134,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         calloutView.addressOfVenue.text = customAnnotation.address
         calloutView.distanceToVenue.text = customAnnotation.distanceToVenue
         
-        // 3
         calloutView.center = CGPoint(x: view.bounds.size.width / 2, y: -calloutView.bounds.size.height*0.52)
         view.addSubview(calloutView)
         
-        
-        //mapView.setCenter((view.annotation?.coordinate)!, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -210,6 +198,5 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         }
         
     }
-    
     
 }

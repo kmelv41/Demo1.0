@@ -52,14 +52,19 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
             
             self.rootRef.child("Users").child(self.uid).observeSingleEvent(of: .value, with: { snapshot in
                 
-                let dataPull = snapshot.value! as! [String:AnyObject]
-                
-                if snapshot.hasChild("Email") {
-                    self.userEmail = (dataPull["Email"]! as? String)!
-                }
-                
-                if snapshot.hasChild("StripeID") {
-                    self.stripeID = (dataPull["StripeID"]! as? String)!
+                if snapshot.hasChild("Name") {
+                    
+                    let dataPull = snapshot.value! as! [String:AnyObject]
+                    
+                    if snapshot.hasChild("Email") {
+                        self.userEmail = (dataPull["Email"]! as? String)!
+                    }
+                    
+                    if snapshot.hasChild("StripeID") {
+                        self.stripeID = (dataPull["StripeID"]! as? String)!
+                    }
+
+                    
                 }
                 
                 self.disGroup.leave()
@@ -155,17 +160,9 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
     
     func handleError() {
         
-        let alertController = UIAlertController(title: "Please Try Again", message: "Some information was missing or incorrect.", preferredStyle: .alert)
+        self.showAlertWithOK(header: "Please Try Again", message: "Some information was missing or incorrect.")
         
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alertController.addAction(defaultAction)
-        
-        self.activityIndicator.isHidden = true
-        self.strLabel.isHidden = true
-        self.messageFrame.isHidden = true
-        
-        self.present(alertController, animated: true, completion: nil)
+        self.hideActivityIndicator()
         
     }
     
@@ -212,17 +209,9 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
                             print(message)
                             print(status)
                             
-                            self.activityIndicator.isHidden = true
-                            self.strLabel.isHidden = true
-                            self.messageFrame.isHidden = true
+                            self.hideActivityIndicator()
                             
-                            let alertController = UIAlertController(title: status, message: message, preferredStyle: .alert)
-                            
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            
-                            alertController.addAction(defaultAction)
-                            
-                            self.present(alertController, animated: true, completion: nil)
+                            self.showAlertWithOK(header: status, message: message)
                             
                         }
                         
@@ -241,21 +230,27 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
     }
     
     func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
-        print(msg)
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-        strLabel.text = msg
-        strLabel.textColor = UIColor.white
-        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
-        messageFrame.layer.cornerRadius = 15
-        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            activityIndicator.startAnimating()
-            messageFrame.addSubview(activityIndicator)
+        
+        if self.messageFrame.isHidden == true {
+            
+            print(msg)
+            strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+            strLabel.text = msg
+            strLabel.textColor = UIColor.white
+            messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+            messageFrame.layer.cornerRadius = 15
+            messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+            if indicator {
+                activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+                activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                activityIndicator.startAnimating()
+                messageFrame.addSubview(activityIndicator)
+            }
+            messageFrame.addSubview(strLabel)
+            view.addSubview(messageFrame)
+            
         }
-        messageFrame.addSubview(strLabel)
-        view.addSubview(messageFrame)
+        
     }
 
     func cancelPlan() {
@@ -306,18 +301,9 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
                         
                         dGroup.notify(queue: DispatchQueue.main, execute: {
                             
-                            let alertController = UIAlertController(title: status, message: message, preferredStyle: .alert)
+                            self.showAlertWithOK(header: status, message: message)
                             
-                            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                            
-                            alertController.addAction(defaultAction)
-                            
-                            self.activityIndicator.isHidden = true
-                            self.strLabel.isHidden = true
-                            self.messageFrame.isHidden = true
-                            
-                            self.present(alertController, animated: true, completion: nil)
-
+                            self.hideActivityIndicator()
                             
                         })
                         
@@ -333,6 +319,27 @@ class SubscribedViewController: UIViewController, UIPopoverPresentationControlle
         
         task.resume()
 
+        
+    }
+    
+    func showAlertWithOK(header:String, message:String) {
+        
+        let alertController = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func hideActivityIndicator() {
+        
+        self.activityIndicator.stopAnimating()
+        self.strLabel.isHidden = true
+        self.messageFrame.isHidden = true
+        self.activityIndicator.isHidden = true
         
     }
     

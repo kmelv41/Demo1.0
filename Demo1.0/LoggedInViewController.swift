@@ -43,33 +43,31 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         
         if let user = FIRAuth.auth()?.currentUser {
             
-            self.ref.child("Users").observe(.value, with: { snapshot in
-                if snapshot.hasChild(self.uid) {
-                    self.ref.child("Users").child(self.uid).observe(.value, with: { snapshot in
+            self.ref.child("Users").child(self.uid).observe(.value, with: { snapshot in
                         
-                        let dataPull = snapshot.value! as! [String:AnyObject]
-                        
-                        if snapshot.hasChild("Name") {
-                            self.nameField.text = dataPull["Name"]! as? String
-                        }
-                        
-                        if snapshot.hasChild("Email") {
-                            self.emailField.text = dataPull["Email"]! as? String
-                        } else if self.authProvider == "Email" {
-                            let name: String = self.emailAuthName
-                            let email: String = self.emailAuthEmail
-                            self.uid = user.uid as String
-                            
-                            self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
-                        }
-                        
-                        if snapshot.hasChild("Phone") {
-                            self.phoneField.text = dataPull["Phone"]! as? String
-                        }
-                        
-                    })
+                if snapshot.hasChild("Name") {
                     
-                } else {
+                    let dataPull = snapshot.value! as! [String:AnyObject]
+                    
+                    self.nameField.text = dataPull["Name"]! as? String
+                    
+                    if snapshot.hasChild("Email") {
+                        self.emailField.text = dataPull["Email"]! as? String
+                    } else if self.authProvider == "Email" {
+                        let name: String = self.emailAuthName
+                        let email: String = self.emailAuthEmail
+                        self.uid = user.uid as String
+                        
+                        self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active"])
+                    }
+                    
+                    if snapshot.hasChild("Phone") {
+                        self.phoneField.text = dataPull["Phone"]! as? String
+                    }
+                    
+                }
+                
+                /*else {
                     
                     if self.authProvider == "Facebook" || self.authProvider == "Google" {
                         
@@ -87,41 +85,30 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
                         self.ref.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
                     }
             
-                }
+                }*/
                 
             })
             
             
-        } else {
-            
-            //no one is signed in
-            
         }
 
-        // Do any additional setup after loading the view.
     }
     
     
     @IBAction func didTapLogout(_ sender: UIButton) {
-        // signs user out of Firebase
+        
         try! FIRAuth.auth()!.signOut()
         
-        // signs user out of Facebook app
         FBSDKAccessToken.setCurrent(nil)
-        
-        //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-        //let accountViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("accountView")
         
         self.ref.child("Users").child(self.uid).child("Status").setValue("Inactive")
         
         self.performSegue(withIdentifier: "goToMapView", sender: self)
-        
-        //self.presentViewController(accountViewController, animated: true, completion: nil)
+
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func nameFieldChanged(_ sender: AnyObject) {
@@ -195,16 +182,6 @@ class LoggedInViewController: UIViewController, UITextViewDelegate {
         else
         {
             return true
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "unwindLogin" {
-            
-            let destViewController : AccountViewController = segue.destination as! AccountViewController
-            
-            destViewController.messageFrame.isHidden = true
-            
         }
     }
 

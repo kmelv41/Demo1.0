@@ -90,9 +90,7 @@ class AccountViewController: UIViewController {
                         self.login()
                     }
                     
-                    self.messageFrame.isHidden = true
-                    self.activityIndicator.isHidden = true
-                    self.strLabel.isHidden = true
+                    self.hideActivityIndicator()
                     
                 })
                 
@@ -112,17 +110,9 @@ class AccountViewController: UIViewController {
                     
                 }
                 
-                self.messageFrame.isHidden = true
-                self.activityIndicator.isHidden = true
-                self.strLabel.isHidden = true
+                self.hideActivityIndicator()
                 
-                let alertController = UIAlertController(title: "Please fill out all fields", message: "The following fields are missing: \(fieldList).", preferredStyle: .alert)
-                
-                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
+                self.showAlertWithOK(header: "Please fill out all fields", message: "The following fields are missing : \(fieldList).")
                 
             }
             
@@ -193,18 +183,9 @@ class AccountViewController: UIViewController {
                     
                     print("Incorrect email or password")
                     
-                    self.messageFrame.isHidden = true
-                    self.activityIndicator.isHidden = true
-                    self.strLabel.isHidden = true
+                    self.hideActivityIndicator()
                     
-                    let alertController = UIAlertController(title: "Incorrect Email or Password", message: "Please try again.", preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-
+                    self.showAlertWithOK(header: "Incorrect Email or Password", message: "Please try again.")
                     
                 } else {
                     
@@ -220,17 +201,9 @@ class AccountViewController: UIViewController {
                     
                     print("Incorrect email or password")
                     
-                    self.messageFrame.isHidden = true
-                    self.activityIndicator.isHidden = true
-                    self.strLabel.isHidden = true
+                    self.hideActivityIndicator()
                     
-                    let alertController = UIAlertController(title: "Oops", message: "Something went wrong, please try again.", preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
+                    self.showAlertWithOK(header: "Oops", message: "Something went wrong, please try again.")
                     
                 } else {
                     
@@ -267,97 +240,39 @@ class AccountViewController: UIViewController {
     }
     
     func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
-        print(msg)
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-        strLabel.text = msg
-        strLabel.textColor = UIColor.white
-        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
-        messageFrame.layer.cornerRadius = 15
-        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            activityIndicator.startAnimating()
-            messageFrame.addSubview(activityIndicator)
+        
+        if self.messageFrame.isHidden == true {
+            
+            print(msg)
+            strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+            strLabel.text = msg
+            strLabel.textColor = UIColor.white
+            messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+            messageFrame.layer.cornerRadius = 15
+            messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+            if indicator {
+                activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+                activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                activityIndicator.startAnimating()
+                messageFrame.addSubview(activityIndicator)
+            }
+            messageFrame.addSubview(strLabel)
+            view.addSubview(messageFrame)
+            
         }
-        messageFrame.addSubview(strLabel)
-        view.addSubview(messageFrame)
+        
     }
-
-    // All remaining code is the default Swift code
     
-    /*
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func showAlertWithOK(header:String, message:String) {
+        
+        let alertController = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-    */
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

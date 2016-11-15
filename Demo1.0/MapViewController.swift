@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import FirebaseAuth
 import GoogleSignIn
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, URLSessionDataDelegate, MKMapViewDelegate, GIDSignInUIDelegate, GIDSignInDelegate, FBSDKLoginButtonDelegate, SWRevealViewControllerDelegate {
     
     @IBOutlet weak var memberButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
@@ -36,7 +36,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
     var messageFrame = UIView()
     var activityIndicator = UIActivityIndicatorView()
     var strLabel = UILabel()
-    //let loginButton = FBSDKLoginButton()
     var authProvider = String()
     var uid = String()
     var subscriptionStatus = 0
@@ -66,6 +65,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         self.signInButton.style = GIDSignInButtonStyle.wide
         
         self.loginButton.delegate = self
+        self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+        self.loginButton.loginBehavior = FBSDKLoginBehavior.browser
         
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
@@ -75,6 +76,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                 if self.revealViewController() != nil {
                     self.menuButton.target = self.revealViewController()
                     self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+                    self.revealViewController().delegate = self
+                    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+                    self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
                 }
 
                 self.loginButton.isHidden = true
@@ -82,38 +86,38 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                 self.emailButton.isHidden = true
                 
                 self.uid = (FIRAuth.auth()?.currentUser?.uid)!
-                
+
                 self.rootRef.child("Users").child(self.uid).observe(.value, with: { snapshot in
                     
                     FIRAuth.auth()?.addStateDidChangeListener { auth, user in
                         if let user = user {
-                            let dataPull = snapshot.value! as! [String:AnyObject]
                             
-                            if snapshot.hasChild("Subscription") {
-                                self.subscriptionStatus = (dataPull["Subscription"]! as! Int)
+                            if snapshot.hasChild("Name") {
+                                
+                                let dataPull = snapshot.value! as! [String:AnyObject]
+                                
+                                if snapshot.hasChild("Subscription") {
+                                    self.subscriptionStatus = (dataPull["Subscription"]! as! Int)
+                                }
+                                
+                                if self.subscriptionStatus == 1 {
+                                    self.memberButton.isHidden = true
+                                } else {
+                                    self.memberButton.isHidden = false
+                                }
+                                
                             }
                             
-                            if self.subscriptionStatus == 1 {
-                                self.memberButton.isHidden = true
-                            } else {
-                                self.memberButton.isHidden = false
-                            }
                         } else {
                             
                             self.subscriptionStatus = 0
                             self.memberButton.isHidden = true
                             
                         }
+                        
                     }
                     
                 })
-                
-                
-                // original segue code
-                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
-                
-                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
                 
             } else {
                 // No user is signed in.
@@ -127,7 +131,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
 
         
     }
-    
     
     @IBAction func menuButtonTapped(_ sender: AnyObject) {
         
@@ -147,14 +150,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                 // No user is signed in.
                 // show user login button.
                 
-                let alertController = UIAlertController(title: "Please sign in using one of the options below before navigating to the purchases page.", message: "", preferredStyle: .alert)
+                self.showAlertWithOK(header: "Hi There!", message: "Please sign in using one of the options below before navigating to the purchases page.")
                 
-                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                
-                alertController.addAction(defaultAction)
-                
-                self.present(alertController, animated: true, completion: nil)
-
                 
                 //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
                 //self.view.addSubview(self.loginButton)
@@ -184,30 +181,62 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         
         progressBarDisplayer("Logging In", true)
         
-        print("User logged in")
-        
         if(error != nil) {
             
-            //self.loginButton.hidden = false
+            self.hideActivityIndicator()
             
         } else if(result.isCancelled) {
             
-            //self.loginButton.hidden = false
+            self.hideActivityIndicator()
             
         } else {
             
             let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
             
             FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-                print("User logged into Firebase")
+                print("User logged into Firebase with Facebook")
+                
+                let disGroup = DispatchGroup()
+                
+                disGroup.enter()
+                
+                let user = FIRAuth.auth()?.currentUser
+                
+                let name: String = (user?.displayName)! as String
+                let email: String = (user?.email)! as String
+                self.uid = (user?.uid)! as String
+                
+                self.authProvider = "Facebook"
+                
+                self.rootRef.child("Users").child(self.uid).observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    if self.authProvider == "Facebook" {
+                        
+                        if snapshot.hasChild(self.uid) {
+                            
+                            print("User already exists")
+                            
+                        } else {
+                            
+                            self.rootRef.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
+                            
+                        }
+                        
+                    }
+                    
+                    disGroup.leave()
+                    
+                })
+                
+                disGroup.notify(queue: DispatchQueue.main, execute: {
+                    
+                    self.hideActivityIndicator()
+                    
+                    self.showAlertWithOK(header: "Login Successful", message: "")
+                    
+                })
+                
             }
-            self.authProvider = "Facebook"
-            
-            self.activityIndicator.isHidden = true
-            self.messageFrame.isHidden = true
-            self.strLabel.isHidden = true
-            
-            self.loginSuccessful()
             
         }
     }
@@ -238,15 +267,47 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
             
             print("User logged in with Google")
             
+            let user = FIRAuth.auth()?.currentUser
+            
+            let name: String = (user?.displayName)! as String
+            let email: String = (user?.email)! as String
+            self.uid = (user?.uid)! as String
+            
+            self.authProvider = "Google"
+            
+            let disGroup = DispatchGroup()
+            
+            disGroup.enter()
+            
+            self.rootRef.child("Users").child(self.uid).observeSingleEvent(of: .value, with: { snapshot in
+                
+                if self.authProvider == "Google" {
+                    
+                    if snapshot.hasChild(self.uid) {
+                        
+                        print("User already exists")
+                        
+                    } else {
+                        
+                        self.rootRef.child("Users").child(self.uid).setValue(["Name":name,"Email":email,"Phone":"","Status":"Active","Subscription":0])
+                        
+                    }
+                    
+                }
+                
+                disGroup.leave()
+                
+            })
+            
+            disGroup.notify(queue: DispatchQueue.main, execute: {
+                
+                self.hideActivityIndicator()
+                
+                self.showAlertWithOK(header: "Login Successful", message: "")
+                
+            })
+            
         })
-        
-        self.authProvider = "Google"
-        
-        self.activityIndicator.isHidden = true
-        self.messageFrame.isHidden = true
-        self.strLabel.isHidden = true
-        
-        self.loginSuccessful()
         
     }
     
@@ -384,51 +445,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         
     }
     
-    func makeRoute(_ latitude: Double, longitude: Double) {
-        
-        let sourceLocation = currentCoordinates
-        let destinationLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-        
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .automobile
-        
-        let directions = MKDirections(request: directionRequest)
-        
-        directions.calculate {
-            (response, error) -> Void in
-            
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                
-                return
-            }
-            
-            let route = response.routes[0]
-            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
-            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.init(red: 19/255, green: 205/255, blue: 25/255, alpha: 1)
-        renderer.lineWidth = 5.0
-        
-        return renderer
-    }
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView)
     {
         // 1
@@ -464,7 +480,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
     }
     
     
-    @IBAction func logoTapped(_ sender: AnyObject) {
+    /*@IBAction func logoTapped(_ sender: AnyObject) {
         
         let alertController = UIAlertController(title: "Your battery is down to 20%, the closest Wharf station is here:", message: "Union Station, 121 Front St W", preferredStyle: .alert)
         
@@ -477,35 +493,50 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         
         self.present(alertController, animated: true, completion: nil)
         
-    }
+    }*/
     
     func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
-        print(msg)
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-        strLabel.text = msg
-        strLabel.textColor = UIColor.white
-        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
-        messageFrame.layer.cornerRadius = 15
-        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            activityIndicator.startAnimating()
-            messageFrame.addSubview(activityIndicator)
+        
+        if self.messageFrame.isHidden == true {
+            
+            print(msg)
+            strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+            strLabel.text = msg
+            strLabel.textColor = UIColor.white
+            messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+            messageFrame.layer.cornerRadius = 15
+            messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+            if indicator {
+                activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+                activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                activityIndicator.startAnimating()
+                messageFrame.addSubview(activityIndicator)
+            }
+            messageFrame.addSubview(strLabel)
+            view.addSubview(messageFrame)
+            
         }
-        messageFrame.addSubview(strLabel)
-        view.addSubview(messageFrame)
+
     }
     
-    func loginSuccessful() {
+    func showAlertWithOK(header:String, message:String) {
         
-        let alertController = UIAlertController(title: "Login Successful", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: header, message: message, preferredStyle: .alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alertController.addAction(defaultAction)
         
         self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    func hideActivityIndicator() {
+        
+        self.activityIndicator.stopAnimating()
+        self.strLabel.isHidden = true
+        self.messageFrame.isHidden = true
+        self.activityIndicator.isHidden = true
         
     }
     

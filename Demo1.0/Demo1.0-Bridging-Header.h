@@ -4,5 +4,3 @@
 
 #import "SWRevealViewController.h"
 #import <GoogleSignIn/GoogleSignIn.h>
-#import <AFNetworking/AFNetworking.h>
-#import <AFNetworking/AFHTTPSessionManager.h>

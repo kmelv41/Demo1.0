@@ -65,35 +65,37 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
                 
                 self.rootRef.child("Users").child(self.uid).observeSingleEvent(of: .value, with: { snapshot in
                     
+                    if snapshot.hasChild("Name") {
+                        
                         let dataPull = snapshot.value! as! [String:AnyObject]
                         
                         if snapshot.hasChild("Subscription") {
                             self.subscribed = (dataPull["Subscription"]! as? Int)!
                         }
-                    
+                        
                         if snapshot.hasChild("Email") {
                             self.userEmail = (dataPull["Email"]! as? String)!
                         }
-                    
+                        
                         if snapshot.hasChild("StripeID") {
                             self.stripeID = (dataPull["StripeID"]! as? String)!
                         }
-                    
+                        
                         if snapshot.hasChild("Subscription") {
                             self.subscribed = (dataPull["Subscription"]! as? Int)!
                         }
-                    
-                        self.disGroup.leave()
-                    
-                    })
+                        
+                    }
+                
+                    self.disGroup.leave()
+                
+                })
                 
                 self.disGroup.notify(queue: DispatchQueue.main, execute: {
                     
                     if self.subscribed == 1 {
                         
-                        self.activityIndicator.isHidden = true
-                        self.strLabel.isHidden = true
-                        self.messageFrame.isHidden = true
+                        self.hideActivityIndicator()
                         
                         self.alreadySubscribed = true
                         
@@ -101,9 +103,7 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
                         
                     }
                     
-                    self.activityIndicator.isHidden = true
-                    self.strLabel.isHidden = true
-                    self.messageFrame.isHidden = true
+                    self.hideActivityIndicator()
                     
                     self.completeButton.isHidden = true
                     
@@ -133,33 +133,13 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
         
         if self.subscribed == 1 {
             
-            let alertController = UIAlertController(title: "You are already subscribed.", message: "", preferredStyle: .alert)
+            self.showAlertWithOK(header: "You are already subscribed.", message: "")
             
-            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            
-            alertController.addAction(defaultAction)
-            
-            self.activityIndicator.isHidden = true
-            self.strLabel.isHidden = true
-            self.messageFrame.isHidden = true
-            
-            self.present(alertController, animated: true, completion: nil)
+            self.hideActivityIndicator()
             
         } else {
             
             let stripeCard = self.paymentTextField.cardParams
-            
-            /*
-             if self.monthExpiration.text?.isEmpty == false && self.yearExpiration.text?.isEmpty == false {
-             let numMonth = UInt(self.monthExpiration.text!)!
-             let numYear = UInt(self.yearExpiration.text!)!
-             
-             stripeCard.number = self.cardNumber.text
-             stripeCard.cvc = self.CVCNumber.text
-             stripeCard.expMonth = numMonth
-             stripeCard.expYear = numYear
-             
-             }*/
             
             if STPCardValidator.validationState(forCard: stripeCard) == .valid {
                 STPAPIClient.shared().createToken(withCard: stripeCard, completion: { (token,error) -> Void in
@@ -181,17 +161,9 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
     
     func handleError() {
         
-        let alertController = UIAlertController(title: "Please Try Again", message: "Some information was missing or incorrect.", preferredStyle: .alert)
-        
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        
-        alertController.addAction(defaultAction)
-        
-        self.activityIndicator.isHidden = true
-        self.strLabel.isHidden = true
-        self.messageFrame.isHidden = true
-        
-        self.present(alertController, animated: true, completion: nil)
+        self.showAlertWithOK(header: "Please try again.", message: "Some information was missing or incorrect.")
+
+        self.hideActivityIndicator()
         
     }
     
@@ -263,9 +235,7 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
                 print("Failed to load: \(error.localizedDescription)")
             }
             
-            self.activityIndicator.isHidden = true
-            self.strLabel.isHidden = true
-            self.messageFrame.isHidden = true
+            self.hideActivityIndicator()
             
         }
         
@@ -274,21 +244,27 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
     }
     
     func progressBarDisplayer(_ msg:String, _ indicator:Bool ) {
-        print(msg)
-        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
-        strLabel.text = msg
-        strLabel.textColor = UIColor.white
-        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
-        messageFrame.layer.cornerRadius = 15
-        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
-        if indicator {
-            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-            activityIndicator.startAnimating()
-            messageFrame.addSubview(activityIndicator)
+        
+        if self.messageFrame.isHidden == true {
+            
+            print(msg)
+            strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+            strLabel.text = msg
+            strLabel.textColor = UIColor.white
+            messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 25 , width: 180, height: 50))
+            messageFrame.layer.cornerRadius = 15
+            messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+            if indicator {
+                activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+                activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+                activityIndicator.startAnimating()
+                messageFrame.addSubview(activityIndicator)
+            }
+            messageFrame.addSubview(strLabel)
+            view.addSubview(messageFrame)
+            
         }
-        messageFrame.addSubview(strLabel)
-        view.addSubview(messageFrame)
+        
     }
     
     
@@ -307,16 +283,25 @@ class PurchaseViewController: UIViewController, STPPaymentCardTextFieldDelegate 
         }
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func showAlertWithOK(header:String, message:String) {
+        
+        let alertController = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
-    */
+    
+    func hideActivityIndicator() {
+        
+        self.activityIndicator.stopAnimating()
+        self.strLabel.isHidden = true
+        self.messageFrame.isHidden = true
+        self.activityIndicator.isHidden = true
+        
+    }
 
 }
