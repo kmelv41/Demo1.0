@@ -122,7 +122,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Venues" id="FyW-ri-L03">
                             <color key="tintColor" red="0.050980392156862744" green="0.19607843137254902" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="rbg-cZ-MAi" kind="show" identifier="mapToVenues" id="Ecr-it-mUd"/>
+                                <action selector="venueButtonTapped:" destination="9th-GH-1wC" id="1nk-8i-X1k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -138,6 +138,7 @@
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
                         <segue destination="Ea5-IY-UMc" kind="show" identifier="showPurchases" id="x7N-KZ-Rgd"/>
+                        <segue destination="rbg-cZ-MAi" kind="show" identifier="mapToVenues" id="XXt-G2-ErB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fl8-DO-zZn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,7 +216,7 @@
                                             <constraint firstItem="rYq-xM-Qkl" firstAttribute="leading" secondItem="YFx-wm-MBE" secondAttribute="leading" constant="8" id="z1w-fb-RQk"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="y9A-8H-DqL" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="LgI-po-4RZ"/>
+                                            <segue destination="y9A-8H-DqL" kind="custom" identifier="segueToMapNoConnection" customClass="SWRevealViewControllerSeguePushController" id="LgI-po-4RZ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AccountCell" id="SgE-mL-M0H">
@@ -326,7 +327,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="y9A-8H-DqL" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rha-uB-k5h">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="rha-uB-k5h">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -812,7 +813,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0fW-5I-mSc" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="buu-qY-m5G">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="buu-qY-m5G">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1578,7 +1579,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mTI-gq-GHE" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AWx-kR-guw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="AWx-kR-guw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1613,7 +1614,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tXf-nB-KcA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FnJ-tP-JOe">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FnJ-tP-JOe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1631,7 +1632,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VIe-3W-kQe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qvX-Uw-4v3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qvX-Uw-4v3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

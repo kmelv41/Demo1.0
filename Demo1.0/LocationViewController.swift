@@ -38,7 +38,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         self.mapView.isRotateEnabled = false
         print("Venue info is: \(self.venueInfo)")
         self.venueLabel.text = venueInfo[0]
-        self.distanceLabel.text = venueInfo[5]! + " km"
+        self.distanceLabel.text = venueInfo[5]!
         self.addressLabel.text = venueInfo[1]
         self.cityLabel.text = venueInfo[2]
         self.machineLocation.text = venueInfo[7]
@@ -75,7 +75,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
         
         let pinLocation = CLLocation(latitude: lttude!, longitude: lgtude!)
         
-        self.pointAnnotation.distanceToVenue = "\(venueInfo[5]) km"
+        self.pointAnnotation.distanceToVenue = "\(venueInfo[5])"
         self.pointAnnotation.name = venueInfo[0]
         self.pointAnnotation.address = venueInfo[1]
         
@@ -183,9 +183,17 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate, MKMap
     
     @IBAction func getDirectionsTapped(_ sender: AnyObject) {
         
-        let directionsURL = "http://maps.apple.com/?saddr=\(self.myLat),\(self.myLong)&daddr=\(venueInfo[3]!),\(venueInfo[4]!)"
+        var directionsURL = ""
         
-        print(directionsURL)
+        if venueInfo[5]! == "?? km" {
+            
+            directionsURL = "http://maps.apple.com/?daddr=\(venueInfo[3]!),\(venueInfo[4]!)"
+            
+        } else {
+            
+            directionsURL = "http://maps.apple.com/?saddr=\(self.myLat),\(self.myLong)&daddr=\(venueInfo[3]!),\(venueInfo[4]!)"
+            
+        }
         
         if let url = NSURL(string: directionsURL) {
             if #available(iOS 10.0, *) {

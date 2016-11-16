@@ -46,6 +46,7 @@
 		CE674FF21DD90E61005092C9 /* emailButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FEF1DD90E61005092C9 /* emailButton@2x.png */; };
 		CE674FF31DD90E61005092C9 /* emailButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE674FF01DD90E61005092C9 /* emailButton@3x.png */; };
 		CE674FF51DDA3E3E005092C9 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE674FF41DDA3E3E005092C9 /* AnnotationView.swift */; };
+		CE674FF71DDB773B005092C9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE674FF61DDB773B005092C9 /* Reachability.swift */; };
 		CEA9192F1DA1AFB50010DF52 /* CustomCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */; };
 		CEA919311DA1AFBC0010DF52 /* CustomCalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */; };
 		CEB646971D6C7C7F0024D4A5 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */; };
@@ -183,6 +184,7 @@
 		CE674FEF1DD90E61005092C9 /* emailButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailButton@2x.png"; sourceTree = "<group>"; };
 		CE674FF01DD90E61005092C9 /* emailButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emailButton@3x.png"; sourceTree = "<group>"; };
 		CE674FF41DDA3E3E005092C9 /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		CE674FF61DDB773B005092C9 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		CEA9192E1DA1AFB50010DF52 /* CustomCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCalloutView.xib; sourceTree = "<group>"; };
 		CEA919301DA1AFBC0010DF52 /* CustomCalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalloutView.swift; sourceTree = "<group>"; };
 		CEB646961D6C7C7F0024D4A5 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 				CEE19BC81DCCC7A00079C2FE /* SubscribedViewController.swift */,
 				CE15BC471D5E8F6400517135 /* HelpViewController.swift */,
 				CE674FDF1DD23F4E005092C9 /* FAQTableViewCell.swift */,
+				CE674FF61DDB773B005092C9 /* Reachability.swift */,
 				CE15BC151D5E835600517135 /* Assets.xcassets */,
 				CE15BC171D5E835600517135 /* LaunchScreen.storyboard */,
 				CE15BC1A1D5E835600517135 /* Info.plist */,
@@ -767,6 +770,7 @@
 				CE674FF51DDA3E3E005092C9 /* AnnotationView.swift in Sources */,
 				CE674FE21DD760AD005092C9 /* HamburgerViewController.swift in Sources */,
 				CEE19BC91DCCC7A00079C2FE /* SubscribedViewController.swift in Sources */,
+				CE674FF71DDB773B005092C9 /* Reachability.swift in Sources */,
 				CE15BC3F1D5E837600517135 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

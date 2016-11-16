@@ -50,16 +50,47 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     var criteriaArray = [[String?]]()
     var filterBool = false
     var fullArray = [[String?]]()
-    
+    var connectedToNetwork = true
     var shouldShowSearchResults = false
+    let reachability = Reachability()!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reachability.whenReachable = { reachability in
+            
+            if reachability.isReachableViaWiFi {
+                
+                self.connectedToNetwork = true
+                
+            } else {
+                
+                self.connectedToNetwork = true
+                
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+            
+            self.connectedToNetwork = false
+            
+            self.showAlertWithOK(header: "No Network Connection", message: "Without a network connection we can't show you a list of Wharf locations.")
+            
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
         createSearchBar()
         
         if self.revealViewController() != nil {
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.menuButton.target = self.revealViewController()
+            self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+            self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         }
         
         self.listTableView.delegate = self
@@ -79,10 +110,15 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
                 singleRecord.append(dataPull[index]["Latitude"])
                 singleRecord.append(dataPull[index]["Longitude"])
                 let pinLocation = CLLocation(latitude: Double(singleRecord[3]!)!, longitude: Double(singleRecord[4]!)!)
-                self.currentLocation = self.locationManager.location
-                let distFromPin: Double = self.currentLocation.distance(from: pinLocation)/1000
-                let strFromPin = String(format:"%.1f",distFromPin)
-                singleRecord.append(strFromPin)
+                
+                
+                if let myLocation = self.locationManager.location {
+                    let distFromPin: Double = myLocation.distance(from: pinLocation)/1000
+                    let strFromPin = String(format:"%.1f",distFromPin)
+                    singleRecord.append("\(strFromPin) km")
+                } else {
+                    singleRecord.append("?? km")
+                }
                 singleRecord.append(dataPull[index]["Category"])
                 singleRecord.append(dataPull[index]["Machine"])
                 newArray.append(singleRecord)
@@ -171,14 +207,14 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
         if shouldShowSearchResults {
             let row = (indexPath as NSIndexPath).row
             myCell.venueLabel.text = filteredArray[row][0]
-            myCell.distanceLabel.text = filteredArray[row][5]! + " km"
+            myCell.distanceLabel.text = filteredArray[row][5]!
             myCell.addressLabel.text = filteredArray[row][1]
             myCell.cityLabel.text = filteredArray[row][2]
             return myCell
         } else {
             let row = (indexPath as NSIndexPath).row
             myCell.venueLabel.text = tableArray[row][0]
-            myCell.distanceLabel.text = tableArray[row][5]! + " km"
+            myCell.distanceLabel.text = tableArray[row][5]!
             myCell.addressLabel.text = tableArray[row][1]
             myCell.cityLabel.text = tableArray[row][2]
             return myCell
@@ -254,6 +290,18 @@ class VenueListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
+    }
+    
+    func showAlertWithOK(header:String, message:String) {
+        
+        let alertController = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertController.addAction(defaultAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
 }

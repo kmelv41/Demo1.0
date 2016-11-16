@@ -39,9 +39,58 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
     var authProvider = String()
     var uid = String()
     var subscriptionStatus = 0
-    
+    let reachability = Reachability()!
+    var connectedToNetwork = true
+    var hasLoaded = false
     
     override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        self.revealViewController().delegate = self
+        
+        reachability.whenReachable = { reachability in
+            
+            if reachability.isReachableViaWiFi {
+                
+                self.connectedToNetwork = true
+                
+                if self.hasLoaded {
+                    //nothing
+                } else {
+                    self.finishLoading()
+                }
+                
+            } else {
+                
+                self.connectedToNetwork = true
+                
+                if self.hasLoaded {
+                    //nothing
+                } else {
+                    self.finishLoading()
+                }
+                
+            }
+        }
+        
+        reachability.whenUnreachable = { reachability in
+
+            self.connectedToNetwork = false
+            
+            self.showAlertWithOK(header: "No Network Connection", message: "You will need a network connection to see our locations on the map.")
+            
+            self.loginButton.isHidden = true
+            self.signInButton.isHidden = true
+            self.emailButton.isHidden = true
+            
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
         getData()
         self.memberButton.isHidden = true
         self.mapView.isUserInteractionEnabled = true
@@ -68,97 +117,59 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
         self.loginButton.loginBehavior = FBSDKLoginBehavior.browser
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
-                // User is signed in.
-                
-                super.viewDidLoad()
-                if self.revealViewController() != nil {
-                    self.menuButton.target = self.revealViewController()
-                    self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-                    self.revealViewController().delegate = self
-                    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-                    self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
-                }
-
-                self.loginButton.isHidden = true
-                self.signInButton.isHidden = true
-                self.emailButton.isHidden = true
-                
-                self.uid = (FIRAuth.auth()?.currentUser?.uid)!
-
-                self.rootRef.child("Users").child(self.uid).observe(.value, with: { snapshot in
-                    
-                    FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-                        if let user = user {
-                            
-                            if snapshot.hasChild("Name") {
-                                
-                                let dataPull = snapshot.value! as! [String:AnyObject]
-                                
-                                if snapshot.hasChild("Subscription") {
-                                    self.subscriptionStatus = (dataPull["Subscription"]! as! Int)
-                                }
-                                
-                                if self.subscriptionStatus == 1 {
-                                    self.memberButton.isHidden = true
-                                } else {
-                                    self.memberButton.isHidden = false
-                                }
-                                
-                            }
-                            
-                        } else {
-                            
-                            self.subscriptionStatus = 0
-                            self.memberButton.isHidden = true
-                            
-                        }
-                        
-                    }
-                    
-                })
-                
-            } else {
-                // No user is signed in.
-                // show user login button.
-                
-                //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-                //self.view.addSubview(self.loginButton)
-                
-            }
+        let status = CLLocationManager.authorizationStatus()
+        
+        if status == CLAuthorizationStatus.denied || status == CLAuthorizationStatus.notDetermined {
+            
+            self.showAlertWithOK(header: "Location Unknown", message: "By enabling location services, we can show you the Wharf stations that are closest to you.")
+            
         }
-
         
     }
     
+    @IBAction func venueButtonTapped(_ sender: AnyObject) {
+        
+        if self.connectedToNetwork {
+            
+            self.performSegue(withIdentifier: "mapToVenues", sender: self)
+            
+        } else {
+            
+            self.showAlertWithOK(header: "No Network Connection", message: "Without a network connection, this app is limited.")
+            
+        }
+        
+    }
+    
+    
     @IBAction func menuButtonTapped(_ sender: AnyObject) {
         
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
-                // User is signed in.
+        if self.connectedToNetwork {
+            
+            FIRAuth.auth()?.addStateDidChangeListener { auth, user in
                 
-                //self.mapView.isUserInteractionEnabled = false
-                
-                // original segue code
-                //let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
-                //let loggedInViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("loggedInView")
-                
-                //self.presentViewController(loggedInViewController, animated: true, completion: nil)
-                
-            } else {
-                // No user is signed in.
-                // show user login button.
-                
-                self.showAlertWithOK(header: "Hi There!", message: "Please sign in using one of the options below before navigating to the purchases page.")
-                
-                
-                //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-                //self.view.addSubview(self.loginButton)
-                
+                if let user = user {
+                    // User is signed in.
+                    
+                    
+                } else {
+                    // No user is signed in.
+                    // show user login button.
+                    
+                    self.showAlertWithOK(header: "Please Sign In", message: "To use this app's full functionality, please sign in using one of the options below.")
+                    
+                    
+                    //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+                    //self.view.addSubview(self.loginButton)
+                    
+                }
             }
+            
+        } else {
+            
+            self.showAlertWithOK(header: "No Network Connection", message: "You must be connected to the internet to use this app.")
+            
         }
-
         
     }
     
@@ -365,11 +376,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
                     
                     
                     let pinLocation = CLLocation(latitude: lttude!, longitude: lgtude!)
-                    self.currentLocation = self.locationManager.location
-                    let distFromPin: Double = self.currentLocation.distance(from: pinLocation)/1000
-                    let strFromPin = String(format:"%.1f",distFromPin)
                     
-                    self.pointAnnotation.distanceToVenue = "\(strFromPin) km"
+                    if let myLocation = self.locationManager.location {
+                        let distFromPin: Double = myLocation.distance(from: pinLocation)/1000
+                        let strFromPin = String(format:"%.1f",distFromPin)
+                        self.pointAnnotation.distanceToVenue = "\(strFromPin) km"
+                    } else {
+                        self.pointAnnotation.distanceToVenue = "?? km"
+                    }
+
                     self.pointAnnotation.name = name
                     self.pointAnnotation.address = address
                     
@@ -540,6 +555,73 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, URLSession
         
     }
     
+    func finishLoading() {
+        
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in.
+                
+                super.viewDidLoad()
+                if self.revealViewController() != nil {
+                    self.menuButton.target = self.revealViewController()
+                    self.menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
+                    self.revealViewController().delegate = self
+                    self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+                    self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+                }
+                
+                self.loginButton.isHidden = true
+                self.signInButton.isHidden = true
+                self.emailButton.isHidden = true
+                
+                self.uid = (FIRAuth.auth()?.currentUser?.uid)!
+                
+                self.rootRef.child("Users").child(self.uid).observe(.value, with: { snapshot in
+                    
+                    FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+                        if let user = user {
+                            
+                            if snapshot.hasChild("Name") {
+                                
+                                let dataPull = snapshot.value! as! [String:AnyObject]
+                                
+                                if snapshot.hasChild("Subscription") {
+                                    self.subscriptionStatus = (dataPull["Subscription"]! as! Int)
+                                }
+                                
+                                if self.subscriptionStatus == 1 {
+                                    self.memberButton.isHidden = true
+                                } else {
+                                    self.memberButton.isHidden = false
+                                }
+                                
+                            }
+                            
+                        } else {
+                            
+                            self.subscriptionStatus = 0
+                            self.memberButton.isHidden = true
+                            
+                        }
+                        
+                    }
+                    
+                })
+                
+            } else {
+                // No user is signed in.
+                // show user login button.
+                
+                //self.loginButton.readPermissions = ["public_profile", "email", "user_friends"]
+                //self.view.addSubview(self.loginButton)
+                
+            }
+        }
+        
+        self.hasLoaded = true
+        
+    }
+    
 }
 
-    
+

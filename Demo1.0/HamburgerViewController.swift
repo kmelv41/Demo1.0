@@ -10,8 +10,23 @@ import UIKit
 
 class HamburgerViewController : UITableViewController {
     
+    let reachability = Reachability()!
+    
     override func viewDidLoad() {
         self.tableView.isScrollEnabled = false
+        
+        reachability.whenUnreachable = { reachability in
+            
+            self.performSegue(withIdentifier: "segueToMapNoConnection", sender: self)
+            
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -24,6 +39,5 @@ class HamburgerViewController : UITableViewController {
         super.viewDidDisappear(animated)
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
     }
-    
     
 }
